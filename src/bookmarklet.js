@@ -18,14 +18,14 @@
     
     // append styles
     s = d.createElement('link');
-    s.setAttribute('href','http://snoopy-assets.allmarkedup.com/snoopy-min.css');
+    s.setAttribute('href','https://raw.githubusercontent.com/michaelnordmeyer/snoopy/master/snoopy-min.css');
     s.setAttribute('rel','stylesheet');
     s.setAttribute('type','text/css');
     d.getElementsByTagName('head')[0].appendChild(s);
     
     // append script
     e = d.createElement('script');
-    e.setAttribute('src', 'http://snoopy-assets.allmarkedup.com/snoopy-min.js');
+    e.setAttribute('src', 'https://raw.githubusercontent.com/michaelnordmeyer/snoopy/master/snoopy-min.js');
     d.getElementsByTagName('body')[0].appendChild(e);
     
 })();
