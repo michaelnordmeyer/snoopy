@@ -8,9 +8,9 @@ task :default => :prep
 
 ROOT = File.expand_path(File.dirname(__FILE__))
 
-cssinput   = File.join(ROOT, 'src', 'snoopy.css');
-cssoutput  = File.join(ROOT, 'snoopy.css');
-cssmin     = File.join(ROOT, 'snoopy-min.css');
+cssinput  = File.join(ROOT, 'src', 'snoopy.css');
+cssoutput = File.join(ROOT, 'snoopy.css');
+cssmin    = File.join(ROOT, 'snoopy-min.css');
 
 jsinput   = File.join(ROOT, 'src', 'snoopy.js');
 jsoutput  = File.join(ROOT, 'snoopy.js');
