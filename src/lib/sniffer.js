@@ -7,7 +7,7 @@
 
         var sniff       = {},
             detect      = {},
-            pageinfo     = {},
+            pageinfo    = {},
             test_runner = {},
             results     = {},
             indexed_results = {},
@@ -133,7 +133,7 @@
                 'YUI' : [
                     {
                         type : 'custom',
-    					test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
+                        test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
                     }
                 ],
                 'Google Closure' : [
@@ -148,12 +148,12 @@
                         test : function(){ return win.Modernizr ? win.Modernizr._version : false; } // need to figure out how to get YUI version
                     }
                 ],
-    			'Raphael' : [
-    				{
-    					type : 'custom',
-    					test : function(){ return win.Raphael ? win.Raphael.version : false; }
-    				}
-    			]
+                'Raphael' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Raphael ? win.Raphael.version : false; }
+                    }
+                ]
             }
         };
 
@@ -175,6 +175,18 @@
                         test : /<link rel=["|']stylesheet["|'] [^>]+wp-content/i
                     }
                 ],
+                'Tumblr' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Tumblr ? true : false; }
+                    }
+                ],
+                'Squarespace' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Squarespace ? true : false; }
+                    }
+                ],
                 'Typepad' : [
                     {
                         type : 'meta',
@@ -187,34 +199,34 @@
                         test : { name : 'generator', match : /joomla\!?\s?([\d.]*)/i }
                     }
                 ],
-    			'Blogger' : [
-    				{
-    					type : 'meta',
-    					test : { name : 'generator', match : /blogger/i }
-    				}
-    			],
-    			'MovableType' : [
-    				{
-    					type : 'meta',
-    					test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
-    				}
-    			],
-    			'Drupal' : [
-    				{
-    					type : 'custom',
-    					test : function() { return win.Drupal ? true : false; } // no version in js obj
-    				}
-    			],
-    			'Cisco Eos' : [
-    				{
-    					type : 'custom',
-    					test : function() { return win.eos ? true : false; } // no version in js obj
-    				},
-    				{
+                'Blogger' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /blogger/i }
+                    }
+                ],
+                'MovableType' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
+                    }
+                ],
+                'Drupal' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Drupal ? true : false; } // no version in js obj
+                    }
+                ],
+                'Cisco Eos' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.eos ? true : false; } // no version in js obj
+                    },
+                    {
                         type : 'text',
                         test : /<link rel=["|']stylesheet["|'] [^>]+ciscoeos.com/i
                     }
-    			]
+                ]
             }
 
         };
@@ -251,12 +263,12 @@
                         test : function(){ return !! win.clicky; }
                     }
                 ],
-    			'Open Web Analytics' : [
-    				{
-    					type : 'custom',
-    					test : function() { return !! win.OWA; }
-    				}
-    			]
+                'Open Web Analytics' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.OWA; }
+                    }
+                ]
             }
 
         };
