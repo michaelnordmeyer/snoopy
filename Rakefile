@@ -1,23 +1,26 @@
 require 'rubygems'
+require 'bundler/setup'
+
 require 'sprockets'
 require 'juicer'
 require 'yui/compressor'
+
 require 'uri'
 
 task :default => :prep
 
 ROOT = File.expand_path(File.dirname(__FILE__))
 
-cssinput  = File.join(ROOT, 'src', 'snoopy.css');
-cssoutput = File.join(ROOT, 'snoopy.css');
-cssmin    = File.join(ROOT, 'snoopy-min.css');
+cssinput  = File.join(ROOT, 'src', 'snoopy.css')
+cssoutput = File.join(ROOT, 'snoopy.css')
+cssmin    = File.join(ROOT, 'snoopy-min.css')
 
-jsinput   = File.join(ROOT, 'src', 'snoopy.js');
-jsoutput  = File.join(ROOT, 'snoopy.js');
-jsmin     = File.join(ROOT, 'snoopy-min.js');
+jsinput   = File.join(ROOT, 'src', 'snoopy.js')
+jsoutput  = File.join(ROOT, 'snoopy.js')
+jsmin     = File.join(ROOT, 'snoopy-min.js')
 
-bminput   = File.join(ROOT, 'src', 'bookmarklet.js');
-bmoutput  = File.join(ROOT, 'bookmarklet.js');
+bminput   = File.join(ROOT, 'src', 'bookmarklet.js')
+bmoutput  = File.join(ROOT, 'bookmarklet.js')
 
 # merge
 
@@ -30,7 +33,7 @@ task :mergejs do
     :source_files => [jsinput]
   )
   concatenation = secretary.concatenation
-  concatenation.save_to(jsoutput);
+  concatenation.save_to(jsoutput)
 end
 
 task :merge => [:mergejs, :mergecss]
