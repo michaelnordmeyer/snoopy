@@ -139,13 +139,13 @@
                 'Google Closure' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.goog; } // need to figure out how to get YUI version
+                        test : function(){ return !! win.goog; } // need to figure out how to get Closure version
                     }
                 ],
                 'Modernizr' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.Modernizr ? win.Modernizr._version : false; } // need to figure out how to get YUI version
+                        test : function(){ return win.Modernizr ? win.Modernizr._version : false; }
                     }
                 ],
                 'Raphael' : [
