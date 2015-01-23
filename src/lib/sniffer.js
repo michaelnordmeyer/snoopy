@@ -130,10 +130,16 @@
                         test : function(){ return win.Ext ? win.Ext.version : false; }
                     }
                 ],
-                'YUI' : [
+                'YUI2' : [
                     {
                         type : 'custom',
                         test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
+                    }
+                ],
+                'YUI3' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.YUI ? win.YUI.version : false; }
                     }
                 ],
                 'Google Closure' : [
