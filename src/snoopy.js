@@ -199,7 +199,7 @@
     
     //= require "lib/sniffer"
     
-    //= require "lib/tim"
+    //= require "lib/tinytim"
     
     //= require "lib/floodlight"
     
