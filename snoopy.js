@@ -13,7 +13,7 @@
 
     config = {
         NAME            : 'Snoopy',
-        VERSION         : '0.2',
+        VERSION         : '0.3',
         START_OFFSET    : { top : '0', left : '0' }
     };
 
@@ -109,6 +109,7 @@
             var self = this,
                 el   = this.elem;
 
+            //////////// general snoopy events ////////////
 
             $('#snpy .close').bind('click', function(){
                 el.addClass('closed');
@@ -119,6 +120,7 @@
                 self.setMaxDimensions();
             });
 
+            // tabs & panels
 
             var tabs = $('#snpy .menu li'),
                 panels = $('#snpy .panel');
@@ -134,6 +136,7 @@
                  });
              });
 
+            //////////// module-specific events ////////////
 
             for ( var d, i = -1; d = this.bind_stack[++i]; ) d();
         },
@@ -142,8 +145,10 @@
         {
             viewport = getViewportDimensions();
             if ( isMobile ) this.elem.style('max-width', (viewport.width - parseInt(config.START_OFFSET.left)*2)+'px', true);
+            // if it is a mobile-optimised site, don't try and fit the source size to screen as it won't work properly
             if ( viewport.width != 320 && viewport.width != 480 )
             {
+                // TODO: really need to implement some proper browser capability and type detection instead of one-off tests like this
                 $('#snpy pre.source').style('max-height', (viewport.height - 180 - parseInt(config.START_OFFSET.top)*2)+'px', true);
             }
             else if (viewport.width == 320)
@@ -187,6 +192,7 @@
 
     };
 
+    //////////// HELPER FUNCTIONS ////////////////
 
     /*
      * Sniffer - sniffs web pages to extract information such as JS libraries, CMS, analytics packages, etc.
@@ -197,7 +203,7 @@
 
         var sniff       = {},
             detect      = {},
-            pageinfo     = {},
+            pageinfo    = {},
             test_runner = {},
             results     = {},
             indexed_results = {},
@@ -207,6 +213,7 @@
             doctype     = doc.doctype,
             has_run     = false;
 
+        // discard meta tags that aren't useful
         metas = (function(){
             for ( var meta, temp = [], i = -1; meta = metas[++i]; )
             {
@@ -215,6 +222,7 @@
             return temp;
         })();
 
+        // discard script tags that aren't useful
         scripts = (function(){
             for ( var script, temp = [], i = -1; script = scripts[++i]; )
             {
@@ -266,6 +274,7 @@
 
             return_type : 'version',
 
+            // All individual tests should either return a version number, true or false.
 
             tests : {
 
@@ -317,30 +326,36 @@
                         test : function(){ return win.Ext ? win.Ext.version : false; }
                     }
                 ],
-                'YUI' : [
+                'YUI2' : [
                     {
                         type : 'custom',
-    					test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
+                        test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
+                    }
+                ],
+                'YUI3' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.YUI ? win.YUI.version : false; }
                     }
                 ],
                 'Google Closure' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.goog; } // need to figure out how to get YUI version
+                        test : function(){ return !! win.goog; } // need to figure out how to get Closure version
                     }
                 ],
                 'Modernizr' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.Modernizr ? win.Modernizr._version : false; } // need to figure out how to get YUI version
+                        test : function(){ return win.Modernizr ? win.Modernizr._version : false; }
                     }
                 ],
-    			'Raphael' : [
-    				{
-    					type : 'custom',
-    					test : function(){ return win.Raphael ? win.Raphael.version : false; }
-    				}
-    			]
+                'Raphael' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Raphael ? win.Raphael.version : false; }
+                    }
+                ]
             }
         };
 
@@ -362,6 +377,18 @@
                         test : /<link rel=["|']stylesheet["|'] [^>]+wp-content/i
                     }
                 ],
+                'Tumblr' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Tumblr ? true : false; }
+                    }
+                ],
+                'Squarespace' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Squarespace ? true : false; }
+                    }
+                ],
                 'Typepad' : [
                     {
                         type : 'meta',
@@ -374,34 +401,46 @@
                         test : { name : 'generator', match : /joomla\!?\s?([\d.]*)/i }
                     }
                 ],
-    			'Blogger' : [
-    				{
-    					type : 'meta',
-    					test : { name : 'generator', match : /blogger/i }
-    				}
-    			],
-    			'MovableType' : [
-    				{
-    					type : 'meta',
-    					test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
-    				}
-    			],
-    			'Drupal' : [
-    				{
-    					type : 'custom',
-    					test : function() { return win.Drupal ? true : false; } // no version in js obj
-    				}
-    			],
-    			'Cisco Eos' : [
-    				{
-    					type : 'custom',
-    					test : function() { return win.eos ? true : false; } // no version in js obj
-    				},
-    				{
+                'Blogger' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /blogger/i }
+                    }
+                ],
+                'MovableType' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
+                    }
+                ],
+                'Drupal' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Drupal ? true : false; } // no version in js obj
+                    }
+                ],
+                'Jekyll' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Jekyll v([\w\d\.]*)/i }
+                    }
+                ],
+                'Octopress' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /.*Octopress.*/i }
+                    }
+                ],
+                'Cisco Eos' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.eos ? true : false; } // no version in js obj
+                    },
+                    {
                         type : 'text',
                         test : /<link rel=["|']stylesheet["|'] [^>]+ciscoeos.com/i
                     }
-    			]
+                ]
             }
 
         };
@@ -429,7 +468,7 @@
                 'Piwik' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.Piwik; }
+                        test : function(){ return !! win._paq; }
                     }
                 ],
                 'Clicky' : [
@@ -438,12 +477,31 @@
                         test : function(){ return !! win.clicky; }
                     }
                 ],
-    			'Open Web Analytics' : [
-    				{
-    					type : 'custom',
-    					test : function() { return !! win.OWA; }
-    				}
-    			]
+                'Open Web Analytics' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.OWA; }
+                    }
+                ],
+                'New Relic' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.NREUMQ; }
+                    }
+                ],
+                'Gauges' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win._gauges; }
+                    }
+                ],
+                'Mint' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.Mint; }
+                    }
+                ]
+
             }
 
         };
@@ -478,6 +536,10 @@
                     {
                         type : 'custom',
                         test : function(){ return !! win.WebFont }
+                    },
+                    {
+                        type : 'text',
+                        test : /<link rel=["|']stylesheet["|'] [^>]+fonts.googleapis.com/i
                     }
                 ],
                 'sIFR' : [
@@ -493,11 +555,13 @@
 
         /* test runners */
 
+        // custom tests just run a function that returns a version number, true or false.
         test_runner.custom = function( test )
         {
             return test();
         }
 
+        // one off regexp-based tests
         test_runner.text = function( test )
         {
             return match( html, test );
@@ -529,6 +593,7 @@
             }
         }
 
+        // check the script src... probably pretty unreliable
         if ( scripts.length )
         {
             test_runner.script = function( test )
@@ -542,9 +607,11 @@
         }
         else
         {
+            // no scripts, tests will always return false.
            test_runner.script = function(){ return false; }
         }
 
+        // check the meta elements in the head
         if ( metas.length )
         {
             test_runner.meta = function( test )
@@ -562,9 +629,11 @@
         }
         else
         {
+            // there are no meta elements on the page so this will always return false
             test_runner.meta = function(){ return false; }
         }
 
+        // test arg should be a regexp, in which the only *specific* match is the version number
         function match( str, test )
         {
             var match = str.match(test);
@@ -590,6 +659,7 @@
             return true;
         }
 
+        // utility function for iterating over the tests
         var forEachTest = function( callback )
         {
             for ( group in detect )
@@ -609,6 +679,7 @@
 
         var addToResults = function( group, test, res )
         {
+            // add results to group results object
 
             results[group] = results[group] || {};
             results[group].results = results[group].results || {};
@@ -618,16 +689,19 @@
 
             results[group]['results'][test] = res;
 
+            // add the result to the name-index results object
 
             indexed_results[test.toLowerCase()] = res;
         }
 
         /* publicly available methods */
 
+        // return results of all checks run so far
         sniff.results = function(){
             return results;
         };
 
+        // perform an individual check
         sniff.check = function( to_test )
         {
             to_test = to_test.toLowerCase();
@@ -647,6 +721,7 @@
             return indexed_results[to_test];
         };
 
+        // run or re-run all checks
         sniff.run = function()
         {
             forEachTest(function( group, test ){
@@ -662,482 +737,724 @@
 
     })( window, document );
 
-    var tim = (function(){
-        var starts  = "{{",
-            ends    = "}}",
-            path    = "[a-z0-9_][\\.a-z0-9_]*", // e.g. config.person.name
-            pattern = new RegExp(starts + "("+ path +")" + ends, "gim"),
-            length  = "length",
-            undef;
+	/*!
+	* Tim (lite)
+	*   github.com/premasagar/tim
+	*
+	*//*
+	    A tiny, secure JavaScript micro-templating script.
+	*//*
 
-        return function(template, data){
-            return template.replace(pattern, function(tag){
-                var ref = tag.slice(starts[length], 0 - ends[length]),
-                    path = ref.split("."),
-                    len = path[length],
-                    lookup = data,
-                    i = 0;
+	    by Premasagar Rose
+	        dharmafly.com
 
-                for (; i < len; i++){
-                    if (lookup === undef){
-                        break;
-                    }
-                    lookup = lookup[path[i]];
+	    license
+	        opensource.org/licenses/mit-license.php
 
-                    if (i === len - 1){
-                        return lookup;
-                    }
-                }
-            });
-        };
-    }());
+	    **
 
-/* Floodlight (X)HTML Syntax Highlighter - v0.1
- *  Copyright 2010, Aron Carroll
- *  Released under the MIT license
- *  More Information: http://github.com/aron/floodlight.js
- */
+	    creates global object
+	        tim
 
-(function (window, undefined) {
-	var options = {
-		prefix: '',
-		spaces: '  ',
-		regex: {
-			tag:     /(<\/?)(\w+)([^>]*)(\/?>)/gi,
-			/* Attribute regex source: http://ejohn.org/blog/pure-javascript-html-parser/ */
-			attr:    /(\w+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g,
-			comment: /<!--[^\-]*-->/g,
-			encode:  /<|>|"|&/g,
-			decode:  /&(?:lt|gt|quot|amp);/g
-		},
-		map: {
-			encode: {'<':'&lt;', '>':'&gt;', '"':'&quot;', '&':'&amp;'},
-			decode: {'&lt;':'<', '&gt;':'>', '&quot;':'"', '&amp;':'&'}
-		}
-	};
+	    **
 
-	function parseTags(source) {
-		return source.replace(/\t/g, options.spaces).replace(options.regex.tag,
-			function (match, open, tag, attr, close) {
-				return wrap(open, 'bracket') + wrap(tag, 'tag') + parseAttributes(attr) + wrap(close, 'bracket');
-			}
-		).replace(options.regex.comment, function (comment) {
-			return wrap(comment, 'comment');
-		});
-	}
+	    v0.3.0
 
-	function parseAttributes(attributes) {
-		return attributes.replace(options.regex.attr, function (match, a, v1, v2, v3) {
-			var value = (((v1 || v2) || v3) || '');
-			return wrap(a, 'attribute') + '=' + wrap('"' + value + '"', 'value');
-		});
-	}
+	*/
 
-	function entities(string, type) {
-		return string.replace(options.regex[type], function (match) {
-			return options.map[type][match];
-		});
-	}
+	(function(name, definition, context) {
+	    if (typeof module != 'undefined' && module.exports) {
+	        module.exports = definition();
+	    } else if (typeof context['define'] == 'function' && context['define']['amd']) {
+	        define(definition);
+	    } else {
+	        context[name] = definition();
+	    }
+	})('tim', function() {
 
-	function wrap(string, klass) {
-		return '<span class="' + options.prefix + klass + '">' + entities(string, 'encode') + '</span>';
-	}
+	    var tim = (function(){
+	        "use strict";
 
-	window.floodlight = parseTags;
+	        var start   = "{{",
+	            end     = "}}",
+	            path    = "[a-z0-9_$][\\.a-z0-9_]*", // e.g. config.person.name
+	            pattern = new RegExp(start + "\\s*("+ path +")\\s*" + end, "gi"),
+	            undef;
 
-	window.floodlight.encode  = function (string) { return entities(string, 'encode'); };
-	window.floodlight.decode  = function (string) { return entities(string, 'decode'); };
-	window.floodlight.options = options;
-})(this);
+	        return function(template, data){
+	            // Merge data into the template string
+	            return template.replace(pattern, function(tag, token){
+	                var path = token.split("."),
+	                    len = path.length,
+	                    lookup = data,
+	                    i = 0;
 
-    /*
-     * 'snoopQuery' - mini jQuery-style DOM helper functions.
-     * Only intended to work in newer browsers (eg. with querySelectorAll support),
-     * VERY limited, not intended for extraction, only useful in a Snoopy-specific context
-     * Methods should be ab API match for jQuery so that it could be dropped in as a replacement if necessary later on.
-     */
-    snoopQuery = function( selector )
-    {
-        return new snoopQuery.fn.init(selector);
-    }
+	                for (; i < len; i++){
+	                    lookup = lookup[path[i]];
 
-    snoopQuery.fn = snoopQuery.prototype = {
+	                    // Property not found
+	                    if (lookup === undef){
+	                        throw "tim: '" + path[i] + "' not found in " + tag;
+	                    }
 
-        length : 0,
-        selector : '',
+	                    // Return the required value
+	                    if (i === len - 1){
+	                        return lookup;
+	                    }
+	                }
+	            });
+	        };
+	    }());
 
-        init : function( selector )
-        {
-            var elem,
-                tagExp = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,
-                match;
+	    return tim;
 
-            if ( ! selector ) return this;
+	}, this);
 
-            if ( selector.nodeType )
-            {
-                this[0] = selector;
-                this.length = 1;
-                return this;
-            }
+   /*  Floodlight (X)HTML Syntax Highlighter - v0.2
+    *  Copyright 2010, Aron Carroll
+    *  Released under the MIT license
+    *  More Information: http://github.com/aron/floodlight.js
+    *  Based on hijs by Alexis Sellier https://github.com/cloudhead/hijs
+    */
 
-            if ( selector === window )
-            {
+   (function (window, undefined) {
+   	var _filters = {},
+   	    _table = {},
+   	    options  = {
+   	    	prefix: '',
+   	    	spaces: '  ',
+   	    	regex: {
+   	    		encode:  /<|>|"|&/g,
+   	    		decode:  /&(?:lt|gt|quot|amp);/g
+   	    	},
+   	    	map: {
+   	    		encode: {'<':'&lt;', '>':'&gt;', '"':'&quot;', '&':'&amp;'},
+   	    		decode: {'&lt;':'<', '&gt;':'>', '&quot;':'"', '&amp;':'&'}
+   	    	}
+   	    };
+
+   	function isArray(array) {
+   		return Object.prototype.toString.call(array) === '[object Array]';
+   	}
+
+   	function entities(string, type) {
+   		return string.replace(options.regex[type], function (match) {
+   			return options.map[type][match];
+   		});
+   	}
+
+   	function encode(string) {
+   		var characters = string.split(''),
+   		    encoded = [],
+   		    count = characters.length,
+   		    index = 0;
+
+   		for (; index < count;index += 1) {
+   			if (characters[index].charCodeAt(0) > 127) {
+   				encoded.push(characters[index]);
+   			} else {
+   				encoded.push(String.fromCharCode(characters[index].charCodeAt(0) + 0x2800));
+   			}
+   		}
+
+   		encoded = encoded.join('');
+   		_table[encoded] = string;
+   		return encoded;
+   	}
+
+   	function decode(string) {
+   		return _table[string] || '';
+   	}
+
+   	function wrap(string, klass) {
+   		return '\u00ab' + encode(klass)  + '\u00b7'
+   		                + encode(string) +
+   		       '\u00b7' + encode(klass)  + '\u00bb';
+   	}
+
+   	function unwrap(string) {
+   		return string.replace(/\u00ab(.+?)\u00b7(.+?)\u00b7\1\u00bb/g, function (_, name, value) {
+   			value = value.replace(/\u00ab[^\u00b7]+\u00b7/g, '').replace(/\u00b7[^\u00bb]+\u00bb/g, '');
+   			return span(decode(value), decode(name));
+   		});
+   	}
+
+   	function span(string, klass) {
+   		return '<span class="' + options.prefix + klass + '">' + entities(string, 'encode') + '</span>';
+   	}
+
+   	function filter(filters, string, escape) {
+   		var index = 0, count, filter;
+
+   		filters = isArray(filters) ? filters : [filters];
+   		for (count = filters.length; index < count; index += 1) {
+   			filter = _filters[filters[index]];
+
+   			if (filter) {
+   				string = string.replace(filter.regex, filter.callback);
+   			}
+   		}
+   		return escape === false ? string : unwrap(string);
+   	}
+
+   	function addFilter(name, regex, callback) {
+   		_filters[name] = {regex: regex, callback: callback};
+   	}
+
+   	// ! floodlight();
+
+   	window.floodlight = function (source) {
+   		return window.floodlight.html(source);
+   	};
+   	window.floodlight.options = options;
+   	window.floodlight.encode  = function (string) { return entities(string, 'encode'); };
+   	window.floodlight.decode  = function (string) { return entities(string, 'decode'); };
+
+   	addFilter('whitespace', (/\t/g), function () { return options.spaces; });
+
+   	// ! floodlight.javascript();
+
+   	window.floodlight.javascript = function (source) {
+   			return filter(window.floodlight.javascript.filters, source);
+   	};
+
+   	(function () {
+   		var key;
+
+   		this.keywords = ('var function if else for while break switch case do new null in with void '
+   		                +'continue delete return this true false throw catch typeof with instanceof').split(' ');
+   		this.special  = ('eval window document undefined NaN Infinity parseInt parseFloat '
+   		                +'encodeURI decodeURI encodeURIComponent decodeURIComponent').split(' ');
+   		this.regex = {
+   			'comment': (/(\/\/[^\n]*|\/\*(?:[^*\n]|\*+[^\/*])*\*+\/)/g),
+   		  'string':  (/("(?:(?!")[^\\\n]|\\.)*"|'(?:(?!')[^\\\n]|\\.)*')/g),
+   		  'regexp':  (/(\/.+\/[mgi]*)(?!\s*\w)/g),
+   		  'class':   (/\b([A-Z][a-zA-Z]+)\b/g),
+   		  'number':  (/\b([0-9]+(?:\.[0-9]+)?)\b/g),
+   		  'keyword': new(RegExp)('\\b(' + window.floodlight.javascript.keywords.join('|') + ')\\b', 'g'),
+   		  'special': new(RegExp)('\\b(' + window.floodlight.javascript.special.join('|')  + ')\\b', 'g')
+   		};
+
+   		this.filters = ['whitespace'];
+
+   		for (key in this.regex) {
+   			(function (regex, name, filters) {
+   				var namespace = 'javascript.' + name;
+
+   				addFilter(namespace, regex, function (match, capture) {
+   					return wrap(capture, 'javascript-' + name);
+   				});
+
+   				filters.push(namespace);
+   			})(window.floodlight.javascript.regex[key], key, this.filters);
+   		}
+   	}).call(window.floodlight.javascript);
+
+   	// ! floodlight.css();
+
+   	window.floodlight.css = function (source) {
+   		return filter(window.floodlight.css.filters, source);
+   	};
+
+   	(function () {
+
+   		var escape  = '/[0-9a-f]{1,6}(?:\\r\\n|[ \\n\\r\\t\\f])?|[^\\n\\r\\f0-9a-f]/',
+   		    nmstart = '[_a-z]|[^\\0-\\237]|(?:' + escape + ')',
+   		    nmchar  = '[_a-z0-9-]|[^\\0-\\237]|(?:' + escape + ')',
+   		    ident   = '[-]?(?:' + nmstart + ')(?:' + nmchar + ')*';
+
+   		this.regex = {
+   			rule: new RegExp('@' + ident, 'g'),
+   			selector: new RegExp(ident, 'g'),
+   			string: new RegExp('(?:"|\')(?:[^\\n\\r\\f\\1]|\\n\\\|\\r\\n|\\r|\\f|' + escape + ')*\\1', 'g'),
+   			number: /[0-9]+|[0-9]*\.[0-9]+/g,
+   			block: /\{([^\}]*)\}/g,
+   			declaration: new RegExp('(' + ident + ')[^:]*:[\\s\\n]*([^;]*);', 'g'),
+   			comment: /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g
+   		};
+
+   		this.filters = ['css.comment', 'css.block'];
+
+
+   		addFilter('css.block', this.regex.block, function (_, contents) {
+   			var declarations = filter('css.declaration', contents, false);
+   			return _.replace(contents, declarations);
+   		});
+
+   		addFilter('css.declaration', this.regex.declaration, function (_, prop, value) {
+   			console.log("%o", value);
+   			var wrapped_value = filter(['css.string', 'css.number'], value, false);
+   			if (wrapped_value === value) {
+   				wrapped_value = wrap(value, 'css-value');
+   			}
+   			return _.replace(prop, wrap(prop, 'css-property')).replace(value, wrapped_value);
+   		});
+
+   		addFilter('css.string', this.regex.string, function (string) {
+   			console.log("'%o'", string);
+   			return wrap(string, 'css-string');
+   		});
+
+   		addFilter('css.number', this.regex.number, function (number) {
+   			return wrap(number, 'css-number');
+   		});
+
+   		addFilter('css.comment', this.regex.comment, function (comment) {
+   			return wrap(comment, 'css-comment');
+   		});
+
+   	}).call(window.floodlight.css);
+
+   	// ! floodlight.html();
+
+   	window.floodlight.html = function (source) {
+   		return filter(window.floodlight.html.filters, source);
+   	};
+
+   	(function () {
+
+   		this.regex = {
+   			tag:     (/(<\/?)(\w+)([^>]*)(\/?>)/g),
+   			attr:    (/(\w+)(?:\s*=\s*("[^"]*"|'[^']*'|[^>\s]+))?/g),
+   			comment: (/<!--[^\-]*-->/g),
+   			entity:  (/&[^;]+;/g),
+   			script:  (/<script[^>]*>([^<]*)<\/script>/gi)
+   		};
+
+   		this.filters = ['whitespace', 'html.script', 'html.comment', 'html.tag', 'html.entity'];
+
+   		addFilter('html.tag', this.regex.tag, function (match, open, tag, attr, close) {
+   			var attributes = filter('html.attr', attr, false);
+   			return wrap(open, 'html-bracket') + wrap(tag, 'html-tag') + attributes + wrap(close, 'html-bracket');
+   		});
+
+   		addFilter('html.attr', this.regex.attr, function (match, attr, value) {
+   			return wrap(attr, 'html-attribute') + (value ? '=' + wrap(value, 'html-value') : '');
+   		});
+
+   		addFilter('html.comment', this.regex.comment, function (comment) {
+   			return wrap(comment, 'html-comment');
+   		});
+
+   		addFilter('html.entity', this.regex.entity, function (entity) {
+   			return wrap(entity, 'html-entity');
+   		});
+
+   		addFilter('html.script', this.regex.script, function (match, source) {
+   			var js = filter(window.floodlight.javascript.filters, source, false);
+   			return match.replace(source, js);
+   		});
+
+   	}).call(window.floodlight.html);
+   })(this);
+
+   /*
+    * 'snoopQuery' - mini jQuery-style DOM helper functions.
+    * Only intended to work in newer browsers (eg. with querySelectorAll support),
+    * VERY limited, not intended for extraction, only useful in a Snoopy-specific context
+    * Methods should be ab API match for jQuery so that it could be dropped in as a replacement if necessary later on.
+    */
+   snoopQuery = function( selector )
+   {
+       return new snoopQuery.fn.init(selector);
+   }
+
+   snoopQuery.fn = snoopQuery.prototype = {
+
+       length : 0,
+       selector : '',
+
+       init : function( selector )
+       {
+           var elem,
+               tagExp = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,
+               match;
+
+           if ( ! selector ) return this;
+
+           if ( selector.nodeType )
+           {
                this[0] = selector;
                this.length = 1;
                return this;
-            }
+           }
 
-            match = tagExp.exec(selector);
+           if ( selector === window )
+           {
+              this[0] = selector;
+              this.length = 1;
+              return this;
+           }
 
-            if ( match )
-            {
-                selector = [doc.createElement(match[1])];
-                merge( this, selector );
-                return this;
-            }
-            else if ( /^#[\w+]$/.test( selector ) )
-            {
-                elem = doc.getElementById(selector);
-                if ( elem )
-                {
-                    this.length = 1;
-                    this[0] = elem;
-                }
-                this.selector = selector;
-                this.context = document;
-                return this;
-            }
-            else if ( /^\w+$/.test( selector ) )
-            {
-                this.selector = selector;
-                this.context = document;
-                selector = document.getElementsByTagName( selector );
-                return merge( this, selector );
-            }
-            else if ( typeof selector === 'string' )
-            {
-                this.selector = selector;
-                this.context = document;
-                selector = document.querySelectorAll( selector );
-                return merge( this, selector );
-            }
+           match = tagExp.exec(selector);
 
-            if (selector.selector !== undefined)
-            {
-                this.selector = selector.selector;
-                this.context = selector.context;
-            }
+           if ( match )
+           {
+               // deal with very basic element creation here
+               selector = [doc.createElement(match[1])];
+               merge( this, selector );
+               return this;
+           }
+           else if ( /^#[\w+]$/.test( selector ) )
+           {
+               // ID
+               elem = doc.getElementById(selector);
+               if ( elem )
+               {
+                   this.length = 1;
+                   this[0] = elem;
+               }
+               this.selector = selector;
+               this.context = document;
+               return this;
+           }
+           else if ( /^\w+$/.test( selector ) )
+           {
+               // TAG
+               this.selector = selector;
+               this.context = document;
+               selector = document.getElementsByTagName( selector );
+               return merge( this, selector );
+           }
+           else if ( typeof selector === 'string' )
+           {
+               // else use generic querySelectorAll
+               this.selector = selector;
+               this.context = document;
+               selector = document.querySelectorAll( selector );
+               return merge( this, selector );
+           }
 
-            return merge( selector, this );
-        },
+           if (selector.selector !== undefined)
+           {
+               this.selector = selector.selector;
+               this.context = selector.context;
+           }
 
-        each : function( callback )
-        {
-            var i = 0,
-                length = this.length;
+           return merge( selector, this );
+       },
 
-            for ( var value = this[0]; i < length && callback.call( value, i, value ) !== false; value = this[++i] ) {}
-        },
+       // internal iterator
+       each : function( callback )
+       {
+           var i = 0,
+               length = this.length;
 
-        bind : function( event, callback )
-        {
-            for ( var i = 0, l = this.length; i < l; i++ )
-            {
-                this[i].addEventListener( event, function(e){
-                    if ( callback.call(this, e) === false )
-                    {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
-                }, false );
-            }
-            return this;
-        },
+           for ( var value = this[0]; i < length && callback.call( value, i, value ) !== false; value = this[++i] ) {}
+       },
 
-        addClass : function( value )
-        {
-            var cn = (value || '').split(/\s/);
-            this.each(function(){
-                for ( var i = 0, l = cn.length; i < l;  i++ )
-                {
-                    if ( ! snoopQuery(this).hasClass( cn[i] ) ) this.className += this.className ? ' '+cn[i] : cn[i];
-                }
-            });
-            return this;
-        },
+       // very simple event binding function
+       bind : function( event, callback )
+       {
+           for ( var i = 0, l = this.length; i < l; i++ )
+           {
+               this[i].addEventListener( event, function(e){
+                   if ( callback.call(this, e) === false )
+                   {
+                       e.preventDefault();
+                       e.stopPropagation();
+                   }
+               }, false );
+           }
+           return this;
+       },
 
-        removeClass : function( value )
-        {
-            var cn = (value || '').split(/\s/);
+       addClass : function( value )
+       {
+           var cn = (value || '').split(/\s/);
+           this.each(function(){
+               for ( var i = 0, l = cn.length; i < l;  i++ )
+               {
+                   if ( ! snoopQuery(this).hasClass( cn[i] ) ) this.className += this.className ? ' '+cn[i] : cn[i];
+               }
+           });
+           return this;
+       },
 
-            this.each(function(){
-                for ( var i = 0, l = cn.length; i < l;  i++ )
-                {
-                    this.className = trim(this.className.replace( this.className.match(' '+cn[i]) ? ' '+ cn[i] : cn[i], '' ));
-                }
-            });
-            return this;
-        },
+       removeClass : function( value )
+       {
+           var cn = (value || '').split(/\s/);
 
-        hasClass : function( value )
-        {
-            return this[0] ? new RegExp('\\b'+value+'\\b').test(this[0].className) : false;
-        },
+           this.each(function(){
+               for ( var i = 0, l = cn.length; i < l;  i++ )
+               {
+                   this.className = trim(this.className.replace( this.className.match(' '+cn[i]) ? ' '+ cn[i] : cn[i], '' ));
+               }
+           });
+           return this;
+       },
 
+       hasClass : function( value )
+       {
+           return this[0] ? new RegExp('\\b'+value+'\\b').test(this[0].className) : false;
+       },
 
-        attr : function( key, val )
-        {
-            if ( val !== undefined )
-            {
-                this.each(function(){
-                    this.setAttribute( key, val );
-                });
-                return this;
-            }
-            else
-            {
-                return this[0] ? this[0].getAttribute( key ) : null;
-            }
-        },
+       // get/set attributes
 
-        html : function( html )
-        {
-            if ( html !== undefined )
-            {
-                this.each(function(){
-                    this.innerHTML = html;
-                });
-                return this;
-            }
-            return this[0] ? this[0].innerHTML : null;
-        },
+       attr : function( key, val )
+       {
+           if ( val !== undefined )
+           {
+               this.each(function(){
+                   this.setAttribute( key, val );
+               });
+               return this;
+           }
+           else
+           {
+               return this[0] ? this[0].getAttribute( key ) : null;
+           }
+       },
 
+       // VERY basic HTML function, no cleanup or anything yet.
+       html : function( html )
+       {
+           if ( html !== undefined )
+           {
+               this.each(function(){
+                   this.innerHTML = html;
+               });
+               return this;
+           }
+           return this[0] ? this[0].innerHTML : null;
+       },
 
-        append : function( elem )
-        {
-            if ( elem !== undefined )
-            {
-                elem = elem[0] ? elem[0] : elem;
-                this.each(function(){
-                    this.appendChild(elem);
-                });
-                return this;
-            }
-        }
+       // DOM insertion methods
 
-    };
+       append : function( elem )
+       {
+           if ( elem !== undefined )
+           {
+               elem = elem[0] ? elem[0] : elem;
+               this.each(function(){
+                   this.appendChild(elem);
+               });
+               return this;
+           }
+       }
 
-    snoopQuery.fn.init.prototype = snoopQuery.fn;
-    $ = snoopQuery;
+   };
 
+   snoopQuery.fn.init.prototype = snoopQuery.fn;
+   $ = snoopQuery;
 
-    (function() {
+   ////// snoopQuery methods that don't match the jQuery API are implemented as jQuery compatible plugins /////
 
-        var styles_regexp = /([\w-]+)\s*:\s*([^;!]+)\s?(!\s?important?)?\s?[;|$]?/i;
+   // add important styles inline
+   (function() {
 
-        $.fn.style = function( prop, val, important )
-        {
-            if ( val !== undefined )
-            {
-                important = important || false;
-                return this.each(function(){
+       var styles_regexp = /([\w-]+)\s*:\s*([^;!]+)\s?(!\s?important?)?\s?[;|$]?/i;
 
-                    var dconst_rules = [];
+       $.fn.style = function( prop, val, important )
+       {
+           if ( val !== undefined )
+           {
+               // setting a value
+               important = important || false;
+               return this.each(function(){
 
-                    var self = $(this);
-                    split(dconst_rules, self.attr('style')); // split up the rules
-                    set(dconst_rules, prop, val, important);
-                    self.attr('style', combine(dconst_rules) );
-                });
-            }
-            else
-            {
-                var self = $(this[0]),
-                    dconst_rules = [];
+                   var dconst_rules = [];
 
-                split(dconst_rules, self.attr('style')); // split up the rules
-                return get(dconst_rules, prop);
-            }
-        }
+                   var self = $(this);
+                   split(dconst_rules, self.attr('style')); // split up the rules
+                   set(dconst_rules, prop, val, important);
+                   self.attr('style', combine(dconst_rules) );
+               });
+           }
+           else
+           {
+               // getting a value
+               var self = $(this[0]),
+                   dconst_rules = [];
 
-        function get( dconst_rules, prop )
-        {
-            for ( var rule, i = -1; rule = dconst_rules[++i]; )
-            {
-                if ( prop === rule.prop ) return rule.val;
-            }
-            return null;
-        }
+               split(dconst_rules, self.attr('style')); // split up the rules
+               return get(dconst_rules, prop);
+           }
+       }
 
-        function set( dconst_rules, prop, val, important )
-        {
-            prop = trim(prop);
+       function get( dconst_rules, prop )
+       {
+           for ( var rule, i = -1; rule = dconst_rules[++i]; )
+           {
+               if ( prop === rule.prop ) return rule.val;
+           }
+           return null;
+       }
 
-            for ( var rule, i = -1; rule = dconst_rules[++i]; )
-            {
-                if ( prop === rule.prop )
-                {
-                    dconst_rules[i].val = val;
-                    dconst_rules[i].important = important;
-                    return;
-                }
-            }
-            dconst_rules.push({ prop : prop, val : val, important : important });
-        }
+       function set( dconst_rules, prop, val, important )
+       {
+           prop = trim(prop);
 
-        function combine( dconst_rules )
-        {
-            var rule_string = '';
-            for ( var rule, i = -1; rule = dconst_rules[++i]; )
-            {
-                rule_string += rule.prop + ' : '+ rule.val;
-                if ( rule.important ) rule_string += ' !important';
-                rule_string += ';';
-            }
-            return rule_string;
-        }
+           for ( var rule, i = -1; rule = dconst_rules[++i]; )
+           {
+               if ( prop === rule.prop )
+               {
+                   dconst_rules[i].val = val;
+                   dconst_rules[i].important = important;
+                   return;
+               }
+           }
+           dconst_rules.push({ prop : prop, val : val, important : important });
+       }
 
-        function split( dconst_rules, rule_string )
-        {
-            if ( typeof rule_string === 'string' )
-            {
-                var rules = rule_string.split(/;/);
+       function combine( dconst_rules )
+       {
+           var rule_string = '';
+           for ( var rule, i = -1; rule = dconst_rules[++i]; )
+           {
+               rule_string += rule.prop + ' : '+ rule.val;
+               if ( rule.important ) rule_string += ' !important';
+               rule_string += ';';
+           }
+           return rule_string;
+       }
 
-                for ( i= 0, l = rules.length; i < l; i++ )
-                {
-                    var r = trim(rules[i]);
-                    if ( r !== '' )
-                    {
-                        var match = r.match(styles_regexp);
-                        dconst_rules.push({ prop : trim(match[1]), val : trim(match[2]), important : !! match[3] });
-                    }
-                }
-            }
-        }
+       function split( dconst_rules, rule_string )
+       {
+           if ( typeof rule_string === 'string' )
+           {
+               var rules = rule_string.split(/;/);
 
-    })();
+               for ( i= 0, l = rules.length; i < l; i++ )
+               {
+                   var r = trim(rules[i]);
+                   if ( r !== '' )
+                   {
+                       var match = r.match(styles_regexp);
+                       dconst_rules.push({ prop : trim(match[1]), val : trim(match[2]), important : !! match[3] });
+                   }
+               }
+           }
+       }
 
+   })();
 
-    function ajax( options )
-    {
-        options = {
-            type        : options.type          || 'GET',
-            url         : options.url           || '',
-            timeout     : options.timeout       || 5000,
-            onComplete  : options.onComplete    || function(){},
-            onError     : options.onError       || function(){},
-            onSuccess   : options.onSuccess     || function(){},
-            data        : options.data          || ''
-        }
+   //// Ajax Helper functions //////
 
-        var r    = new XMLHttpRequest(),
-            done = false;
+   // Generic ajax helper functions. Could probably be cut down if the only use case turns out
+   // to be for returning the source of the current page (i.e. remove type tests from ajaxData etc)
+   function ajax( options )
+   {
+       options = {
+           type        : options.type          || 'GET',
+           url         : options.url           || '',
+           timeout     : options.timeout       || 5000,
+           onComplete  : options.onComplete    || function(){},
+           onError     : options.onError       || function(){},
+           onSuccess   : options.onSuccess     || function(){},
+           data        : options.data          || ''
+       }
 
-        r.open(options.type, options.url, true);
+       var r    = new XMLHttpRequest(),
+           done = false;
 
-        setTimeout(function(){
-            done = true;
-        }, options.timeout);
+       r.open(options.type, options.url, true);
 
-        r.onreadystatechange = function()
-        {
-            if ( r.readyState == 4 && ! done )
-            {
-                if ( ajaxSuccess( r ) )
-                {
-                    options.onSuccess( ajaxData( r, options.type ) );
-                }
-                else
-                {
-                    options.onError();
-                }
+       setTimeout(function(){
+           done = true;
+       }, options.timeout);
 
-                options.onComplete();
+       r.onreadystatechange = function()
+       {
+           if ( r.readyState == 4 && ! done )
+           {
+               if ( ajaxSuccess( r ) )
+               {
+                   options.onSuccess( ajaxData( r, options.type ) );
+               }
+               else
+               {
+                   options.onError();
+               }
 
-                r = null;
-            }
-        }
+               options.onComplete();
 
-        r.send();
-    }
+               r = null;
+           }
+       }
 
-    function ajaxSuccess( r )
-    {
-        try {
-            return ! r.status && location.protocol == "file:" ||
-                ( r.status >= 200 && r.status < 300 ) ||
-                r.status == 304 ||
-                navigator.userAgent.indexOf("Safari") >= 0 && typeof r.status == 'undefined';
-        } catch(e) {}
-        return false;
-    }
+       r.send();
+   }
 
-    function ajaxData( r, type )
-    {
-        var ct = r.getResponseHeader('content-type'),
-            data = ! type && ct && ct.indexOf('xml') >= 0;
+   function ajaxSuccess( r )
+   {
+       try {
+           return ! r.status && location.protocol == "file:" ||
+               ( r.status >= 200 && r.status < 300 ) ||
+               r.status == 304 ||
+               navigator.userAgent.indexOf("Safari") >= 0 && typeof r.status == 'undefined';
+               // could take out safari check here but better to keep it cross browser I think.
+       } catch(e) {}
+       return false;
+   }
 
-        data = type == 'xml' || data ? r.responseXML : r.responseText;
-        if ( type == 'script' ) eval.call(window, data);
-        return data;
-    }
+   function ajaxData( r, type )
+   {
+       var ct = r.getResponseHeader('content-type'),
+           data = ! type && ct && ct.indexOf('xml') >= 0;
 
-    function getViewportDimensions()
-    {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
-    }
+       data = type == 'xml' || data ? r.responseXML : r.responseText;
+       if ( type == 'script' ) eval.call(window, data);
+       return data;
+   }
 
-    function prepSource( source )
-    {
-        return source.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
-    }
+   function getViewportDimensions()
+   {
+       return {
+           width: window.innerWidth,
+           height: window.innerHeight
+       }
+   }
 
-    function trim(str)
-    {
-        return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
+   function prepSource( source )
+   {
+       return source.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>').replace(/\s/g, '&nbsp;');
+   }
 
-    function isArray( obj )
-    {
-        return toString.call(obj) === "[object Array]";
-    }
+   function trim(str)
+   {
+       return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+   }
 
-    function merge( first, second )
-    {
-        var i = first.length,
-            j = 0;
+   function isArray( obj )
+   {
+       return toString.call(obj) === "[object Array]";
+   }
 
-        if ( typeof second.length === "number" )
-        {
-            for ( var l = second.length; j < l; j++ )
-            {
-                first[i++] = second[j];
-            }
-        }
-        else
-        {
-            while ( second[j] !== undefined )
-            {
-                first[i++] = second[j++];
-            }
-        }
+   // merge two arrays
+   function merge( first, second )
+   {
+       var i = first.length,
+           j = 0;
 
-        first.length = i;
+       if ( typeof second.length === "number" )
+       {
+           for ( var l = second.length; j < l; j++ )
+           {
+               first[i++] = second[j];
+           }
+       }
+       else
+       {
+           while ( second[j] !== undefined )
+           {
+               first[i++] = second[j++];
+           }
+       }
 
-        return first;
-    }
+       first.length = i;
 
+       return first;
+   }
 
-    function hideURLBar()
-    {
-    	setTimeout(function() {
-    		window.scrollTo(0, 1);
-    	}, 0);
-    }
+   /// some iphone/ipod/ipad specific helpers
+
+   function hideURLBar()
+   {
+       setTimeout(function() {
+           window.scrollTo(0, 1);
+       }, 0);
+   }
 
     snoopy.init(); /* kick things off... */
 

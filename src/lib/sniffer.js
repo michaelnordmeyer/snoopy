@@ -223,6 +223,18 @@
                         test : function() { return win.Drupal ? true : false; } // no version in js obj
                     }
                 ],
+                'Jekyll' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Jekyll v([\w\d\.]*)/i }
+                    }
+                ],
+                'Octopress' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /.*Octopress.*/i }
+                    }
+                ],
                 'Cisco Eos' : [
                     {
                         type : 'custom',
@@ -260,7 +272,7 @@
                 'Piwik' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.Piwik; }
+                        test : function(){ return !! win._paq; }
                     }
                 ],
                 'Clicky' : [
@@ -274,7 +286,26 @@
                         type : 'custom',
                         test : function() { return !! win.OWA; }
                     }
+                ],
+                'New Relic' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.NREUMQ; }
+                    }
+                ],
+                'Gauges' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win._gauges; }
+                    }
+                ],
+                'Mint' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.Mint; }
+                    }
                 ]
+
             }
 
         };
@@ -309,6 +340,10 @@
                     {
                         type : 'custom',
                         test : function(){ return !! win.WebFont }
+                    },
+                    {
+                        type : 'text',
+                        test : /<link rel=["|']stylesheet["|'] [^>]+fonts.googleapis.com/i
                     }
                 ],
                 'sIFR' : [
@@ -427,7 +462,7 @@
             for ( var name in obj ) return false;
             return true;
         }
-    
+
         // utility function for iterating over the tests
         var forEachTest = function( callback )
         {
@@ -445,11 +480,11 @@
                 }
             }
         }
-    
+
         var addToResults = function( group, test, res )
         {
             // add results to group results object
-        
+
             results[group] = results[group] || {};
             results[group].results = results[group].results || {};
 
@@ -457,47 +492,47 @@
             results[group].return_type = detect[group].return_type;
 
             results[group]['results'][test] = res;
-        
+
             // add the result to the name-index results object
-        
+
             indexed_results[test.toLowerCase()] = res;
         }
 
         /* publicly available methods */
-    
-        // return results of all checks run so far 
+
+        // return results of all checks run so far
         sniff.results = function(){
             return results;
         };
-    
+
         // perform an individual check
         sniff.check = function( to_test )
         {
             to_test = to_test.toLowerCase();
             if ( indexed_results[to_test] != undefined ) return indexed_results[to_test];
             else {
-            
+
                 forEachTest(function( group, test ){
-                
+
                     if ( test.toLowerCase() === to_test )
                     {
                         addToResults( group, test, run( detect[group].tests[test] ) );
                         return false; // break out of forEachTest loop
                     }
-                
+
                 });
             }
             return indexed_results[to_test];
         };
-    
+
         // run or re-run all checks
         sniff.run = function()
         {
             forEachTest(function( group, test ){
-            
+
                 addToResults( group, test, run( detect[group].tests[test] ) );
-                    
-            });      
+
+            });
 
             return sniff.results();
         };
