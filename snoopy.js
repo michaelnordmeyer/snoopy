@@ -456,7 +456,7 @@
                 'Google Analytics' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! (win._gat || win._gaq); }
+                        test : function(){ return !! (win._gat || win._gaq || win.ga); }
                     }
                 ],
                 'Reinvigorate' : [
@@ -493,6 +493,12 @@
                     {
                         type : 'custom',
                         test : function() { return !! win._gauges; }
+                    }
+                ],
+                'WordPress Stats' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! (win._tkq || win._stq); }
                     }
                 ],
                 'Mint' : [
