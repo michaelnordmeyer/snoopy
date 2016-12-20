@@ -7,7 +7,7 @@ Using the bookmarklet will give you an overlay featuring information that Snoopy
 
 For full details and installation instructions please see [http://snoopy.allmarkedup.com](http://snoopy.allmarkedup.com/)
 
-Canonical repo URL: [http://github.com/allmarkedup/snoopy](http://github.com/allmarkedup/snoopy)
+Canonical repo URL: [https://github.com/allmarkedup/snoopy](https://github.com/allmarkedup/snoopy)
 
 
 Built with...
@@ -15,9 +15,9 @@ Built with...
 
 Snoopy makes use of a few other projects to make it all run nicely:
 
-* Tim (JS micro templating) - [http://github.com/premasagar/tim](http://github.com/premasagar/tim)
-* Cleanslate (Heavy-duty reset stylesheet) - [http://github.com/premasagar/cleanslate](http://github.com/premasagar/cleanslate)
-* Sniffer (Page info detection) - [http://github.com/allmarkedup/sniffer](http://github.com/allmarkedup/sniffer)
+* Tim (JS micro templating) - [https://github.com/premasagar/tim](https://github.com/premasagar/tim)
+* Cleanslate (Heavy-duty reset stylesheet) - [https://github.com/premasagar/cleanslate](https://github.com/premasagar/cleanslate)
+* Sniffer (Page info detection) - [https://github.com/allmarkedup/sniffer](https://github.com/allmarkedup/sniffer)
 
 
 Browser Support
@@ -32,4 +32,4 @@ Contributors
 ------------
 
 * Mark Perkins (owner)
-* James Brooks [http://github.com/jbrooksuk](http://github.com/jbrooksuk)
+* James Brooks [https://github.com/jbrooksuk](https://github.com/jbrooksuk)

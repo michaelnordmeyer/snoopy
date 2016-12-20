@@ -47,7 +47,7 @@
 
                 'Doctype' : [
                     {
-                        type : 'doctype', // source: http://www.w3.org/QA/2002/04/valid-dtd-list.html
+                        type : 'doctype', // source: https://www.w3.org/QA/2002/04/valid-dtd-list.html
                         test : {
                             'HTML5'                    : { name : 'html', publicId : '' },
                             'HTML 4.01 Strict'         : { name : 'html', publicId : '-//W3C//DTD HTML 4.01//EN' },
