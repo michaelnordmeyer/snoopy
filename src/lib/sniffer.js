@@ -281,6 +281,12 @@
                         test : function(){ return !! win.clicky; }
                     }
                 ],
+                'Chartbeat' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return !! win._cb_shared; }
+                    }
+                ],
                 'Open Web Analytics' : [
                     {
                         type : 'custom',
