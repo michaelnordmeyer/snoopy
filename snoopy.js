@@ -495,10 +495,28 @@
                         test : function() { return !! win._gauges; }
                     }
                 ],
+                'Woopra' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.woopra; }
+                    }
+                ],
+                'W3Counter' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win._w3counter; }
+                    }
+                ],
                 'WordPress Stats' : [
                     {
                         type : 'custom',
                         test : function() { return !! (win._tkq || win._stq); }
+                    }
+                ],
+                'Slim Stat Analytics' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.SlimStatParams; }
                     }
                 ],
                 'Mint' : [
