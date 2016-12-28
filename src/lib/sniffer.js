@@ -235,6 +235,34 @@
                         test : { name : 'generator', match : /.*Octopress.*/i }
                     }
                 ],
+                'Ghost' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Ghost\s?([\w\d\.\-_]*)/i }
+                    },
+                    {
+                        type : 'custom',
+                        test : function(){ return win.ghost ? true : false; }
+                    }
+                ],
+                'Jimdo' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.jimdoData ? true : false; }
+                    }
+                ],
+                'Wix' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.wixBiSession ? true : false; }
+                    }
+                ],
+                'Weebly' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win.Weebly ? true : false; }
+                    }
+                ],
                 'Cisco Eos' : [
                     {
                         type : 'custom',
