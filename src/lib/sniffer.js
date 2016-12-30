@@ -263,6 +263,12 @@
                         test : function(){ return win.Weebly ? true : false; }
                     }
                 ],
+                'Medium' : [
+                    {
+                        type : 'custom',
+                        test : function(){ return win._mdm ? true : false; }
+                    }
+                ],
                 'Cisco Eos' : [
                     {
                         type : 'custom',
