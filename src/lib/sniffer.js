@@ -294,7 +294,7 @@
                 'Google Analytics' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! (win._gat || win._gaq || win.ga); }
+                        test : function(){ return !! (win._gat || win._gaq || win.ga || win.__gaTracker); }
                     }
                 ],
                 'Reinvigorate' : [
