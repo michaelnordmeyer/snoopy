@@ -33,3 +33,4 @@ Contributors
 
 * Mark Perkins (owner)
 * James Brooks [https://github.com/jbrooksuk](https://github.com/jbrooksuk)
+* Michael Nordmeyer [https://github.com/michaelnordmeyer](https://github.com/michaelnordmeyer)
