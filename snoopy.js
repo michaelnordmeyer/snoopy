@@ -214,7 +214,7 @@
             has_run     = false;
 
         // discard meta tags that aren't useful
-        metas = (function(){
+        metas = (function() {
             for ( var meta, temp = [], i = -1; meta = metas[++i]; )
             {
                 if ( meta.name && meta.content ) temp.push(meta);
@@ -223,7 +223,7 @@
         })();
 
         // discard script tags that aren't useful
-        scripts = (function(){
+        scripts = (function() {
             for ( var script, temp = [], i = -1; script = scripts[++i]; )
             {
                 if ( script.src ) temp.push(scripts);
@@ -248,12 +248,12 @@
                             'HTML5'                    : { name : 'html', publicId : '' },
                             'HTML 4.01 Strict'         : { name : 'html', publicId : '-//W3C//DTD HTML 4.01//EN' },
                             'HTML 4.01 Transitional'   : { name : 'html', publicId : '-//W3C//DTD HTML 4.01 Transitional//EN' },
+                            'HTML 3.0'                 : { name : 'html', publicId : '-//W3C//DTD HTML 3.2 Final//EN' },
+                            'HTML 2.0'                 : { name : 'html', publicId : '-//IETF//DTD HTML 2.0//EN' },
+                            'XHTML 1.1'                : { name : 'html', publicId : '-//W3C//DTD XHTML 1.1//EN' },
                             'XHTML 1.0 Strict'         : { name : 'html', publicId : '-//W3C//DTD XHTML 1.0 Strict//EN' },
                             'XHTML 1.0 Transitional'   : { name : 'html', publicId : '-//W3C//DTD XHTML 1.0 Transitional//EN' },
                             'XHTML 1.0 Frameset'       : { name : 'html', publicId : '-//W3C//DTD XHTML 1.0 Frameset//EN' },
-                            'XHTML 1.1'                : { name : 'html', publicId : '-//W3C//DTD XHTML 1.1//EN' },
-                            'HTML 2.0'                 : { name : 'html', publicId : '-//IETF//DTD HTML 2.0//EN' },
-                            'HTML 3.0'                 : { name : 'html', publicId : '-//W3C//DTD HTML 3.2 Final//EN' },
                             'XHTML 1.0 Basic'          : { name : 'html', publicId : '-//W3C//DTD XHTML Basic 1.0//EN' }
                         }
                     }
@@ -261,7 +261,7 @@
                 'Charset' : [
                     {
                         type : 'custom',
-                        test : function(){ return doc.characterSet || 'None detected'; }
+                        test : function() { return doc.characterSet || 'None detected'; }
                     }
                 ]
             }
@@ -278,82 +278,88 @@
 
             tests : {
 
-                'jQuery' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.jQuery ? win.jQuery.fn.jquery : false; }
-                    }
-                ],
-                'jQuery UI' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.jQuery && win.jQuery.ui ? win.jQuery.ui.version : false; }
-                    }
-                ],
-                'Prototype' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.Prototype ? win.Prototype.Version : false; }
-                    }
-                ],
-                'Scriptaculous' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.Scriptaculous ? win.Scriptaculous.Version : false; }
-                    }
-                ],
-                'MooTools' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.MooTools ? win.MooTools.version : false; }
-                    }
-                ],
-                'Glow' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.glow ? win.glow.VERSION : false; }
-                    }
-                ],
                 'Dojo' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.dojo ? win.dojo.version.toString() : false; }
+                        test : function() { return win.dojo ? win.dojo.version.toString() : false; }
                     }
                 ],
                 'ExtJS' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.Ext ? win.Ext.version : false; }
+                        test : function() { return win.Ext ? win.Ext.version : false; }
                     }
                 ],
-                'YUI2' : [
+                'Glow' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.YAHOO ? win.YAHOO.VERSION : false; }
-                    }
-                ],
-                'YUI3' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.YUI ? win.YUI.version : false; }
+                        test : function() { return win.glow ? win.glow.VERSION : false; }
                     }
                 ],
                 'Google Closure' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.goog; } // need to figure out how to get Closure version
+                        test : function() { return !! win.goog; } // need to figure out how to get Closure version
+                    }
+                ],
+                'jQuery' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.jQuery ? win.jQuery.fn.jquery : false; }
+                    }
+                ],
+                'jQuery Mobile' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.jQuery && win.jQuery.mobile ? win.jQuery.mobile.version : false; }
+                    }
+                ],
+                'jQuery UI' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.jQuery && win.jQuery.ui ? win.jQuery.ui.version : false; }
                     }
                 ],
                 'Modernizr' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.Modernizr ? win.Modernizr._version : false; }
+                        test : function() { return win.Modernizr ? win.Modernizr._version : false; }
+                    }
+                ],
+                'MooTools' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.MooTools ? win.MooTools.version : false; }
+                    }
+                ],
+                'Prototype' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Prototype ? win.Prototype.Version : false; }
                     }
                 ],
                 'Raphael' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.Raphael ? win.Raphael.version : false; }
+                        test : function() { return win.Raphael ? win.Raphael.version : false; }
+                    }
+                ],
+                'Scriptaculous' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Scriptaculous ? win.Scriptaculous.Version : false; }
+                    }
+                ],
+                'YUI2' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.YAHOO ? win.YAHOO.VERSION : false; }
+                    }
+                ],
+                'YUI3' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.YUI ? win.YUI.version : false; }
                     }
                 ]
             }
@@ -367,68 +373,16 @@
 
             tests : {
 
-                'Wordpress' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /WordPress\s?([\w\d\.\-_]*)/i }
-                    },
-                    {
-                        type : 'text',
-                        test : /<link rel=["|']stylesheet["|'] [^>]+wp-content/i
-                    }
-                ],
-                'Tumblr' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.Tumblr ? true : false; }
-                    }
-                ],
-                'Squarespace' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.Squarespace ? true : false; }
-                    }
-                ],
-                'Typepad' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /typepad\.com/i }
-                    }
-                ],
-                'Joomla' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /joomla\!?\s?([\d.]*)/i }
-                    }
-                ],
                 'Blogger' : [
                     {
                         type : 'meta',
                         test : { name : 'generator', match : /blogger/i }
                     }
                 ],
-                'MovableType' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
-                    }
-                ],
                 'Drupal' : [
                     {
                         type : 'custom',
                         test : function() { return win.Drupal ? true : false; } // no version in js obj
-                    }
-                ],
-                'Jekyll' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /Jekyll v([\w\d\.]*)/i }
-                    }
-                ],
-                'Octopress' : [
-                    {
-                        type : 'meta',
-                        test : { name : 'generator', match : /.*Octopress.*/i }
                     }
                 ],
                 'Ghost' : [
@@ -438,41 +392,87 @@
                     },
                     {
                         type : 'custom',
-                        test : function(){ return win.ghost ? true : false; }
+                        test : function() { return win.ghost ? true : false; }
+                    }
+                ],
+                'Jekyll' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Jekyll v([\w\d\.]*)/i }
                     }
                 ],
                 'Jimdo' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.jimdoData ? true : false; }
+                        test : function() { return win._jimdoDataLayer ? true : false; }
                     }
                 ],
-                'Wix' : [
+                'Joomla' : [
                     {
-                        type : 'custom',
-                        test : function(){ return win.wixBiSession ? true : false; }
-                    }
-                ],
-                'Weebly' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return win.Weebly ? true : false; }
+                        type : 'meta',
+                        test : { name : 'generator', match : /joomla\!?\s?([\d.]*)/i }
                     }
                 ],
                 'Medium' : [
                     {
                         type : 'custom',
-                        test : function(){ return win._mdm ? true : false; }
+                        test : function() { return win._mdm ? true : false; }
                     }
                 ],
-                'Cisco Eos' : [
+                'MovableType' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /Movable Type Pro ([\d.]*)/i }
+                    },
                     {
                         type : 'custom',
-                        test : function() { return win.eos ? true : false; } // no version in js obj
+                        test : function() { return win.MT ? true : false; }
+                    }
+                ],
+                'Octopress' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /.*Octopress.*/i }
+                    }
+                ],
+                'Squarespace' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Squarespace ? true : false; }
+                    }
+                ],
+                'Tumblr' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Tumblr ? true : false; }
+                    }
+                ],
+                'Typepad' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /typepad\.com/i }
+                    }
+                ],
+                'Weebly' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.Weebly ? true : false; }
+                    }
+                ],
+                'Wix' : [
+                    {
+                        type : 'custom',
+                        test : function() { return win.wixBiSession ? true : false; }
+                    }
+                ],
+                'Wordpress' : [
+                    {
+                        type : 'meta',
+                        test : { name : 'generator', match : /WordPress\s?([\w\d\.\-_]*)/i }
                     },
                     {
                         type : 'text',
-                        test : /<link rel=["|']stylesheet["|'] [^>]+ciscoeos.com/i
+                        test : /<link [^>]+wp-content/i
                     }
                 ]
             }
@@ -487,46 +487,16 @@
 
             tests : {
 
-                'Google Analytics' : [
+                'Chartbeat' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! (win._gat || win._gaq || win.ga || win.__gaTracker); }
-                    }
-                ],
-                'Reinvigorate' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return !! win.reinvigorate; }
-                    }
-                ],
-                'Piwik' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return !! win._paq; }
+                        test : function() { return !! win._cb_shared; }
                     }
                 ],
                 'Clicky' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.clicky; }
-                    }
-                ],
-                'Chartbeat' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return !! win._cb_shared; }
-                    }
-                ],
-                'Open Web Analytics' : [
-                    {
-                        type : 'custom',
-                        test : function() { return !! win.OWA; }
-                    }
-                ],
-                'New Relic' : [
-                    {
-                        type : 'custom',
-                        test : function() { return !! win.NREUMQ; }
+                        test : function() { return !! win.clicky; }
                     }
                 ],
                 'Gauges' : [
@@ -535,22 +505,40 @@
                         test : function() { return !! win._gauges; }
                     }
                 ],
-                'Woopra' : [
+                'Google Analytics' : [
                     {
                         type : 'custom',
-                        test : function() { return !! win.woopra; }
+                        test : function() { return !! (win._gat || win._gaq || win.ga); }
                     }
                 ],
-                'W3Counter' : [
+                'Mint' : [
                     {
                         type : 'custom',
-                        test : function() { return !! win._w3counter; }
+                        test : function() { return !! win.Mint; }
                     }
                 ],
-                'WordPress Stats' : [
+                'New Relic' : [
                     {
                         type : 'custom',
-                        test : function() { return !! (win._tkq || win._stq); }
+                        test : function() { return !! (win.NREUMQ || win.NREUM); }
+                    }
+                ],
+                'Open Web Analytics' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.OWA; }
+                    }
+                ],
+                'Piwik' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! (win._paq || win.piwikTracker); }
+                    }
+                ],
+                'Reinvigorate' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.reinvigorate; }
                     }
                 ],
                 'Slim Stat Analytics' : [
@@ -559,13 +547,30 @@
                         test : function() { return !! win.SlimStatParams; }
                     }
                 ],
-                'Mint' : [
+                'W3Counter' : [
                     {
                         type : 'custom',
-                        test : function() { return !! win.Mint; }
+                        test : function() { return !! win._w3counter; }
+                    }
+                ],
+                'Webtrends' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.Webtrends; }
+                    }
+                ],
+                'Woopra' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.woopra; }
+                    }
+                ],
+                'WordPress Stats' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! (win._tkq || win._stq); }
                     }
                 ]
-
             }
 
         };
@@ -581,35 +586,47 @@
                 'Cufon' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.Cufon }
-                    }
-                ],
-                'Typekit' : [
-                    {
-                        type : 'custom',
-                        test : function(){ return !! win.Typekit }
-                    }
-                ],
-                'Fontdeck' : [
-                    {
-                        type : 'text',
-                        test : /<link rel=["|']stylesheet["|'] [^>]+f.fontdeck.com/i
+                        test : function() { return !! win.Cufon }
                     }
                 ],
                 'Google Webfonts' : [
                     {
                         type : 'custom',
-                        test : function(){ return !! win.WebFont }
+                        test : function() { return !! win.WebFont }
                     },
                     {
                         type : 'text',
-                        test : /<link rel=["|']stylesheet["|'] [^>]+fonts.googleapis.com/i
+                        test : /<link [^>]+fonts\.googleapis\.com/i
                     }
                 ],
                 'sIFR' : [
                     {
                         type : 'custom',
-                        test : function(){ return win.sIFR ? win.sIFR.VERSION : false }
+                        test : function() { return !! win.sIFR }
+                    }
+                ],
+                'Typekit' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.Typekit }
+                    }
+                ]
+            }
+
+        };
+
+        detect.comments = {
+
+            description : 'Comments',
+
+            return_type : 'version',
+
+            tests : {
+
+                'Disqus' : [
+                    {
+                        type : 'custom',
+                        test : function() { return !! win.disqus_identifier }
                     }
                 ]
             }
@@ -652,7 +669,7 @@
         }
         else
         {
-            test_runner.doctype = function(){
+            test_runner.doctype = function() {
                 return 'None detected';
             }
         }
@@ -672,7 +689,7 @@
         else
         {
             // no scripts, tests will always return false.
-           test_runner.script = function(){ return false; }
+           test_runner.script = function() { return false; }
         }
 
         // check the meta elements in the head
@@ -694,7 +711,7 @@
         else
         {
             // there are no meta elements on the page so this will always return false
-            test_runner.meta = function(){ return false; }
+            test_runner.meta = function() { return false; }
         }
 
         // test arg should be a regexp, in which the only *specific* match is the version number
@@ -761,7 +778,7 @@
         /* publicly available methods */
 
         // return results of all checks run so far
-        sniff.results = function(){
+        sniff.results = function() {
             return results;
         };
 

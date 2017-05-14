@@ -1,6 +1,6 @@
 // Snoopy - View-source and page info bookmarklet for Mobile Safari-based browsers
 // Written by Mark Perkins, mark@allmarkedup.com
-// License: http://unlicense.org/ (i.e. do what you want with it!)
+// License: https://unlicense.org/ (i.e. do what you want with it!)
 
 ;(function( window, document, undefined ){
     
