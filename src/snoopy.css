@@ -85,7 +85,6 @@
 
 #snpy .tip {
     font-size: 12px !important;
-    font-style: italic !important;
     margin-bottom: 10px !important;
     color: #888 !important;
     display: none !important;
@@ -148,7 +147,6 @@
     margin-bottom: 10px !important;
     color: #999 !important;
     position: relative !important;
-    font-style: italic !important;
 }
 
 #snpy_overview {
