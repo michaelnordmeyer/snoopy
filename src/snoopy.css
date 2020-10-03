@@ -1,5 +1,7 @@
-@import url(lib/cleanslate.css);
-
+* {
+  padding: 0;
+  margin: 0;
+}
 
 /* Snoopy-specific CSS
 ============================================== */
@@ -48,19 +50,16 @@
     position: relative !important;
     width: 70% !important;
     color: #FFA800 !important;
-    font-family: Georgia, Palatino, 'Palatino Linotype', serif !important;
     padding-top: 2px !important;
 }
 
 #snpy h1 .version {
-    font-family: Georgia, Palatino, 'Palatino Linotype', serif !important;
     color: #666 !important;
     font-size: 11px !important;
     margin-left: 5px !important;
 }
 
 #snpy .head .close {
-    font-family: Helvetica, Arial, sans-serif !important;
     position: absolute !important;
     right: 0 !important;
     top: 12px !important;
@@ -88,7 +87,6 @@
     font-size: 12px !important;
     font-style: italic !important;
     margin-bottom: 10px !important;
-    font-family: Georgia, Palatino, 'Palatino Linotype', serif !important;
     color: #888 !important;
     display: none !important;
 }
@@ -150,7 +148,6 @@
     margin-bottom: 10px !important;
     color: #999 !important;
     position: relative !important;
-    font-family: Georgia, Palatino, 'Palatino Linotype', serif !important;
     font-style: italic !important;
 }
 
@@ -246,7 +243,6 @@
     font-size: 11px !important;
     color: #555 !important;
     text-transform: lowercase !important;
-    font-family: Georgia, Palatino, 'Palatino Linotype', serif !important;
 }
 
 #snpy .footer a {

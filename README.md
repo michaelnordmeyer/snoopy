@@ -16,7 +16,6 @@ Built with...
 Snoopy makes use of a few other projects to make it all run nicely:
 
 * Tim (JS micro templating) - [https://github.com/premasagar/tim](https://github.com/premasagar/tim)
-* Cleanslate (Heavy-duty reset stylesheet) - [https://github.com/premasagar/cleanslate](https://github.com/premasagar/cleanslate)
 * Sniffer (Page info detection) - [https://github.com/allmarkedup/sniffer](https://github.com/allmarkedup/sniffer)
 
 
