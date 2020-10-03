@@ -18,14 +18,14 @@
     
     // append styles
     s = d.createElement('link');
-    s.setAttribute('href','https://cdn.rawgit.com/michaelnordmeyer/snoopy/master/snoopy-min.css');
+    s.setAttribute('href','https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy/snoopy-min.css');
     s.setAttribute('rel','stylesheet');
     s.setAttribute('type','text/css');
     d.getElementsByTagName('head')[0].appendChild(s);
     
     // append script
     e = d.createElement('script');
-    e.setAttribute('src', 'https://cdn.rawgit.com/michaelnordmeyer/snoopy/master/snoopy-min.js');
+    e.setAttribute('src', 'https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy/snoopy-min.css');
     d.getElementsByTagName('body')[0].appendChild(e);
     
 })();
