@@ -20,17 +20,17 @@
     
         <div class="intro">
         
-            <p>Snoopy is a bookmarklet for snooping on web pages. It's intended for use on mobile browsers (such as Mobile Safari on the iPad) where you can't view-source to poke around under the hood of sites to see how they're built. You might find it useful for your desktop browser, too.</p>
+            <p>Snoopy is a bookmarklet for snooping on web pages. It's intended for use on mobile browsers (such as Mobile Safari on iPad) where you can't view-source to poke around under the hood of sites to see how they're built. You might find it useful for your desktop browser, too.</p>
     
-            <p>Using the bookmarklet will give you an overlay featuring information that Snoopy can 'sniff' out of the page, such as the doctype, what JS libraries are used in the page, what analytics, what font embedding technique is used, etc. It also gives you the ability to view the raw and/or generated source of the page.</p>
+            <p>Using the bookmarklet will give you an overlay featuring information that Snoopy can 'sniff' out of the page, such as the doctype and charset, what JS libraries are used in the page, what CMS, what analytics, what font embedding technique and what commenting system is used. It also gives you the ability to view the raw and/or generated source of the page.</p>
             
         </div>
         
-        <p id="getsnoopy">The Snoopy bookmarklet (click to try!): <a class="bookmarklet" href="javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://dl.dropboxusercontent.com/s/vlwtzxale8zv2f1/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://dl.dropboxusercontent.com/s/pbjhxbmh2fsh9vi/snoopy-min.js%22);document.body.appendChild(a)%7D)();">Snoopy</a></p>
+        <p id="getsnoopy">The Snoopy bookmarklet (click to try): <a class="bookmarklet" href="javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://dl.dropboxusercontent.com/s/vlwtzxale8zv2f1/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://dl.dropboxusercontent.com/s/pbjhxbmh2fsh9vi/snoopy-min.js%22);document.body.appendChild(a)%7D)();">Snoopy</a></p>
     
-        <h2>A note on scrolling in the 'view-source' view (in Mobile Safari)&hellip;</h2>
+        <h2>A note on scrolling in the 'view-source' view (in mobile Safari)</h2>
             
-        <p>Mobile Safari helpfully decides to hide all internal scrollbars in pages, so if open the view-source tab in Snoopy and want to scroll within the code display window, you'll need to use two fingered drags within the source code area to navigate about.</p>
+        <p>Mobile Safari helpfully decides to hide all internal scrollbars in pages, so if one of the source tabs in Snoopy and want to scroll within the code display window, you'll need to use two-fingered drags within the source code area to navigate about.</p>
     
         <h2>Installation - Mobile Safari</h2>
     
@@ -58,7 +58,8 @@
         <h2>Installation - Chrome</h2>
         
         <p>The installation process for Chrome on iOS is essentially the same as for Mobile Safari:</p>
-        <ol>
+
+	<ol>
         	<li>Save the bookmarklet to the 'Bookmarks Bar' using Chrome on the desktop.</li>
         	<li>Sync bookmarks between iOS and desktop using your Google account.</li>
         </ol>
@@ -80,7 +81,7 @@
         
         <p><a href="http://www.idownloadblog.com/2012/06/30/how-to-easily-use-bookmarklets-in-google-chrome-for-ios/">Read more</a> about bookmarklets and Chrome on iOS, including a short video.</p>
         
-        <h2>Installation - Android...</h2>
+        <h2>Installation - Android</h2>
         
         <p><del>Unfortunately the stock Android browser doesn't currently support the use of the 'javascript:' pseudo-protocol bookmarklets, so Snoopy can't be installed. If anyone has any ideas on how to work around this issue, then please get in touch and open an issue or create a pull request.</del></p> 
 
@@ -90,14 +91,6 @@
     
         <p>Simply drag the bookmarklet above to your bookmarks bar and you're done.</p> 
         
-        <h2>Coming soon...</h2>
-    
-        <ul>
-            <li><del>Syntax highlighted source code</del> Added 26/01/11</li>
-            <li>HTML source validation</li>
-            <li>And more...</li>
-        </ul>
-    
         <div id="coda">
         
             <p>Snoopy was created by <a href="http://allmarkedup.com">Mark Perkins</a> and extended by <a href="https://michaelnordmeyer.com">Michael Nordmeyer</a>. You can fork the <a href="http://github.com/michaelnordmeyer/snoopy">source code on GitHub</a>.</p>
