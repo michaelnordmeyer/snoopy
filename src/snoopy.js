@@ -29,7 +29,7 @@
       this.element = document.createElement('div');
       this.element.setAttribute('id', 'snpy');
       this.element.classList.add('cleanslate');
-      this.element.innerHTML = tim(templates.snoopy, {
+      this.element.innerHTML = tim(html, {
         name: config.NAME,
         version: config.VERSION,
         modules: this.modulesHtml,
