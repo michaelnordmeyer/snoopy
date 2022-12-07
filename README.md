@@ -68,6 +68,7 @@ Snoopy can detect the following items:
 * Commenting systems
   * Disqus
 
+
 Built with...
 -------------
 
@@ -92,6 +93,7 @@ How to Build
 Run `package.sh` to create files from source.
 
 After snoopy-min.{css,js} have been pushed to Github, `purge-caches.sh` will purge the jsDelivr caches so the new version can be used.
+
 
 Contributors
 ------------
