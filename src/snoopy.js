@@ -10,7 +10,9 @@
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.4'
+    VERSION: '0.4',
+    URL: 'https://github.com/michaelnordmeyer/snoopy',
+    CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
 
   var snoopy = {
@@ -29,12 +31,7 @@
       this.element = document.createElement('div');
       this.element.setAttribute('id', 'snpy');
       this.element.classList.add('cleanslate');
-      this.element.innerHTML = tim(html, {
-        name: config.NAME,
-        version: config.VERSION,
-        modules: this.modulesHtml,
-        generatedSource: this.generatedSource
-      });
+      this.element.innerHTML = this.createHtml();
 
       document.body.appendChild(this.element);
 
@@ -178,44 +175,43 @@
       if (displayToggledOff === true) {
         self.markupLastDetectedModule();
       }
+    },
+  
+    createHtml: function() {
+      return `
+<div class="header">
+  <button class="close" title="Closes Snoopy" type="button"></button>
+  <button class="toggle-tests" title="Toggles undetected items in Overview" type="button"></button>
+  <h1><a href="${config.URL}">${config.NAME} ${config.VERSION}</a></h1>
+</div>
+<div class="body">
+  <ul class="tabs">
+    <li class="active"><button data-href="#snpy-overview">Overview</button></li>
+    <li><button data-href="#snpy-rawsource">Source</a></li>
+    <li><button data-href="#snpy-gensource">Generated Source</button></li>
+  </ul>
+  <div class="panels">
+    <div id="snpy-overview" class="panel active">
+      <div class="modules">${this.modulesHtml}</div>
+    </div>
+    <div id="snpy-rawsource" class="panel">
+      <pre><code>Loading source code…</code></pre>
+    </div>
+    <div id="snpy-gensource" class="panel">
+      <pre><code>${this.generatedSource}</code></pre>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  ${config.CREATED}
+</div>`;
     }
   };
-  
-  var html = "\
-<div class=\"header\">\
-  <button class=\"close\" title=\"Closes Snoopy\" type=\"button\"></button>\
-  <button class=\"toggle-tests\" title=\"Toggles undetected items in Overview\" type=\"button\"></button>\
-  <h1><a href=\"https://github.com/michaelnordmeyer/snoopy\">Snoopy 0.4</a></h1>\
-</div>\
-<div class=\"body\">\
-  <ul class=\"tabs\">\
-    <li class=\"active\"><button data-href=\"#snpy-overview\">Overview</button></li>\
-    <li><button data-href=\"#snpy-rawsource\">Source</a></li>\
-    <li><button data-href=\"#snpy-gensource\">Generated Source</button></li>\
-  </ul>\
-  <div class=\"panels\">\
-    <div id=\"snpy-overview\" class=\"panel active\">\
-      <div class=\"modules\">{{modules}}</div>\
-    </div>\
-    <div id=\"snpy-rawsource\" class=\"panel\">\
-      <pre><code>Loading source code…</code></pre>\
-    </div>\
-    <div id=\"snpy-gensource\" class=\"panel\">\
-      <pre><code>{{generatedSource}}</code></pre>\
-    </div>\
-  </div>\
-</div>\
-<div class=\"footer\">\
-  Created by <a href=\"http://allmarkedup.com/\">Mark Perkins</a> and <a href=\"https://michaelnordmeyer.com/\">Michael Nordmeyer</a>\
-</div>"
-;
 
   //////////// HELPER FUNCTIONS ////////////////
 
   // var sniffer =
   //   import ("./lib/sniffer.js");
-  // var tinytim =
-  //   import ("./lib/tinytim.js");
   // var floodlight =
   //   import ("./lib/floodlight.js");
 

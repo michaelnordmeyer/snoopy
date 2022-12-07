@@ -25,7 +25,7 @@ curl -X POST -s --data-urlencode 'input@snoopy.css' https://www.toptal.com/devel
 rm snoopy.css
 
 echo Packaging Snoopy JavaScript…
-cat src/lib/floodlight.js src/lib/tinytim.js src/lib/sniffer.js src/snoopy.js > snoopy.js
+cat src/lib/floodlight.js src/lib/sniffer.js src/snoopy.js > snoopy.js
 curl -X POST -s --data-urlencode 'input@snoopy.js' https://www.toptal.com/developers/javascript-minifier/api/raw > snoopy-min.js
 rm snoopy.js
 

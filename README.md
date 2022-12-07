@@ -73,7 +73,6 @@ Built with...
 
 Snoopy makes use of a few other projects to make it all run nicely:
 
-* Tim (JS micro templating) - [https://github.com/premasagar/tim](https://github.com/premasagar/tim), MIT license
 * Cleanslate (Heavy-duty reset stylesheet for widgets) - [https://github.com/premasagar/cleanslate](http://github.com/premasagar/cleanslate), MIT license
 * Floodlight.js (Lightweight (X)HTML syntax highlighter) - [https://github.com/aron/floodlight.js](https://github.com/aron/floodlight.js), MIT license
 * Sniffer (Page info detection) - [https://github.com/allmarkedup/sniffer](https://github.com/allmarkedup/sniffer)
