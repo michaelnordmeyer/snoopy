@@ -168,12 +168,6 @@ var Sniffer = (function(win, doc, undefined) {
           return win.Prototype ? win.Prototype.Version : false;
         }
       }],
-      'Raphael': [{
-        type: 'custom',
-        test: function() {
-          return win.Raphael ? win.Raphael.version : false;
-        }
-      }],
       'Scriptaculous': [{
         type: 'custom',
         test: function() {
@@ -238,7 +232,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Jimdo': [{
         type: 'custom',
         test: function() {
-          return win._jimdoDataLayer ? true : false;
+          return win.jimdoData ? true : false;
         }
       }],
       'Joomla': [{
@@ -251,7 +245,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Medium': [{
         type: 'custom',
         test: function() {
-          return win._mdm ? true : false;
+          return win.__GRAPHQL_URI__ ? true : false;
         }
       }],
       'MovableType': [{
@@ -292,6 +286,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /typepad\.com/i
         }
       }],
+      'Typo3': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Typo3 CMS/i
+        }
+      }],
       'Weebly': [{
         type: 'custom',
         test: function() {
@@ -301,7 +302,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Wix': [{
         type: 'custom',
         test: function() {
-          return win.wixBiSession ? true : false;
+          return (win.wixDeveloperAnalytics || win.wixEmbedsAPI || win.wixPerformanceMeasurements || win.wixTagManager) ? true : false;
         }
       }],
       'WordPress': [{
@@ -325,11 +326,17 @@ var Sniffer = (function(win, doc, undefined) {
     return_type: 'version',
 
     tests: {
-
+      
+      'Ackee': [{
+        type: 'custom',
+        test: function() {
+          return !!win.ackeeTracker;
+        }
+      }],
       'Chartbeat': [{
         type: 'custom',
         test: function() {
-          return !!win._cb_shared;
+          return !!(win._cb_shared || win._sf_async_config);
         }
       }],
       'Clicky': [{
@@ -338,17 +345,61 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.clicky;
         }
       }],
+      'Cloudflare Insights': [{
+        type: 'text',
+        test: /<script [^>]+\/\/static\.cloudflareinsights\.com\/beacon\.min\.js/i
+      }],
+      'Fathom': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.usefathom\.com\/script\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.fathom;
+        }
+      }],
       'Gauges': [{
         type: 'custom',
         test: function() {
           return !!win._gauges;
         }
       }],
+      'GoatCounter': [{
+        type: 'text',
+        test: /<script [^>]+\/\/gc\.zgo\.at\/count\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.goatcounter;
+        }
+      }],
       'Google Analytics': [{
         type: 'custom',
         test: function() {
-          return !!(win._gat || win._gaq || win.ga);
+          return !!(win._gat || win._gaq || win.ga || win.datalayer || win.gtag);
         }
+      }],
+      'Koko Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/koko-analytics\/assets\/dist\/js\/script\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.koko_analytics;
+        }
+      }],
+      'Matomo': [{
+        type: 'custom',
+        test: function() {
+          return !!(win._paq || win.Matomo || win.Piwik);
+        }
+      }],
+      'Microanalytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/microanalytics\.io\/js\/script\.js/i
       }],
       'Mint': [{
         type: 'custom',
@@ -365,13 +416,21 @@ var Sniffer = (function(win, doc, undefined) {
       'Open Web Analytics': [{
         type: 'custom',
         test: function() {
-          return !!win.OWA;
+          return !!(win.OWA || win.owa_baseUrl);
         }
       }],
-      'Piwik': [{
+      'Pirsch': [{
+        type: 'text',
+        test: /<script [^>]+\/\/api\.pirsch\.io\/pirsch\.js/i
+      }],
+      'Plausible': [{
+        type: 'text',
+        test: /<script [^>]+\/\/plausible\.io\/js\/script\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
-          return !!(win._paq || win.piwikTracker);
+          return !!win.plausible;
         }
       }],
       'Reinvigorate': [{
@@ -380,10 +439,20 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.reinvigorate;
         }
       }],
-      'Slim Stat Analytics': [{
+      'Slimstat Analytics': [{
         type: 'custom',
         test: function() {
           return !!win.SlimStatParams;
+        }
+      }],
+      'Umami': [{
+        type: 'text',
+        test: /<script [^>]+\/umami\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.umami;
         }
       }],
       'W3Counter': [{
@@ -418,6 +487,12 @@ var Sniffer = (function(win, doc, undefined) {
     description: 'Fonts',
     return_type: 'version',
     tests: {
+      'Adobe Fonts': [{
+        type: 'custom',
+        test: function() {
+          return !!win.Typekit
+        }
+      }],
       'Cufon': [{
         type: 'custom',
         test: function() {
@@ -438,12 +513,6 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.sIFR
         }
-      }],
-      'Typekit': [{
-        type: 'custom',
-        test: function() {
-          return !!win.Typekit
-        }
       }]
     }
   };
@@ -452,11 +521,33 @@ var Sniffer = (function(win, doc, undefined) {
     description: 'Comments',
     return_type: 'version',
     tests: {
+      'Cactus Comments': [{
+        type: 'text',
+        test: /<script [^>]+\/\/latest\.cactus\.chat\/cactus\.js/i
+      }],
+      'Discourse': [{
+        type: 'custom',
+        test: function() {
+          return !!win.DiscourseEmbed
+        }
+      }],
       'Disqus': [{
         type: 'custom',
         test: function() {
           return !!win.disqus_identifier
         }
+      }],
+      'Giscus': [{
+        type: 'text',
+        test: /<iframe [^>]+giscus-frame/i
+      }],
+      'Isso': [{
+        type: 'text',
+        test: /<section [^>]+isso-thread/i
+      }],
+      'Utterances': [{
+        type: 'text',
+        test: /<iframe [^>]+utterances-frame/i
       }]
     }
   };
