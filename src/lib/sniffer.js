@@ -445,6 +445,12 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.SlimStatParams;
         }
       }],
+      'TinyAnalytics': [{
+        type: 'custom',
+        test: function() {
+          return !!window["tinyanalytics"];
+        }
+      }],
       'Umami': [{
         type: 'text',
         test: /<script [^>]+\/umami\.js/i

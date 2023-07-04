@@ -25,7 +25,6 @@ Snoopy can detect the following items:
   * Modernizr
   * MooTools
   * Prototype
-  * Raphael
   * Scriptaculous
   * YUI2
   * YUI3
@@ -42,42 +41,56 @@ Snoopy can detect the following items:
   * Squarespace
   * Tumblr
   * Typepad
+  * Typo3
   * Weebly
   * Wix
   * WordPress
 * Analytics
+  * Ackee
   * Chartbeat
   * Clicky
+  * Cloudflare Insights
+  * Fathom
   * Gauges
-  * Google Analytics
+  * GoatCounter
+  * Google Analytics (ga.js, analytics.js, and GA4)
+  * Koko Analytics
+  * Matomo
+  * Microanalytics
   * Mint
   * New Relic
   * Open Web Analytics
-  * Piwik (now Matomo)
+  * Pirsch
+  * Plausible
   * Reinvigorate
-  * Slim Stat Analytics
+  * Slimstat Analytics
+  * TinyAnalytics
+  * Umami
   * W3Counter
   * Webtrends
   * Woopra
   * WordPress Stats
 * Font embedding (technique)
+  * Adobe Fonts
   * Cufon
   * Google Fonts
   * sIFR
-  * Typekit
 * Commenting systems
+  * Cactus Comments
+  * Discourse
   * Disqus
+  * Giscus
+  * Isso
+  * Utterances
 
-
-Built with...
--------------
+Built with
+----------
 
 Snoopy makes use of a few other projects to make it all run nicely:
 
 * Cleanslate (Heavy-duty reset stylesheet for widgets) - [https://github.com/premasagar/cleanslate](http://github.com/premasagar/cleanslate), MIT license
 * Floodlight.js (Lightweight (X)HTML syntax highlighter) - [https://github.com/aron/floodlight.js](https://github.com/aron/floodlight.js), MIT license
 * Sniffer (Page info detection) - [https://github.com/allmarkedup/sniffer](https://github.com/allmarkedup/sniffer)
-
 
 Browser Support
 ---------------
@@ -86,14 +99,12 @@ This is intended to be used in modern, mobile browsers, although it's intended t
 
 I am not currently intending to support any versions of IE (although IE9 *may* be supported in the future... but don't hold your breath).
 
-
 How to Build
 ------------
 
 Run `package.sh` to create files from source.
 
 After snoopy-min.{css,js} have been pushed to Github, `purge-caches.sh` will purge the jsDelivr caches so the new version can be used.
-
 
 Contributors
 ------------
