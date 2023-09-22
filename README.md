@@ -102,7 +102,7 @@ Snoopy makes use of a few other projects to make it all run nicely:
 
 * Cleanslate (Heavy-duty reset stylesheet for widgets) - [https://github.com/premasagar/cleanslate](http://github.com/premasagar/cleanslate), MIT license
 * Floodlight.js (Lightweight (X)HTML syntax highlighter) - [https://github.com/aron/floodlight.js](https://github.com/aron/floodlight.js), MIT license
-* Sniffer (Page info detection) - [https://github.com/allmarkedup/sniffer](https://github.com/allmarkedup/sniffer)
+* Sniffer (Page info detection) - [https://github.com/michaelnordmeyer/sniffer](https://github.com/michaelnordmeyer/sniffer)
 
 ## How to Build
 
