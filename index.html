@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/base.css" media="all">
+  <link rel="stylesheet" href="css/main.css" media="all">
+  <meta name="description" content="Snoopy is a bookmarklet for snooping on web pages. It's intended for use on mobile browsers (such as Mobile Safari on the iPad) where you can't view-source to poke around under the hood of sites to see how they're built.">
+  <title>Snoopy | View-source bookmarklet for iPad, iPhone and other mobile devices</title>
+  <style>
+/* base.css */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header, hgroup, menu, nav, section, menu,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}                  
+article, aside, figure, footer, header, hgroup, nav, section { display:block; }
+nav ul { list-style:none; }
+blockquote, q { quotes:none; }
+blockquote:before, blockquote:after, q:before, q:after { content:''; content:none; }
+a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
+table { border-collapse:collapse; border-spacing:0; }
+hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
+input, select { vertical-align:middle; }
+
+body { font:13px sans-serif; *font-size:small; *font:x-small; line-height:1.22; }
+table { font-size:inherit; font:100%; }
+select, input, textarea { font:99% sans-serif; }
+textarea { vertical-align: top; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+ 
+body, select, input, textarea { color:#444; }
+h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility; }
+html { -webkit-font-smoothing: antialiased; }
+a:hover, a:active { outline: none; }
+a, a:active, a:visited { color:#607890; }
+a:hover { color:#036; }
+ol { list-style-type: decimal; }
+small { font-size:85%; }
+strong, th { font-weight: bold; }
+td, td img { vertical-align:top; } 
+sub { vertical-align: sub; font-size: smaller; }
+sup { vertical-align: super; font-size: smaller; }
+
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; *vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+label, input[type=button], input[type=submit], button { cursor: pointer; }
+
+::-moz-selection{ background: #6da7e1; color:#fff; text-shadow: none; }
+::selection { background: #6da7e1; color: #fff; text-shadow: none; } 
+
+a:link { -webkit-tap-highlight-color: #6da7e1; } 
+
+html { overflow-y: scroll; }
+button {  width: auto; overflow: visible; }
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+.ir { display:block; text-indent:-999em; overflow:hidden; background-repeat: no-repeat; }
+
+/* print styles */
+@media print {
+  * { background: transparent !important; color: #444 !important; text-shadow: none; }
+  a, a:visited { color: #444 !important; text-decoration: underline; }
+  a:after { content: " (" attr(href) ")"; } 
+  abbr:after { content: " (" attr(title) ")"; }
+  .ir a:after { content: ""; }  /* Don't show links for images */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  img { page-break-inside: avoid; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3{ page-break-after: avoid; }
+}
+
+/* Grade-A Mobile Browsers */
+@media screen and (max-device-width: 480px) {
+  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } 
+}
+
+/* main.css */
+/* Snoopy overview page
+============================================== */
+
+body {
+    background: #444;
+}
+
+#content {
+    margin: 30px auto;    
+    width: 600px;
+    padding:  15px 20px 5px 20px;
+    background: #FFF;
+    font-size: 15px;
+    font-family: Georgia, Palatino, serif;
+    line-height: 1.3;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #444;    
+}
+
+h1 {
+    font-size: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 20px;
+}
+
+h1 span.version {
+    font-weight: normal;
+    font-size: 16px;
+    color: #888;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+p.note {
+    padding: 10px;
+    text-align: center;
+    background: #FED3D3;
+    color: #773535;
+}
+
+ol, ul {
+    margin-left: 25px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+#forkme {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#getsnoopy {
+    background: #EEE;
+    padding: 15px 10px;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    margin: 20px 0;
+}
+
+a.bookmarklet {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #333;
+    color: #FFF;
+    margin-left: 10px;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-decoration: none;
+}
+
+a.bookmarklet:hover {
+    background: #111;
+}
+
+#snoopycode {
+    border: 1px solid #DDD;
+    padding: 10px;
+    width: 500px;
+    height: 150px;
+    margin: 10px 0;
+    color: #888;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+#coda {
+    border-top: 1px solid #CCC;
+    margin-top: 20px;
+    padding-top: 17px;
+    font-size: 12px;
+    color: #888;
+}
+
+@media only screen and (max-device-width: 480px) {
+    
+    #forkme {
+        display: none;
+    }
+        
+}    
+  </style>
+</head>
+<body>
+  <a id="forkme" href="http://github.com/michaelnordmeyer/snoopy"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  <div id="content">
+    <h1>Snoopy <span class="version">v0.5.1</span></h1>
+    <div class="intro">
+      <p>
+        Snoopy is a bookmarklet for snooping on web pages. It's intended for use on mobile browsers (such as Mobile Safari on iPad) where you can't view-source to poke around under the hood of sites to see how they're built. You might find it useful for your desktop browser, too.
+      </p>
+      <p>
+        Using the bookmarklet will give you an overlay featuring information that Snoopy can 'sniff' out of the page, such as the doctype and charset, what JS libraries are used in the page, what CMS, what analytics, what font embedding technique and what commenting system is used. It also gives you the ability to view the raw and/or generated source of the page.
+      </p>
+    </div>
+    <p id="getsnoopy">
+      The Snoopy bookmarklet (click to try): <a class="bookmarklet" href="javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.js%22);document.body.appendChild(a)%7D)();">Snoopy</a>
+    </p>
+
+    <h2>A note on scrolling in the 'view-source' view (in mobile Safari)</h2>
+    <p>
+      Mobile Safari helpfully decides to hide all internal scrollbars in pages, so if one of the source tabs in Snoopy and want to scroll within the code display window, you'll need to use two-fingered drags within the source code area to navigate about.
+    </p>
+
+    <h2>Installation - Mobile Safari</h2>
+    <p>
+      The easiest way is to open up desktop Safari, drag the bookmarklet above to the bookmarks bar, and then either use MobileMe or standard USB bookmark syncing to your iDevice.
+    </p>
+    <p>
+      Alternatively, if you don't like syncing, you can do it the hard way…
+    </p>
+    <ol>
+      <li>Visit <em>this</em> page in Mobile Safari.</li>
+      <li>Copy all of the code in the following textarea to the clipboard: 
+        <textarea id="snoopycode">javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.js%22);document.body.appendChild(a)%7D)();</textarea></li>
+      <li>Click the '+' button on the menu bar and click the 'Add Bookmark' button.</li>
+      <li>Change the top field (the Title field) to 'Snoopy' or whatever you want.</li>
+      <li>(I'd recommend adding this to the Bookmarks Bar at this point, too)</li>
+      <li>Click the 'Save' button.</li>
+      <li>Take a deep breath. You're halfway there.</li>
+      <li>Now click on the little book icon in the menu bar to bring up your bookmarks. Navigate to the folder that you saved the Snoopy bookmark in.</li>
+      <li>Click the 'Edit' button and then tap on the bookmark you just created to edit it.</li>
+      <li>Now select the second field from the top (the Address field), clear it out and paste the link you copied at the start into the field.</li>
+      <li>Hit the 'Done' button to save, and you're all set!</li>
+    </ol>
+    
+    <h2>Installation - Chrome</h2>
+    <p>
+      The installation process for Chrome on iOS is essentially the same as for Mobile Safari:
+    </p>
+    <ol>
+      <li>Save the bookmarklet to the 'Bookmarks Bar' using Chrome on the desktop.</li>
+      <li>Sync bookmarks between iOS and desktop using your Google account.</li>
+    </ol>
+    <p>
+      OR...
+    </p>
+    <ol>
+      <li>Visit <em>this</em> page in Chrome for iOS.</li>
+      <li>Manually copy/paste the JavaScript into a new bookmark.</li>
+    </ol>
+    
+    <h3>To then launch Snoopy on Chrome for iOS</h3>
+    <ol>
+      <li>Visit the web page on which you want to launch Snoopy</li>
+      <li>Type the name of your bookmarklet (eg. Snoopy) into the Omnibar.</li>
+      <li>Find the Snoopy bookmark at the end of the list Chrome displays.</li>
+    </ol>
+    <p>
+      <a href="http://www.idownloadblog.com/2012/06/30/how-to-easily-use-bookmarklets-in-google-chrome-for-ios/">Read more</a> about bookmarklets and Chrome on iOS, including a short video.
+    </p>
+    
+    <h2>Installation - Android</h2>
+    <p>
+      <del>Unfortunately the stock Android browser doesn't currently support the use of the 'javascript:' pseudo-protocol bookmarklets, so Snoopy can't be installed. If anyone has any ideas on how to work around this issue, then please get in touch and open an issue or create a pull request.</del>
+    </p>
+    <p>
+      It appears that newer versions (&gt;2.1?) of Android <em>can</em> install bookmarklets - although there is a limited character set that can be used which may cause it to fail. Currently investigating.
+    </p>
+    <h2>
+      Installation - Desktop Browsers
+    </h2>
+    <p>
+      Simply drag the bookmarklet above to your bookmarks bar and you're done.
+    </p>
+    <div id="coda">
+      <p>
+        Snoopy was created by <a href="http://allmarkedup.com">Mark Perkins</a> and extended by <a href="https://michaelnordmeyer.com">Michael Nordmeyer</a>. You can fork the <a href="http://github.com/michaelnordmeyer/snoopy">source code on GitHub</a>.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
