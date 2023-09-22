@@ -4,6 +4,8 @@ Snoopy is a [bookmarklet](https://en.wikipedia.org/wiki/Bookmarklet) for snoopin
 
 Using the bookmarklet will give you an overlay featuring information that Snoopy can 'sniff' out of the page, such as the doctype, what JS libraries are used in the page, what analytics, what font embedding technique is used, etc. It also gives you the ability to view the raw and/or generated source of the page. To use it, just select the bookmarklet when being on the page you want to inspect.
 
+JavaScript has to be turned on for bookmarklets to function.
+
 ## Detection Capabilities
 
 Snoopy can detect the following items:
