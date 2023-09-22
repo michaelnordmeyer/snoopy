@@ -110,6 +110,6 @@ After `snoopy-min.{css,js}` have been pushed to Github, `purge-caches.sh` will p
 
 ## Contributors
 
-* Mark Perkins (owner)
-* James Brooks [https://github.com/jbrooksuk](https://github.com/jbrooksuk)
-* Michael Nordmeyer [https://github.com/michaelnordmeyer](https://github.com/michaelnordmeyer)
+* [Mark Perkins (owner)](https://github.com/allmarkedup)
+* [James Brooks](https://github.com/jbrooksuk)
+* [Michael Nordmeyer](https://github.com/michaelnordmeyer)
