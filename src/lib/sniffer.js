@@ -326,20 +326,41 @@ var Sniffer = (function(win, doc, undefined) {
     return_type: 'version',
 
     tests: {
-      
+
       'Ackee': [{
+        type: 'text',
+        test: /<script [^>]+\/\/a\.electerious\.com\/_\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!win.ackeeTracker;
         }
       }],
+      'Cabin': [{
+        type: 'text',
+        test: /<script [^>]+\/\/scripts\.withcabin\.com\/hello\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.cabin;
+        }
+      }],
       'Chartbeat': [{
+        type: 'text',
+        test: /<script [^>]+\/\/static\.chartbeat\.com\/js\/chartbeat\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!(win._cb_shared || win._sf_async_config);
         }
       }],
       'Clicky': [{
+        type: 'text',
+        test: /<script [^>]+\/\/static\.getclicky\.com\/js/i
+      },{
         type: 'custom',
         test: function() {
           return !!win.clicky;
@@ -360,10 +381,8 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Gauges': [{
-        type: 'custom',
-        test: function() {
-          return !!win._gauges;
-        }
+        type: 'text',
+        test: /<script [^>]+\/\/secure\.gaug\.es\/track\.js/i
       }],
       'GoatCounter': [{
         type: 'text',
@@ -376,6 +395,18 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Google Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/ssl\.google-analytics\.com\/ga\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/www\.google-analytics\.com\/analytics\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/www\.googletagmanager\.com\/gtag\/js\?id=UA-xxxxxxxxx-1/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!(win._gat || win._gaq || win.ga || win.datalayer || win.gtag);
@@ -383,7 +414,11 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Koko Analytics': [{
         type: 'text',
-        test: /<script [^>]+\/\/koko-analytics\/assets\/dist\/js\/script\.js/i
+        test: /<script [^>]+\/\/.+\/plugins\/koko-analytics\/assets\/dist\/js\/script\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/.+\/plugins\/koko-analytics-pro\/assets\/dist\/js\/script\.js/i
       },
       {
         type: 'custom',
@@ -392,6 +427,14 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Matomo': [{
+        type: 'text',
+        test: /<script [^>]+\/\/.+\/matomo\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/.+\/piwik\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!(win._paq || win.Matomo || win.Piwik);
@@ -401,12 +444,6 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<script [^>]+\/\/microanalytics\.io\/js\/script\.js/i
       }],
-      'Mint': [{
-        type: 'custom',
-        test: function() {
-          return !!win.Mint;
-        }
-      }],
       'New Relic': [{
         type: 'custom',
         test: function() {
@@ -414,6 +451,10 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Open Web Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/.+\/modules\/base\/js\/owa\.tracker-combined-min\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!(win.OWA || win.owa_baseUrl);
@@ -422,6 +463,18 @@ var Sniffer = (function(win, doc, undefined) {
       'Pirsch': [{
         type: 'text',
         test: /<script [^>]+\/\/api\.pirsch\.io\/pirsch\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/api\.pirsch\.io\/pirsch-extended\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/api\.pirsch\.io\/pirsch-events\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/api\.pirsch\.io\/pirsch-sessions\.js/i
       }],
       'Plausible': [{
         type: 'text',
@@ -439,21 +492,42 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.reinvigorate;
         }
       }],
+      'Simple Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/scripts\.simpleanalyticscdn\.com\/latest\.js/i
+      }],
       'Slimstat Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.jsdelivr\.net\/wp\/wp-slimstat\/tags\/.+\/wp-slimstat\.min\.js/i
+      },{
         type: 'custom',
         test: function() {
           return !!win.SlimStatParams;
         }
       }],
+      'Statcounter': [{
+        type: 'text',
+        test: /<script [^>]+\/\/secure\.statcounter\.com\/counter\/counter\.js/i
+      }],
       'TinyAnalytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.segment\.com\/analytics\.js\/v1\/.+\/analytics\.min\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!window["tinyanalytics"];
         }
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!window.AnalyticsNext;
+        }
       }],
       'Umami': [{
         type: 'text',
-        test: /<script [^>]+\/umami\.js/i
+        test: /<script [^>]+\/\/umami\.is\/a\/script\.js/i
       },
       {
         type: 'custom',
@@ -462,12 +536,20 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'W3Counter': [{
+        type: 'text',
+        test: /<script [^>]+\/\/www\.w3counter\.com\/tracker\.js\?id=.+/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!win._w3counter;
         }
       }],
       'Webtrends': [{
+        type: 'text',
+        test: /<script [^>]+\/\/s\.webtrends\.com\/js\/webtrends\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!win.Webtrends;
@@ -480,6 +562,14 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'WordPress Stats': [{
+        type: 'text',
+        test: /<script [^>]+\/\/stats\.wp\.com\/w\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/stats\.wp\.com\/e-.+\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!(win._tkq || win._stq);

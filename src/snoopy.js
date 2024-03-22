@@ -10,7 +10,7 @@
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.5.1',
+    VERSION: '0.5.2',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
@@ -57,7 +57,7 @@
             groupHasPositives = true;
           }
         }
-        
+
         output += '</ul>';
         this.modulesHtml += '<div class="module' + (groupHasPositives ? '' : ' no-detection') + ' type_' + group + ' output_' + results[group].return_type + '">' + output + '</div>';
       }
@@ -79,7 +79,7 @@
       this.generatedSource = floodlight(floodlight.decode(document.documentElement.outerHTML.toString()));
       // this.generatedSource = document.documentElement.outerHTML.toString();
     },
-    
+
     markupLastDetectedModule: function() {
       var self = this;
       const module = self.getLastDetectedModule();
@@ -87,7 +87,7 @@
         module.style.cssText = 'margin-bottom: 0 !important;';
       }
     },
-    
+
     getLastDetectedModule: function() {
       const modules = document.querySelectorAll('#snpy .module');
       for (index = modules.length - 1; index >= 0; index -= 1) {
@@ -96,7 +96,7 @@
         }
       }
     },
-    
+
     bindEvents: function() {
       var self = this;
 
@@ -144,7 +144,7 @@
 
     toggleTests: function() {
       var self = this;
-      
+
       document.querySelectorAll('#snpy .tests li.negative').forEach(function(test) {
         if (test.style.cssText) {
           test.style.cssText = '';
@@ -164,19 +164,19 @@
           displayToggledOn = true;
         }
       });
-      
+
       if (displayToggledOn === true) {
         const module = self.getLastDetectedModule();
         if (module) {
           module.style.cssText = '';
         }
       }
-      
+
       if (displayToggledOff === true) {
         self.markupLastDetectedModule();
       }
     },
-  
+
     createHtml: function() {
       return `
 <div class="header">
