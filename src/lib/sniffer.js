@@ -394,7 +394,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.goatcounter;
         }
       }],
-      'Google Analytics (Urchin)': [{ // 2005
+      'Google Analytics 1': [{ // 2005
         type: 'text',
         test: /<script [^>]+\/\/www\.google-analytics\.com\/urchin\.js/i
       },
@@ -404,7 +404,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!(win._uacct);
         }
       }],
-      'Google Analytics (GA2)': [{ // 2007 _gat, 2009 _gaq
+      'Google Analytics 2': [{ // 2007 _gat, 2009 _gaq
         type: 'text',
         test: /<script [^>]+\/\/ssl\.google-analytics\.com\/ga\.js/i
       },
@@ -418,7 +418,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!(win._gaq || win._gat);
         }
       }],
-      'Google Analytics (GA3)': [{ // 2013
+      'Google Analytics 3': [{ // 2013
         type: 'text',
         test: /<script [^>]+\/\/www\.google-analytics\.com\/analytics\.js/i
       },
@@ -428,7 +428,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!(win.ga);
         }
       }],
-      'Google Analytics (GA3 GST)': [{ // 2017
+      'Google Analytics 3/GST': [{ // 2017
         type: 'text',
         test: /<script [^>]+\/\/www\.googletagmanager\.com\/gtag\/js\?id=UA-[A-Z0-9]{8}-[0-9]+/i // A property ID can have 25 view IDs
       },
@@ -438,7 +438,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!(win.gtag);
         }
       }],
-      'Google Analytics (GA4)': [{ // 2020
+      'Google Analytics 4': [{ // 2020
         type: 'text',
         test: /<script [^>]+\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-[A-Z0-9]{10}/i
       },
