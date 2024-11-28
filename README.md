@@ -53,6 +53,7 @@ Snoopy can detect the following items:
   * Gauges
   * GoatCounter
   * Google Analytics (urchin.js, GA3 (=UA, ga.js, analytics.js, gtag.js), and GA4)
+  * Google Tag Manager
   * Koko Analytics
   * Matomo
   * Microanalytics

@@ -448,6 +448,14 @@ var Sniffer = (function(win, doc, undefined) {
           return !!(win.gtag);
         }
       }],
+      'Google Tag Manager': [{
+        type: 'text',
+        test: /<script [^>]+\/\/www\.googletagmanager\.com\/gtm\.js\?id=GTM-[A-Z0-9]{6,13}/i
+      },
+      {
+        type: 'text',
+        test: /<iframe [^>]+\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]{6,13}/i
+      }],
       'Koko Analytics': [{
         type: 'text',
         test: /<script [^>]+\/\/.+\/plugins\/koko-analytics\/assets\/dist\/js\/script\.js/i
