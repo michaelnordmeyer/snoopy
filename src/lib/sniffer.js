@@ -222,6 +222,13 @@ var Sniffer = (function(win, doc, undefined) {
           return win.ghost ? true : false;
         }
       }],
+      'Hugo': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Hugo ([\d\.]*)/i
+        }
+      }],
       'Jekyll': [{
         type: 'meta',
         test: {
@@ -553,6 +560,12 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<script [^>]+\/\/secure\.statcounter\.com\/counter\/counter\.js/i
       }],
+      'Statify': [{
+        type: 'custom',
+        test: function() {
+          return !!win.statify_ajax;
+        }
+      }],
       'TinyAnalytics': [{
         type: 'text',
         test: /<script [^>]+\/\/cdn\.segment\.com\/analytics\.js\/v1\/.+\/analytics\.min\.js/i
@@ -617,6 +630,12 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'custom',
         test: function() {
           return !!(win._tkq || win._stq);
+        }
+      }],
+      'WP Statistics': [{
+        type: 'custom',
+        test: function() {
+          return !!win.WP_Statistics_Tracker_Object;
         }
       }]
     }

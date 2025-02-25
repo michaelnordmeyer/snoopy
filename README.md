@@ -31,6 +31,7 @@ Snoopy can detect the following items:
   * Blogger
   * Drupal
   * Ghost
+  * Hugo
   * Jekyll
   * Jimdo
   * Joomla
@@ -46,6 +47,7 @@ Snoopy can detect the following items:
   * WordPress
 * Analytics
   * Ackee
+  * Cabin
   * Chartbeat
   * Clicky
   * Cloudflare Insights
@@ -57,19 +59,22 @@ Snoopy can detect the following items:
   * Koko Analytics
   * Matomo
   * Microanalytics
-  * Mint
   * New Relic
   * Open Web Analytics
   * Pirsch
   * Plausible
   * Reinvigorate
+  * Simple Analytics
   * Slimstat Analytics
+  * Statcounter
+  * Statify
   * TinyAnalytics
   * Umami
   * W3Counter
   * Webtrends
   * Woopra
   * WordPress Stats
+  * WP Statistics
 * Font embedding (technique)
   * Adobe Fonts
   * Cufon
