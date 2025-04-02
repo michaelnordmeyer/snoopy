@@ -197,11 +197,25 @@ var Sniffer = (function(win, doc, undefined) {
 
     tests: {
 
+      'Astro': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Astro v([\w\.-]*)/i
+        }
+      }],
       'Blogger': [{
         type: 'meta',
         test: {
           name: 'generator',
           match: /blogger/i
+        }
+      }],
+      'Docusaurus': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Docusaurus v([\w\.-]*)/i
         }
       }],
       'Drupal': [{
@@ -210,11 +224,25 @@ var Sniffer = (function(win, doc, undefined) {
           return win.Drupal ? true : false;
         } // no version in js obj
       }],
+      'Eleventy': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Eleventy v([\w\.-]*)/i
+        }
+      }],
+      'Gatsby': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Gatsby ([\w\.-]*)/i
+        }
+      }],
       'Ghost': [{
         type: 'meta',
         test: {
           name: 'generator',
-          match: /Ghost\s?([\w\d\.\-_]*)/i
+          match: /Ghost\s?([\w\.-]*)/i
         }
       }, {
         type: 'custom',
@@ -222,18 +250,32 @@ var Sniffer = (function(win, doc, undefined) {
           return win.ghost ? true : false;
         }
       }],
+      'Gridsome': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Gridsome v([\w\.-]*)/i
+        }
+      }],
+      'Hexo': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Hexo ([\w\.-]*)/i
+        }
+      }],
       'Hugo': [{
         type: 'meta',
         test: {
           name: 'generator',
-          match: /Hugo ([\d\.]*)/i
+          match: /Hugo ([\w\.-]*)/i
         }
       }],
       'Jekyll': [{
         type: 'meta',
         test: {
           name: 'generator',
-          match: /Jekyll v([\w\d\.]*)/i
+          match: /Jekyll v([\w\.-]*)/i
         }
       }],
       'Jimdo': [{
@@ -255,6 +297,13 @@ var Sniffer = (function(win, doc, undefined) {
           return win.__GRAPHQL_URI__ ? true : false;
         }
       }],
+      'Metalsmith': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Metalsmith/i
+        }
+      }],
       'MovableType': [{
         type: 'meta',
         test: {
@@ -272,6 +321,13 @@ var Sniffer = (function(win, doc, undefined) {
         test: {
           name: 'generator',
           match: /.*Octopress.*/i
+        }
+      }],
+      'Scully': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Scully ([\w\.-]*)/i
         }
       }],
       'Squarespace': [{
@@ -300,6 +356,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Typo3 CMS/i
         }
       }],
+      'VuePress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /VuePress ([\w\.-]*)/i
+        }
+      }],
       'Weebly': [{
         type: 'custom',
         test: function() {
@@ -316,7 +379,7 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'meta',
         test: {
           name: 'generator',
-          match: /WordPress\s?([\w\d\.\-_]*)/i
+          match: /WordPress\s?([\w\.-]*)/i
         }
       }, {
         type: 'text',

@@ -28,20 +28,29 @@ Snoopy can detect the following items:
   * YUI2
   * YUI3
 * Content Management Systems
+  * Astro
   * Blogger
+  * Docusaurus
   * Drupal
+  * Eleventy
+  * Gatsby
   * Ghost
+  * Gridsome
+  * Hexo
   * Hugo
   * Jekyll
   * Jimdo
   * Joomla
   * Medium
+  * Metalsmith
   * MovableType
   * Octopress
+  * Scully
   * Squarespace
   * Tumblr
   * Typepad
   * Typo3
+  * VuePress
   * Weebly
   * Wix
   * WordPress
