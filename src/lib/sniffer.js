@@ -211,6 +211,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /blogger/i
         }
       }],
+      'ClassicPress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /ClassicPress\s?([\w\.-]*)/i
+        }
+      }],
       'Docusaurus': [{
         type: 'meta',
         test: {
@@ -384,6 +391,13 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'text',
         test: /<link [^>]+wp-content/i
+      }],
+      'Write.as': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Write\.as/i
+        }
       }]
     }
 
@@ -406,6 +420,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.ackeeTracker;
         }
+      }],
+      'Bearblog': [{
+        type: 'text',
+        test: /<style>[^\/]+body.hover/i
       }],
       'Cabin': [{
         type: 'text',

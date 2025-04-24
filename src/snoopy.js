@@ -10,7 +10,7 @@
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.3',
+    VERSION: '0.6.4',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
@@ -110,6 +110,15 @@
 
       document.querySelector('#snpy .close').addEventListener('click', function() {
         document.getElementById('snpy').classList.add('closed');
+      });
+
+      window.addEventListener('keydown', function(event) {
+        switch(event.key) {
+          case 'Escape':
+            document.getElementById('snpy').classList.add('closed');
+            break;
+        }
+        event.preventDefault();
       });
 
       const tabs = document.querySelectorAll('#snpy .tabs li');

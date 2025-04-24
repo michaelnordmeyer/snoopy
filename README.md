@@ -30,6 +30,7 @@ Snoopy can detect the following items:
 * Content Management Systems
   * Astro
   * Blogger
+  * ClassicPress
   * Docusaurus
   * Drupal
   * Eleventy
@@ -54,8 +55,10 @@ Snoopy can detect the following items:
   * Weebly
   * Wix
   * WordPress
+  * Write.as
 * Analytics
   * Ackee
+  * Bearblog
   * Cabin
   * Chartbeat
   * Clicky
