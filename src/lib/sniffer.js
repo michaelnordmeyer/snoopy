@@ -363,6 +363,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Typo3 CMS/i
         }
       }],
+      'VitePress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /VitePress ([\w\.-]*)/i
+        }
+      }],
       'VuePress': [{
         type: 'meta',
         test: {
