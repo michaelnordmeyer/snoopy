@@ -118,7 +118,6 @@
             document.getElementById('snpy').classList.add('closed');
             break;
         }
-        event.preventDefault();
       });
 
       const tabs = document.querySelectorAll('#snpy .tabs li');
