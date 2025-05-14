@@ -792,6 +792,10 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<section [^>]+isso-thread/i
       }],
+      'OpenWeb': [{
+        type: 'text',
+        test: /<script [^>]+data-spotim-module/i
+      }],
       'Utterances': [{
         type: 'text',
         test: /<iframe [^>]+utterances-frame/i
