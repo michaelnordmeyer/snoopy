@@ -95,10 +95,13 @@ Snoopy can detect the following items:
   * sIFR
 * Commenting systems
   * Cactus Comments
+  * Commento
+  * Cusdis
   * Discourse
   * Disqus
   * Giscus
   * Isso
+  * OpenWeb
   * Utterances
 
 ## Browser Support

@@ -1009,6 +1009,24 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<script [^>]+\/\/latest\.cactus\.chat\/cactus\.js/i
       }],
+      'Commento': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.commento\.io\/js\/commento\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.commento
+        }
+      }],
+      'Cusdis': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cusids\.com\/js\/cusdis\.es\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.CUSDIS
+        }
+      }],
       'Discourse': [{
         type: 'custom',
         test: function() {
@@ -1211,7 +1229,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.7',
+    VERSION: '0.6.8',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

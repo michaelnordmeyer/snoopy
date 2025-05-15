@@ -772,6 +772,24 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<script [^>]+\/\/latest\.cactus\.chat\/cactus\.js/i
       }],
+      'Commento': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.commento\.io\/js\/commento\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.commento
+        }
+      }],
+      'Cusdis': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cusids\.com\/js\/cusdis\.es\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.CUSDIS
+        }
+      }],
       'Discourse': [{
         type: 'custom',
         test: function() {
