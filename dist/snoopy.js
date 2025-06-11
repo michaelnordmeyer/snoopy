@@ -1051,6 +1051,15 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<script [^>]+data-spotim-module/i
       }],
+      'Remark42': [{
+        type: 'text',
+        test: /<div [^>]+\/\/id="remark42"/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.remark_config
+        }
+      }],
       'Utterances': [{
         type: 'text',
         test: /<iframe [^>]+utterances-frame/i
@@ -1229,7 +1238,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.8',
+    VERSION: '0.6.9',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

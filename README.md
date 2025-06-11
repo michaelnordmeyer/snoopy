@@ -102,6 +102,7 @@ Snoopy can detect the following items:
   * Giscus
   * Isso
   * OpenWeb
+  * Remark42
   * Utterances
 
 ## Browser Support
