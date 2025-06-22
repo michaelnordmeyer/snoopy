@@ -298,6 +298,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /joomla\!?\s?([\d.]*)/i
         }
       }],
+      'Lume': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Lume ([\w\.-]*)/i
+        }
+      }],
       'Medium': [{
         type: 'custom',
         test: function() {

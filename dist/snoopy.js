@@ -535,6 +535,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /joomla\!?\s?([\d.]*)/i
         }
       }],
+      'Lume': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Lume ([\w\.-]*)/i
+        }
+      }],
       'Medium': [{
         type: 'custom',
         test: function() {
@@ -1238,7 +1245,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.9',
+    VERSION: '0.6.10',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

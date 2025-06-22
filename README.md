@@ -42,6 +42,7 @@ Snoopy can detect the following items:
   * Jekyll
   * Jimdo
   * Joomla
+  * Lume
   * Medium
   * Metalsmith
   * MovableType
