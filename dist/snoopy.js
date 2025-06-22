@@ -574,6 +574,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /.*Octopress.*/i
         }
       }],
+      'Pandoc': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /pandoc/i
+        }
+      }],
       'Scully': [{
         type: 'meta',
         test: {
@@ -1245,7 +1252,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.10',
+    VERSION: '0.6.11',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

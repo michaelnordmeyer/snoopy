@@ -337,6 +337,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /.*Octopress.*/i
         }
       }],
+      'Pandoc': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /pandoc/i
+        }
+      }],
       'Scully': [{
         type: 'meta',
         test: {

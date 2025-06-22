@@ -47,6 +47,7 @@ Snoopy can detect the following items:
   * Metalsmith
   * MovableType
   * Octopress
+  * Pandoc
   * Scully
   * Squarespace
   * Tumblr
