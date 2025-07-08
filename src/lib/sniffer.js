@@ -330,6 +330,13 @@ var Sniffer = (function(win, doc, undefined) {
           return win.MT ? true : false;
         }
       }],
+      'Nikola': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Nikola \(getnikola\.com\)/i
+        }
+      }],
       'Octopress': [{
         type: 'meta',
         test: {

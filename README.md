@@ -46,6 +46,7 @@ Snoopy can detect the following items:
   * Medium
   * Metalsmith
   * MovableType
+  * Nikola
   * Octopress
   * Pandoc
   * Scully
