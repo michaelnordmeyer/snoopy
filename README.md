@@ -116,7 +116,7 @@ This is intended to be used in modern, mobile browsers, although it works in mod
 
 1. Visit *this* page in a browser.
 2. Bookmark it.
-3. Copy all of the code in the following to the clipboard: `javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/dist/snoopy-min.js%22);document.body.appendChild(a)%7D)();`
+3. Copy all of the code in the following to the clipboard: `javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/dist/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/dist/snoopy-min.js%22);document.body.appendChild(a)%7D)();`
 4. Edit saved bookmark.
 5. Paste the copied code into the URL field.
 6. Change the name of the bookmark to your linking.
