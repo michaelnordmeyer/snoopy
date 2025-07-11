@@ -236,7 +236,7 @@
 	}).call(window.floodlight.html);
 })(this);
 /*
- * Sniffer - sniffs web pages to extract information such as JS libraries, CMS, analytics packages, etc.
+ * Sniffer - sniffs web pages to extract information such as CMS, JavaScript libraries, font services, commenting systems, analytics packages, etc.
  * Author: Mark Perkins, mark@allmarkedup.com
  */
 
@@ -273,13 +273,9 @@ var Sniffer = (function(win, doc, undefined) {
   /* page component detection tests */
 
   detect.pageinfo = {
-
     description: 'Page Information',
-
     return_type: 'detail',
-
     tests: {
-
       'Doctype': [{
         type: 'doctype', // source: https://www.w3.org/QA/2002/04/valid-dtd-list.html
         test: {
@@ -332,108 +328,12 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }]
     }
-
-  };
-
-  detect.js_libs = {
-
-    description: 'JavaScript Libraries',
-
-    return_type: 'version',
-
-    // All individual tests should either return a version number, true or false.
-
-    tests: {
-
-      'Dojo': [{
-        type: 'custom',
-        test: function() {
-          return win.dojo ? win.dojo.version.toString() : false;
-        }
-      }],
-      'ExtJS': [{
-        type: 'custom',
-        test: function() {
-          return win.Ext ? win.Ext.version : false;
-        }
-      }],
-      'Glow': [{
-        type: 'custom',
-        test: function() {
-          return win.glow ? win.glow.VERSION : false;
-        }
-      }],
-      'Google Closure': [{
-        type: 'custom',
-        test: function() {
-          return !!win.goog;
-        } // need to figure out how to get Closure version
-      }],
-      'jQuery': [{
-        type: 'custom',
-        test: function() {
-          return win.jQuery ? win.jQuery.fn.jquery : false;
-        }
-      }],
-      'jQuery Mobile': [{
-        type: 'custom',
-        test: function() {
-          return win.jQuery && win.jQuery.mobile ? win.jQuery.mobile.version : false;
-        }
-      }],
-      'jQuery UI': [{
-        type: 'custom',
-        test: function() {
-          return win.jQuery && win.jQuery.ui ? win.jQuery.ui.version : false;
-        }
-      }],
-      'Modernizr': [{
-        type: 'custom',
-        test: function() {
-          return win.Modernizr ? win.Modernizr._version : false;
-        }
-      }],
-      'MooTools': [{
-        type: 'custom',
-        test: function() {
-          return win.MooTools ? win.MooTools.version : false;
-        }
-      }],
-      'Prototype': [{
-        type: 'custom',
-        test: function() {
-          return win.Prototype ? win.Prototype.Version : false;
-        }
-      }],
-      'Scriptaculous': [{
-        type: 'custom',
-        test: function() {
-          return win.Scriptaculous ? win.Scriptaculous.Version : false;
-        }
-      }],
-      'YUI2': [{
-        type: 'custom',
-        test: function() {
-          return win.YAHOO ? win.YAHOO.VERSION : false;
-        }
-      }],
-      'YUI3': [{
-        type: 'custom',
-        test: function() {
-          return win.YUI ? win.YUI.version : false;
-        }
-      }]
-    }
   };
 
   detect.cms = {
-
     description: 'Content Management System',
-
     return_type: 'version',
-
     tests: {
-
       'Astro': [{
         type: 'meta',
         test: {
@@ -665,17 +565,198 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }]
     }
+  };
 
+  detect.js_libs = {
+    description: 'JavaScript Libraries',
+    return_type: 'version',
+    // All individual tests should either return a version number, true or false.
+    tests: {
+      'Dojo': [{
+        type: 'custom',
+        test: function() {
+          return win.dojo ? win.dojo.version.toString() : false;
+        }
+      }],
+      'ExtJS': [{
+        type: 'custom',
+        test: function() {
+          return win.Ext ? win.Ext.version : false;
+        }
+      }],
+      'Glow': [{
+        type: 'custom',
+        test: function() {
+          return win.glow ? win.glow.VERSION : false;
+        }
+      }],
+      'Google Closure': [{
+        type: 'custom',
+        test: function() {
+          return !!win.goog;
+        } // need to figure out how to get Closure version
+      }],
+      'jQuery': [{
+        type: 'custom',
+        test: function() {
+          return win.jQuery ? win.jQuery.fn.jquery : false;
+        }
+      }],
+      'jQuery Mobile': [{
+        type: 'custom',
+        test: function() {
+          return win.jQuery && win.jQuery.mobile ? win.jQuery.mobile.version : false;
+        }
+      }],
+      'jQuery UI': [{
+        type: 'custom',
+        test: function() {
+          return win.jQuery && win.jQuery.ui ? win.jQuery.ui.version : false;
+        }
+      }],
+      'Modernizr': [{
+        type: 'custom',
+        test: function() {
+          return win.Modernizr ? win.Modernizr._version : false;
+        }
+      }],
+      'MooTools': [{
+        type: 'custom',
+        test: function() {
+          return win.MooTools ? win.MooTools.version : false;
+        }
+      }],
+      'Prototype': [{
+        type: 'custom',
+        test: function() {
+          return win.Prototype ? win.Prototype.Version : false;
+        }
+      }],
+      'Scriptaculous': [{
+        type: 'custom',
+        test: function() {
+          return win.Scriptaculous ? win.Scriptaculous.Version : false;
+        }
+      }],
+      'YUI2': [{
+        type: 'custom',
+        test: function() {
+          return win.YAHOO ? win.YAHOO.VERSION : false;
+        }
+      }],
+      'YUI3': [{
+        type: 'custom',
+        test: function() {
+          return win.YUI ? win.YUI.version : false;
+        }
+      }]
+    }
+  };
+
+  detect.fonts = {
+    description: 'Fonts',
+    return_type: 'version',
+    tests: {
+      'Adobe Fonts': [{
+        type: 'custom',
+        test: function() {
+          return !!win.Typekit
+        }
+      }],
+      'Cufon': [{
+        type: 'custom',
+        test: function() {
+          return !!win.Cufon
+        }
+      }],
+      'Google Fonts': [{
+        type: 'custom',
+        test: function() {
+          return !!win.WebFont
+        }
+      }, {
+        type: 'text',
+        test: /<link [^>]+fonts\.googleapis\.com/i
+      }],
+      'sIFR': [{
+        type: 'custom',
+        test: function() {
+          return !!win.sIFR
+        }
+      }]
+    }
+  };
+
+  detect.comments = {
+    description: 'Comments',
+    return_type: 'version',
+    tests: {
+      'Cactus Comments': [{
+        type: 'text',
+        test: /<script [^>]+\/\/latest\.cactus\.chat\/cactus\.js/i
+      }],
+      'Commento': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.commento\.io\/js\/commento\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.commento
+        }
+      }],
+      'Cusdis': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cusids\.com\/js\/cusdis\.es\.js/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.CUSDIS
+        }
+      }],
+      'Discourse': [{
+        type: 'custom',
+        test: function() {
+          return !!win.DiscourseEmbed
+        }
+      }],
+      'Disqus': [{
+        type: 'custom',
+        test: function() {
+          return !!win.disqus_identifier
+        }
+      }],
+      'Giscus': [{
+        type: 'text',
+        test: /<iframe [^>]+giscus-frame/i
+      }],
+      'Isso': [{
+        type: 'text',
+        test: /<section [^>]+isso-thread/i
+      }],
+      'OpenWeb': [{
+        type: 'text',
+        test: /<script [^>]+data-spotim-module/i
+      }],
+      'Remark42': [{
+        type: 'text',
+        test: /<div [^>]+\/\/id="remark42"/i
+      }, {
+        type: 'custom',
+        test: function() {
+          return !!win.remark_config
+        }
+      }],
+      'Utterances': [{
+        type: 'text',
+        test: /<iframe [^>]+utterances-frame/i
+      }]
+    }
   };
 
   detect.analytics = {
-
     description: 'Analytics',
-
     return_type: 'version',
-
     tests: {
-
       'Ackee': [{
         type: 'text',
         test: /<script [^>]+\/\/a\.electerious\.com\/_\.js/i
@@ -985,109 +1066,7 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }]
     }
-
   };
-
-  detect.fonts = {
-    description: 'Fonts',
-    return_type: 'version',
-    tests: {
-      'Adobe Fonts': [{
-        type: 'custom',
-        test: function() {
-          return !!win.Typekit
-        }
-      }],
-      'Cufon': [{
-        type: 'custom',
-        test: function() {
-          return !!win.Cufon
-        }
-      }],
-      'Google Fonts': [{
-        type: 'custom',
-        test: function() {
-          return !!win.WebFont
-        }
-      }, {
-        type: 'text',
-        test: /<link [^>]+fonts\.googleapis\.com/i
-      }],
-      'sIFR': [{
-        type: 'custom',
-        test: function() {
-          return !!win.sIFR
-        }
-      }]
-    }
-  };
-
-  detect.comments = {
-    description: 'Comments',
-    return_type: 'version',
-    tests: {
-      'Cactus Comments': [{
-        type: 'text',
-        test: /<script [^>]+\/\/latest\.cactus\.chat\/cactus\.js/i
-      }],
-      'Commento': [{
-        type: 'text',
-        test: /<script [^>]+\/\/cdn\.commento\.io\/js\/commento\.js/i
-      }, {
-        type: 'custom',
-        test: function() {
-          return !!win.commento
-        }
-      }],
-      'Cusdis': [{
-        type: 'text',
-        test: /<script [^>]+\/\/cusids\.com\/js\/cusdis\.es\.js/i
-      }, {
-        type: 'custom',
-        test: function() {
-          return !!win.CUSDIS
-        }
-      }],
-      'Discourse': [{
-        type: 'custom',
-        test: function() {
-          return !!win.DiscourseEmbed
-        }
-      }],
-      'Disqus': [{
-        type: 'custom',
-        test: function() {
-          return !!win.disqus_identifier
-        }
-      }],
-      'Giscus': [{
-        type: 'text',
-        test: /<iframe [^>]+giscus-frame/i
-      }],
-      'Isso': [{
-        type: 'text',
-        test: /<section [^>]+isso-thread/i
-      }],
-      'OpenWeb': [{
-        type: 'text',
-        test: /<script [^>]+data-spotim-module/i
-      }],
-      'Remark42': [{
-        type: 'text',
-        test: /<div [^>]+\/\/id="remark42"/i
-      }, {
-        type: 'custom',
-        test: function() {
-          return !!win.remark_config
-        }
-      }],
-      'Utterances': [{
-        type: 'text',
-        test: /<iframe [^>]+utterances-frame/i
-      }]
-    }
-  };
-
 
   /* test runners */
 
@@ -1198,17 +1177,13 @@ var Sniffer = (function(win, doc, undefined) {
 
   var addToResults = function(group, test, res) {
     // add results to group results object
-
     results[group] = results[group] || {};
     results[group].results = results[group].results || {};
-
     results[group].description = detect[group].description;
     results[group].return_type = detect[group].return_type;
-
     results[group]['results'][test] = res;
 
     // add the result to the name-index results object
-
     indexed_results[test.toLowerCase()] = res;
   }
 
@@ -1259,7 +1234,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.12',
+    VERSION: '0.7.0',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
@@ -1465,13 +1440,5 @@ var Sniffer = (function(win, doc, undefined) {
     }
   };
 
-  //////////// HELPER FUNCTIONS ////////////////
-
-  // var sniffer =
-  //   import ("./lib/sniffer.js");
-  // var floodlight =
-  //   import ("./lib/floodlight.js");
-
   snoopy.init();
-
 })();

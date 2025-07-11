@@ -10,7 +10,7 @@
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.6.12',
+    VERSION: '0.7.0',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
@@ -216,13 +216,5 @@
     }
   };
 
-  //////////// HELPER FUNCTIONS ////////////////
-
-  // var sniffer =
-  //   import ("./lib/sniffer.js");
-  // var floodlight =
-  //   import ("./lib/floodlight.js");
-
   snoopy.init();
-
 })();

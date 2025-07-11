@@ -13,20 +13,6 @@ Snoopy can detect the following items:
 * General page information
   * Doctype
   * Charset
-* JavaScript libraries
-  * Dojo
-  * ExtJS
-  * Glow
-  * Google Closure
-  * jQuery
-  * JQuery Mobile
-  * jQuery UI
-  * Modernizr
-  * MooTools
-  * Prototype
-  * Scriptaculous
-  * YUI2
-  * YUI3
 * Content Management Systems
   * Astro
   * Blogger
@@ -60,6 +46,36 @@ Snoopy can detect the following items:
   * Wix
   * WordPress
   * Write.as
+* JavaScript libraries
+  * Dojo
+  * ExtJS
+  * Glow
+  * Google Closure
+  * jQuery
+  * JQuery Mobile
+  * jQuery UI
+  * Modernizr
+  * MooTools
+  * Prototype
+  * Scriptaculous
+  * YUI2
+  * YUI3
+* Font embedding (technique)
+  * Adobe Fonts
+  * Cufon
+  * Google Fonts
+  * sIFR
+* Commenting systems
+  * Cactus Comments
+  * Commento
+  * Cusdis
+  * Discourse
+  * Disqus
+  * Giscus
+  * Isso
+  * OpenWeb
+  * Remark42
+  * Utterances
 * Analytics
   * Ackee
   * Bearblog
@@ -91,22 +107,6 @@ Snoopy can detect the following items:
   * Woopra
   * WordPress Stats
   * WP Statistics
-* Font embedding (technique)
-  * Adobe Fonts
-  * Cufon
-  * Google Fonts
-  * sIFR
-* Commenting systems
-  * Cactus Comments
-  * Commento
-  * Cusdis
-  * Discourse
-  * Disqus
-  * Giscus
-  * Isso
-  * OpenWeb
-  * Remark42
-  * Utterances
 
 ## Browser Support
 
