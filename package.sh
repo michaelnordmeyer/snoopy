@@ -30,6 +30,6 @@ curl -X POST -s --data-urlencode 'input@dist/snoopy.js' https://www.toptal.com/d
 echo "==> Packaging bookmarklet…"
 printf "javascript:" > dist/bookmarklet.js
 curl -X POST -s --data-urlencode 'input@src/bookmarklet.js' https://www.toptal.com/developers/javascript-minifier/api/raw >> dist/bookmarklet.js
-# bookmarklet=$(curl -X POST -s --data-urlencode 'input@src/bookmarklet.js' https://www.toptal.com/developers/javascript-minifier/api/raw)
+# bookmarklet="$(curl -X POST -s --data-urlencode 'input@src/bookmarklet.js' https://www.toptal.com/developers/javascript-minifier/api/raw)"
 # urlencode "${bookmarklet}" >> dist/bookmarklet.js
 # echo "${bookmarklet}" >> dist/bookmarklet.js

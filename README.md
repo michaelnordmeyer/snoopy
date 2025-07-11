@@ -114,30 +114,30 @@ This is intended to be used in modern, mobile browsers, although it works in mod
 
 ## Installation
 
-1. Visit *this* page in Mobile Safari.
+1. Visit *this* page in a browser.
 2. Bookmark it.
-3. Copy all of the code in the following to the clipboard: `javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.js%22);document.body.appendChild(a)%7D)();`
+3. Copy all of the code in the following to the clipboard: `javascript:(function()%7Bvar%20c=document.getElementById(%22snpy%22);if(c)%7Bc.classList.toggle(%22closed%22);return%7Dvar%20b=document.createElement(%22link%22);b.setAttribute(%22href%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/snoopy-min.css%22);b.setAttribute(%22rel%22,%22stylesheet%22);document.head.appendChild(b);var%20a=document.createElement(%22script%22);a.setAttribute(%22src%22,%22https://cdn.jsdelivr.net/gh/michaelnordmeyer/snoopy@latest/dist/snoopy-min.js%22);document.body.appendChild(a)%7D)();`
 4. Edit saved bookmark.
 5. Paste the copied code into the URL field.
 6. Change the name of the bookmark to your linking.
 7. Save it.
 
-## Built with
+## Dependencies
 
 Snoopy makes use of a few other projects to make it all run nicely:
 
-* Cleanslate (Heavy-duty reset stylesheet for widgets) - [https://github.com/premasagar/cleanslate](http://github.com/premasagar/cleanslate), MIT license
-* Floodlight.js (Lightweight (X)HTML syntax highlighter) - [https://github.com/aron/floodlight.js](https://github.com/aron/floodlight.js), MIT license
-* Sniffer (Page info detection) - [https://github.com/michaelnordmeyer/sniffer](https://github.com/michaelnordmeyer/sniffer)
+* [Cleanslate](http://github.com/premasagar/cleanslate) (Heavy-duty reset stylesheet for widgets), MIT license
+* [Floodlight.js](https://github.com/aron/floodlight.js) (Lightweight (X)HTML syntax highlighter), MIT license
+* [Sniffer](https://github.com/michaelnordmeyer/sniffer) (Page info detection)
 
 ## How to Build
 
-Run `package.sh` to create files from source.
+Run `package.sh` to create files from source in directory `dist`.
 
 After `snoopy-min.{css,js}` have been pushed to Github, `purge-caches.sh` will purge the jsDelivr caches so the new version can be used.
 
 ## Contributors
 
-* [Mark Perkins (owner)](https://github.com/allmarkedup)
+* [Mark Perkins (original author)](https://github.com/allmarkedup)
 * [James Brooks](https://github.com/jbrooksuk)
-* [Michael Nordmeyer](https://github.com/michaelnordmeyer)
+* [Michael Nordmeyer (current maintainer](https://github.com/michaelnordmeyer)
