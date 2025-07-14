@@ -501,6 +501,13 @@ var Sniffer = (function(win, doc, undefined) {
           return win.Squarespace ? true : false;
         }
       }],
+      'Sushy': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Sushy ([\w\.-]*)/i
+        }
+      }],
       'Tumblr': [{
         type: 'custom',
         test: function() {
@@ -1234,7 +1241,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.0',
+    VERSION: '0.7.1',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
