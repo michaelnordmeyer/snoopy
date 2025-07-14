@@ -264,6 +264,13 @@ var Sniffer = (function(win, doc, undefined) {
           return win.Squarespace ? true : false;
         }
       }],
+      'Sushy': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Sushy ([\w\.-]*)/i
+        }
+      }],
       'Tumblr': [{
         type: 'custom',
         test: function() {
