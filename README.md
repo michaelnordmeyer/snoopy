@@ -139,4 +139,4 @@ Run `package.sh` to create files from source in directory `dist`.
 
 * [Mark Perkins (original author)](https://github.com/allmarkedup)
 * [James Brooks](https://github.com/jbrooksuk)
-* [Michael Nordmeyer (current maintainer](https://github.com/michaelnordmeyer)
+* [Michael Nordmeyer (current maintainer)](https://github.com/michaelnordmeyer)
