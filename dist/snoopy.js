@@ -363,6 +363,12 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Drupal': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Drupal ([\w\.-]*) \(https:\/\/www\.drupal\.org\)/i
+        }
+      }, {
         type: 'custom',
         test: function() {
           return win.Drupal ? true : false;
@@ -387,11 +393,6 @@ var Sniffer = (function(win, doc, undefined) {
         test: {
           name: 'generator',
           match: /Ghost\s?([\w\.-]*)/i
-        }
-      }, {
-        type: 'custom',
-        test: function() {
-          return win.ghost ? true : false;
         }
       }],
       'Gridsome': [{
@@ -423,6 +424,18 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Jimdo': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Jimdo Creator/i
+        }
+      }, {
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Jimdo Dolphin/i
+        }
+      }, {
         type: 'custom',
         test: function() {
           return win.jimdoData ? true : false;
@@ -1125,7 +1138,7 @@ var Sniffer = (function(win, doc, undefined) {
   if (metas.length) {
     test_runner.meta = function(test) {
       for (var meta, i = -1; meta = metas[++i];) {
-        if (meta.name == test.name) {
+        if (meta.name.localeCompare(test.name, "en", { sensitivity: "base" }) === 0) {
           var res = match(meta.content, test.match);
           if (res) {
             return res;
@@ -1241,7 +1254,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.0',
+    VERSION: '0.7.1',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
