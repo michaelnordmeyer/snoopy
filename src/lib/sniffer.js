@@ -346,6 +346,13 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /Write\.as/i
         }
+      }],
+      'WriteFreely': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /WriteFreely/i
+        }
       }]
     }
   };

@@ -583,6 +583,13 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /Write\.as/i
         }
+      }],
+      'WriteFreely': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /WriteFreely/i
+        }
       }]
     }
   };
@@ -1254,7 +1261,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.1',
+    VERSION: '0.7.2',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
