@@ -380,6 +380,12 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /Eleventy v([\w\.-]*)/i
         }
+      }, {
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Eleventy/i
+        }
       }],
       'Gatsby': [{
         type: 'meta',
@@ -1261,7 +1267,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.2',
+    VERSION: '0.7.3',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

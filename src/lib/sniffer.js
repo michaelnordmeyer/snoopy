@@ -143,6 +143,12 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /Eleventy v([\w\.-]*)/i
         }
+      }, {
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Eleventy/i
+        }
       }],
       'Gatsby': [{
         type: 'meta',
