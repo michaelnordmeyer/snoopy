@@ -33,6 +33,7 @@ Snoopy can detect the following items:
   * Metalsmith
   * MovableType
   * Nikola
+  * Obsidian Publish
   * Octopress
   * Pandoc
   * Scully

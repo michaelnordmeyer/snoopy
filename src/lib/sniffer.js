@@ -4,18 +4,17 @@
  */
 
 var Sniffer = (function(win, doc, undefined) {
-
-  var sniff = {},
-    detect = {},
-    pageinfo = {},
-    test_runner = {},
-    results = {},
-    indexed_results = {},
-    scripts = doc.getElementsByTagName("script"),
-    metas = doc.getElementsByTagName("meta"),
-    html = doc.documentElement.outerHTML || doc.documentElement.innerHTML,
-    doctype = doc.doctype,
-    has_run = false;
+  var sniff = {};
+  var detect = {};
+  var pageinfo = {};
+  var test_runner = {};
+  var results = {};
+  var indexed_results = {};
+  var scripts = doc.getElementsByTagName("script");
+  var metas = doc.getElementsByTagName("meta");
+  var html = doc.documentElement.outerHTML || doc.documentElement.innerHTML;
+  var doctype = doc.doctype;
+  var has_run = false;
 
   // discard meta tags that aren't useful
   metas = (function() {
@@ -255,6 +254,10 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /Nikola \(getnikola\.com\)/i
         }
+      }],
+      'Obsidian Publish': [{
+        type: 'text',
+        test: /<base [^>]+\/\/publish\.obsidian\.md/i
       }],
       'Octopress': [{
         type: 'meta',
@@ -565,7 +568,7 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Bearblog': [{
         type: 'text',
-        test: /<style>[^\/]+body.hover/i
+        test: /<style>[^\/]+body:hover/i
       }],
       'Cabin': [{
         type: 'text',
@@ -781,7 +784,10 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Statcounter': [{
         type: 'text',
-        test: /<script [^>]+\/\/secure\.statcounter\.com\/counter\/counter\.js/i
+        test: /<script [^>]+statcounter\.com\/counter\/counter\.js/i
+      },{
+        type: 'text',
+        test: /<script [^>]+statcounter\.com\/counter\/counter_test\.js/i
       }],
       'Statify': [{
         type: 'custom',
@@ -880,9 +886,9 @@ var Sniffer = (function(win, doc, undefined) {
     test_runner.doctype = function(test) {
       for (subtest in test) {
         if (test.hasOwnProperty(subtest)) {
-          var t = test[subtest];
+          var actualTest = test[subtest];
 
-          if (doctype.name.toLowerCase() == t.name && doctype.publicId == t.publicId) {
+          if (doctype.name.toLowerCase() == actualTest.name && doctype.publicId == actualTest.publicId) {
             return subtest;
           }
         }
@@ -915,9 +921,9 @@ var Sniffer = (function(win, doc, undefined) {
     test_runner.meta = function(test) {
       for (var meta, i = -1; meta = metas[++i];) {
         if (meta.name.localeCompare(test.name, "en", { sensitivity: "base" }) === 0) {
-          var res = match(meta.content, test.match);
-          if (res) {
-            return res;
+          var result = match(meta.content, test.match);
+          if (result) {
+            return result;
           }
         }
       }
@@ -971,16 +977,16 @@ var Sniffer = (function(win, doc, undefined) {
     }
   }
 
-  var addToResults = function(group, test, res) {
+  var addToResults = function(group, test, result) {
     // add results to group results object
     results[group] = results[group] || {};
     results[group].results = results[group].results || {};
     results[group].description = detect[group].description;
     results[group].return_type = detect[group].return_type;
-    results[group]['results'][test] = res;
+    results[group]['results'][test] = result;
 
     // add the result to the name-index results object
-    indexed_results[test.toLowerCase()] = res;
+    indexed_results[test.toLowerCase()] = result;
   }
 
   /* publicly available methods */
