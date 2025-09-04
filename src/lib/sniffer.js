@@ -273,6 +273,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /pandoc/i
         }
       }],
+      'Publii': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Publii Open-Source CMS for Static Site/i
+        }
+      }],
       'Scully': [{
         type: 'meta',
         test: {
