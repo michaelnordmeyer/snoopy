@@ -100,6 +100,7 @@ Snoopy can detect the following items:
   * Pirsch
   * Plausible
   * Reinvigorate
+  * Rybbit
   * Simple Analytics
   * Slimstat Analytics
   * Statcounter

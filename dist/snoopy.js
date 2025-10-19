@@ -1013,6 +1013,10 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.reinvigorate;
         }
       }],
+      'Rybbit': [{
+        type: 'text',
+        test: /<script [^>]+\/\/app\.rybbit\.io\/api\/script\.js/i
+      }],
       'Simple Analytics': [{
         type: 'text',
         test: /<script [^>]+\/\/scripts\.simpleanalyticscdn\.com\/latest\.js/i
@@ -1028,10 +1032,7 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Statcounter': [{
         type: 'text',
-        test: /<script [^>]+statcounter\.com\/counter\/counter\.js/i
-      },{
-        type: 'text',
-        test: /<script [^>]+statcounter\.com\/counter\/counter_test\.js/i
+        test: /<script [^>]+statcounter\.com\/counter\/counter.*\.js/i
       }],
       'Statify': [{
         type: 'custom',
@@ -1280,7 +1281,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.5',
+    VERSION: '0.7.6',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

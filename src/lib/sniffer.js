@@ -776,6 +776,10 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.reinvigorate;
         }
       }],
+      'Rybbit': [{
+        type: 'text',
+        test: /<script [^>]+\/\/app\.rybbit\.io\/api\/script\.js/i
+      }],
       'Simple Analytics': [{
         type: 'text',
         test: /<script [^>]+\/\/scripts\.simpleanalyticscdn\.com\/latest\.js/i
@@ -791,10 +795,7 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Statcounter': [{
         type: 'text',
-        test: /<script [^>]+statcounter\.com\/counter\/counter\.js/i
-      },{
-        type: 'text',
-        test: /<script [^>]+statcounter\.com\/counter\/counter_test\.js/i
+        test: /<script [^>]+statcounter\.com\/counter\/counter.*\.js/i
       }],
       'Statify': [{
         type: 'custom',
