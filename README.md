@@ -83,6 +83,7 @@ Snoopy can detect the following items:
 * Analytics
   * Ackee
   * Bearblog
+  * Burst Statistics
   * Cabin
   * Chartbeat
   * Clicky
@@ -92,6 +93,7 @@ Snoopy can detect the following items:
   * GoatCounter
   * Google Analytics (urchin.js, GA3 (=UA, ga.js, analytics.js, gtag.js), and GA4)
   * Google Tag Manager
+  * Hotjar
   * Koko Analytics
   * Matomo
   * Microanalytics
@@ -99,14 +101,17 @@ Snoopy can detect the following items:
   * Open Web Analytics
   * Pirsch
   * Plausible
-  * Reinvigorate
   * Rybbit
   * Simple Analytics
   * Slimstat Analytics
   * Statcounter
   * Statify
-  * TinyAnalytics
+  * TinyAnalytics.io
+  * Tinybird
+  * Tinylytics
+  * Trackboxx
   * Umami
+  * Usermaven
   * W3Counter
   * Webtrends
   * Woopra

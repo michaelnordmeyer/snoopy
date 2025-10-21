@@ -577,6 +577,12 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<style>[^\/]+body:hover/i
       }],
+      'Burst Statistics': [{
+        type: 'custom',
+        test: function() {
+          return !!win.burst;
+        }
+      }],
       'Cabin': [{
         type: 'text',
         test: /<script [^>]+\/\/scripts\.withcabin\.com\/hello\.js/i
@@ -609,6 +615,11 @@ var Sniffer = (function(win, doc, undefined) {
       'Cloudflare Insights': [{
         type: 'text',
         test: /<script [^>]+\/\/static\.cloudflareinsights\.com\/beacon\.min\.js/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win.__cfBeacon;
+        }
       }],
       'Fathom': [{
         type: 'text',
@@ -623,6 +634,11 @@ var Sniffer = (function(win, doc, undefined) {
       'Gauges': [{
         type: 'text',
         test: /<script [^>]+\/\/secure\.gaug\.es\/track\.js/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win._gauges;
+        }
       }],
       'GoatCounter': [{
         type: 'text',
@@ -641,7 +657,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win._uacct);
+          return !!win._uacct;
         }
       }],
       'Google Analytics 2': [{ // 2007 _gat, 2009 _gaq
@@ -665,7 +681,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win.ga);
+          return !!win.ga;
         }
       }],
       'Google Analytics 3/GST': [{ // 2017
@@ -675,7 +691,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win.gtag);
+          return !!win.gtag;
         }
       }],
       'Google Analytics 4': [{ // 2020
@@ -685,7 +701,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win.gtag);
+          return !!win.gtag;
         }
       }],
       'Google Tag Manager': [{
@@ -695,6 +711,16 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'text',
         test: /<iframe [^>]+\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]{6,13}/i
+      }],
+      'Hotjar': [{
+        type: 'text',
+        test: /<script [^>]+\/\/static\.hotjar\.com\/c\/hotjar-[0-9]+\.js\?sv=[0-9]+/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.hj;
+        }
       }],
       'Koko Analytics': [{
         type: 'text',
@@ -727,6 +753,12 @@ var Sniffer = (function(win, doc, undefined) {
       'Microanalytics': [{
         type: 'text',
         test: /<script [^>]+\/\/microanalytics\.io\/js\/script\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.pa;
+        }
       }],
       'New Relic': [{
         type: 'custom',
@@ -770,19 +802,23 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.plausible;
         }
       }],
-      'Reinvigorate': [{
-        type: 'custom',
-        test: function() {
-          return !!win.reinvigorate;
-        }
-      }],
       'Rybbit': [{
         type: 'text',
         test: /<script [^>]+\/\/app\.rybbit\.io\/api\/script\.js/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win.rybbit;
+        }
       }],
       'Simple Analytics': [{
         type: 'text',
         test: /<script [^>]+\/\/scripts\.simpleanalyticscdn\.com\/latest\.js/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win.sa_loaded;
+        }
       }],
       'Slimstat Analytics': [{
         type: 'text',
@@ -796,27 +832,63 @@ var Sniffer = (function(win, doc, undefined) {
       'Statcounter': [{
         type: 'text',
         test: /<script [^>]+statcounter\.com\/counter\/counter.*\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win._statcounter;
+        }
       }],
       'Statify': [{
         type: 'custom',
         test: function() {
           return !!win.statify_ajax;
         }
-      }],
-      'TinyAnalytics': [{
-        type: 'text',
-        test: /<script [^>]+\/\/cdn\.segment\.com\/analytics\.js\/v1\/.+\/analytics\.min\.js/i
       },
       {
         type: 'custom',
         test: function() {
-          return !!window["tinyanalytics"];
+          return !!win.statifyAjax;
         }
+      }],
+      'TinyAnalytics.io': [{
+        type: 'text',
+        test: /<script [^>]+\/\/app\.tinyanalytics\.io\/pixel\/[a-zA-Z0-9]{16}/i
       },
       {
         type: 'custom',
         test: function() {
-          return !!window.AnalyticsNext;
+          return !!win.tinyanalytics;
+        }
+      }],
+      'Tinybird': [{
+        type: 'text',
+        test: /<script [^>]+\/\/unpkg\.com\/@tinybirdco\/flock\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.Tinybird;
+        }
+      }],
+      'Tinylytics': [{
+        type: 'text',
+        test: /<script [^>]+\/\/tinylytics\.app\/embed\/[a-zA-Z0-9-_]{20}(\/min)?\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.should_collect;
+        }
+      }],
+      'Trackboxx': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.trackboxx\.info\/p\/tracker\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.trackboxx;
         }
       }],
       'Umami': [{
@@ -827,6 +899,16 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'custom',
         test: function() {
           return !!win.umami;
+        }
+      }],
+      'Usermaven': [{
+        type: 'text',
+        test: /<script [^>]+\/\/t\.usermaven\.com\/lib\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.usermaven;
         }
       }],
       'W3Counter': [{
