@@ -109,6 +109,11 @@ var Sniffer = (function(win, doc, undefined) {
           name: 'generator',
           match: /blogger/i
         }
+      }, {
+        type: 'custom',
+        test: function() {
+          return win._BlogView ? true : false;
+        }
       }],
       'ClassicPress': [{
         type: 'meta',
