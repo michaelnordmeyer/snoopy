@@ -101,11 +101,14 @@ Snoopy can detect the following items:
   * Open Web Analytics
   * Pirsch
   * Plausible
+  * Posthog
   * Rybbit
+  * Seline
   * Simple Analytics
   * Slimstat Analytics
   * Statcounter
   * Statify
+  * Statsig
   * TinyAnalytics.io
   * Tinybird
   * Tinylytics

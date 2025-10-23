@@ -1044,6 +1044,12 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.plausible;
         }
       }],
+      'Posthog': [{
+        type: 'custom',
+        test: function() {
+          return !!win.posthog;
+        }
+      }],
       'Rybbit': [{
         type: 'text',
         test: /<script [^>]+\/\/app\.rybbit\.io\/api\/script\.js/i
@@ -1051,6 +1057,15 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'custom',
         test: function() {
           return !!win.rybbit;
+        }
+      }],
+      'Seline': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.seline\.com\/seline\.js/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win.seline;
         }
       }],
       'Simple Analytics': [{
@@ -1091,6 +1106,15 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'custom',
         test: function() {
           return !!win.statifyAjax;
+        }
+      }],
+      'Statsig': [{
+        type: 'text',
+        test: /<script [^>]+\/\/cdn\.jsdelivr\.net\/npm\/@statsig\/js-client@3\/build\/statsig-js-client\+session-replay\+web-analytics\.min\.js\?apikey=123/i
+      },{
+        type: 'custom',
+        test: function() {
+          return !!win.Statsig;
         }
       }],
       'TinyAnalytics.io': [{
@@ -1368,7 +1392,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.8',
+    VERSION: '0.7.9',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
