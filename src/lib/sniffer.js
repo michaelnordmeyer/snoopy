@@ -253,6 +253,18 @@ var Sniffer = (function(win, doc, undefined) {
           return win.MT ? true : false;
         }
       }],
+      'Next.js': [{
+        type: 'custom',
+        test: function() {
+          return win.next ? win.next.version : false;
+        }
+      }],
+      'Nuxt.js': [{
+        type: 'custom',
+        test: function() {
+          return win.__NUXT_COLOR_MODE__ ? true : false;
+        }
+      }],
       'Nikola': [{
         type: 'meta',
         test: {

@@ -490,6 +490,18 @@ var Sniffer = (function(win, doc, undefined) {
           return win.MT ? true : false;
         }
       }],
+      'Next.js': [{
+        type: 'custom',
+        test: function() {
+          return win.next ? win.next.version : false;
+        }
+      }],
+      'Nuxt.js': [{
+        type: 'custom',
+        test: function() {
+          return win.__NUXT_COLOR_MODE__ ? true : false;
+        }
+      }],
       'Nikola': [{
         type: 'meta',
         test: {
@@ -1392,7 +1404,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.9',
+    VERSION: '0.7.10',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
