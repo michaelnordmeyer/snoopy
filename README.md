@@ -31,6 +31,7 @@ Snoopy can detect the following items:
   * Lume
   * Medium
   * Metalsmith
+  * Micro.blog
   * MovableType
   * Next.js
   * Nuxt.js

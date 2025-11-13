@@ -349,7 +349,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return win._BlogView ? true : false;
+          return !!win._BlogView;
         }
       }],
       'ClassicPress': [{
@@ -375,7 +375,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return win.Drupal ? true : false;
+          return !!win.Drupal;
         } // no version in js obj
       }],
       'Eleventy': [{
@@ -448,7 +448,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return win.jimdoData ? true : false;
+          return !!win.jimdoData;
         }
       }],
       'Joomla': [{
@@ -468,7 +468,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Medium': [{
         type: 'custom',
         test: function() {
-          return win.__GRAPHQL_URI__ ? true : false;
+          return !!win.__GRAPHQL_URI__;
         }
       }],
       'Metalsmith': [{
@@ -476,6 +476,12 @@ var Sniffer = (function(win, doc, undefined) {
         test: {
           name: 'generator',
           match: /Metalsmith/i
+        }
+      }],
+      'Micro.blog': [{
+        type: 'custom',
+        test: function() {
+          return !!win.microblog;
         }
       }],
       'MovableType': [{
@@ -487,7 +493,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return win.MT ? true : false;
+          return !!win.MT;
         }
       }],
       'Next.js': [{
@@ -499,7 +505,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Nuxt.js': [{
         type: 'custom',
         test: function() {
-          return win.__NUXT_COLOR_MODE__ ? true : false;
+          return !!win.__NUXT_COLOR_MODE__;
         }
       }],
       'Nikola': [{
@@ -544,7 +550,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Squarespace': [{
         type: 'custom',
         test: function() {
-          return win.Squarespace ? true : false;
+          return !!win.Squarespace;
         }
       }],
       'Sushy': [{
@@ -557,7 +563,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Tumblr': [{
         type: 'custom',
         test: function() {
-          return win.Tumblr ? true : false;
+          return !!win.Tumblr;
         }
       }],
       'Typepad': [{
@@ -591,13 +597,13 @@ var Sniffer = (function(win, doc, undefined) {
       'Weebly': [{
         type: 'custom',
         test: function() {
-          return win.Weebly ? true : false;
+          return !!win.Weebly;
         }
       }],
       'Wix': [{
         type: 'custom',
         test: function() {
-          return (win.wixDeveloperAnalytics || win.wixEmbedsAPI || win.wixPerformanceMeasurements || win.wixTagManager) ? true : false;
+          return !!(win.wixDeveloperAnalytics || win.wixEmbedsAPI || win.wixPerformanceMeasurements || win.wixTagManager);
         }
       }],
       'WordPress': [{
@@ -1404,7 +1410,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.10',
+    VERSION: '0.7.11',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
