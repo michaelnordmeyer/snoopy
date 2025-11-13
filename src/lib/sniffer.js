@@ -673,6 +673,16 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.goatcounter;
         }
       }],
+      'GoSquared': [{
+        type: 'text',
+        test: /<script [^>]+\/\/d1l6p2sc9645hc\.cloudfront\.net\/gosquared\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!(win.GoSquared || win._gs);
+        }
+      }],
       'Google Analytics 1': [{ // 2005
         type: 'text',
         test: /<script [^>]+\/\/www\.google-analytics\.com\/urchin\.js/i
@@ -957,6 +967,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.usermaven;
         }
+      }],
+      'Vercel Insights': [{
+        type: 'text',
+        test: /<script [^>]+\/_vercel\/insights\/script\.js/i
       }],
       'W3Counter': [{
         type: 'text',

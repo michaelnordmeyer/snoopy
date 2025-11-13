@@ -910,6 +910,16 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.goatcounter;
         }
       }],
+      'GoSquared': [{
+        type: 'text',
+        test: /<script [^>]+\/\/d1l6p2sc9645hc\.cloudfront\.net\/gosquared\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!(win.GoSquared || win._gs);
+        }
+      }],
       'Google Analytics 1': [{ // 2005
         type: 'text',
         test: /<script [^>]+\/\/www\.google-analytics\.com\/urchin\.js/i
@@ -1195,6 +1205,10 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.usermaven;
         }
       }],
+      'Vercel Insights': [{
+        type: 'text',
+        test: /<script [^>]+\/_vercel\/insights\/script\.js/i
+      }],
       'W3Counter': [{
         type: 'text',
         test: /<script [^>]+\/\/www\.w3counter\.com\/tracker\.js\?id=.+/i
@@ -1410,7 +1424,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.11',
+    VERSION: '0.7.12',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

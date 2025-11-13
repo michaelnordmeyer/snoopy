@@ -118,6 +118,7 @@ Snoopy can detect the following items:
   * Trackboxx
   * Umami
   * Usermaven
+  * Vercel Insights
   * W3Counter
   * Webtrends
   * Woopra
