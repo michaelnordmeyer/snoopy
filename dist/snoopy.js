@@ -247,11 +247,20 @@ var Sniffer = (function(win, doc, undefined) {
   var test_runner = {};
   var results = {};
   var indexed_results = {};
-  var scripts = doc.getElementsByTagName("script");
+  var links = doc.getElementsByTagName("link");
   var metas = doc.getElementsByTagName("meta");
+  var scripts = doc.getElementsByTagName("script");
   var html = doc.documentElement.outerHTML || doc.documentElement.innerHTML;
   var doctype = doc.doctype;
   var has_run = false;
+
+  // discard link tags that aren't useful
+  links = (function() {
+    for (var link, temp = [], i = -1; link = links[++i];) {
+      if (link.rel && link.href) temp.push(link);
+    }
+    return temp;
+  })();
 
   // discard meta tags that aren't useful
   metas = (function() {
@@ -350,6 +359,13 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'custom',
         test: function() {
           return !!win._BlogView;
+        }
+      }],
+      'Blot': [{
+        type: 'link',
+        test: {
+          rel: 'icon',
+          match: /\/\/cdn\.blot\.im/i
         }
       }],
       'ClassicPress': [{
@@ -1304,6 +1320,26 @@ var Sniffer = (function(win, doc, undefined) {
     }
   }
 
+  // check the link elements in the head
+  if (links.length) {
+    test_runner.link = function(test) {
+      for (var link, i = -1; link = links[++i];) {
+        if (link.rel.localeCompare(test.rel, "en", { sensitivity: "base" }) === 0) {
+          var result = match(link.href, test.match);
+          if (result) {
+            return result;
+          }
+        }
+      }
+      return false;
+    }
+  } else {
+    // there are no link elements on the page so this will always return false
+    test_runner.link = function() {
+      return false;
+    }
+  }
+
   // check the meta elements in the head
   if (metas.length) {
     test_runner.meta = function(test) {
@@ -1424,7 +1460,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.12',
+    VERSION: '0.7.13',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

@@ -16,6 +16,7 @@ Snoopy can detect the following items:
 * Content Management Systems
   * Astro
   * Blogger
+  * Blot
   * ClassicPress
   * Docusaurus
   * Drupal
@@ -96,6 +97,7 @@ Snoopy can detect the following items:
   * GoatCounter
   * Google Analytics (urchin.js, GA3 (=UA, ga.js, analytics.js, gtag.js), and GA4)
   * Google Tag Manager
+  * GoSquared
   * Hotjar
   * Koko Analytics
   * Matomo
