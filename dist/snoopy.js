@@ -367,6 +367,12 @@ var Sniffer = (function(win, doc, undefined) {
           rel: 'icon',
           match: /\/\/cdn\.blot\.im/i
         }
+      },{
+        type: 'link',
+        test: {
+          rel: 'stylesheet',
+          match: /\/\/cdn\.blot\.im/i
+        }
       }],
       'ClassicPress': [{
         type: 'meta',
@@ -1460,7 +1466,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.13',
+    VERSION: '0.7.14',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

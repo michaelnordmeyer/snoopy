@@ -130,6 +130,12 @@ var Sniffer = (function(win, doc, undefined) {
           rel: 'icon',
           match: /\/\/cdn\.blot\.im/i
         }
+      },{
+        type: 'link',
+        test: {
+          rel: 'stylesheet',
+          match: /\/\/cdn\.blot\.im/i
+        }
       }],
       'ClassicPress': [{
         type: 'meta',
