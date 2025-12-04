@@ -575,6 +575,19 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.Squarespace;
         }
       }],
+      'Substack': [{
+        type: 'link',
+        test: {
+          rel: 'icon',
+          match: /\/\/substackcdn\.com/i
+        }
+      },{
+        type: 'link',
+        test: {
+          rel: 'stylesheet',
+          match: /\/\/substackcdn\.com/i
+        }
+      }],
       'Sushy': [{
         type: 'meta',
         test: {
@@ -1466,7 +1479,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.14',
+    VERSION: '0.7.15',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

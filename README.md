@@ -43,6 +43,7 @@ Snoopy can detect the following items:
   * Publii
   * Scully
   * Squarespace
+  * Substack
   * Sushy
   * Tumblr
   * Typepad

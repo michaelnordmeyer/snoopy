@@ -338,6 +338,19 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.Squarespace;
         }
       }],
+      'Substack': [{
+        type: 'link',
+        test: {
+          rel: 'icon',
+          match: /\/\/substackcdn\.com/i
+        }
+      },{
+        type: 'link',
+        test: {
+          rel: 'stylesheet',
+          match: /\/\/substackcdn\.com/i
+        }
+      }],
       'Sushy': [{
         type: 'meta',
         test: {
