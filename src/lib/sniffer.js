@@ -865,6 +865,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: /<script [^>]+\/\/plausible\.io\/js\/script\.js/i
       },
       {
+        type: 'text',
+        test: /<script [^>]+\/\/plausible\.io\/js\/plausible\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!win.plausible;

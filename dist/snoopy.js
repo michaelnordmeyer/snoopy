@@ -1102,6 +1102,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: /<script [^>]+\/\/plausible\.io\/js\/script\.js/i
       },
       {
+        type: 'text',
+        test: /<script [^>]+\/\/plausible\.io\/js\/plausible\.js/i
+      },
+      {
         type: 'custom',
         test: function() {
           return !!win.plausible;
@@ -1479,7 +1483,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.15',
+    VERSION: '0.7.16',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
