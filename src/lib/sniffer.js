@@ -592,6 +592,9 @@ var Sniffer = (function(win, doc, undefined) {
       'Giscus': [{
         type: 'text',
         test: /<iframe [^>]+giscus-frame/i
+      },{
+        type: 'text',
+        test: /<script [^>]+giscus\.app\/client\.js/i
       }],
       'Isso': [{
         type: 'text',

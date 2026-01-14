@@ -829,6 +829,9 @@ var Sniffer = (function(win, doc, undefined) {
       'Giscus': [{
         type: 'text',
         test: /<iframe [^>]+giscus-frame/i
+      },{
+        type: 'text',
+        test: /<script [^>]+giscus\.app\/client\.js/i
       }],
       'Isso': [{
         type: 'text',
@@ -1483,7 +1486,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.16',
+    VERSION: '0.7.17',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
