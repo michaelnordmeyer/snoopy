@@ -588,6 +588,9 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.disqus_identifier
         }
+      },{
+        type: 'text',
+        test: /<div [^>]+disqus_thread/i
       }],
       'Giscus': [{
         type: 'text',

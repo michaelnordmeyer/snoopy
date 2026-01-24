@@ -825,6 +825,9 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.disqus_identifier
         }
+      },{
+        type: 'text',
+        test: /<div [^>]+disqus_thread/i
       }],
       'Giscus': [{
         type: 'text',
@@ -1486,7 +1489,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.17',
+    VERSION: '0.7.18',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
