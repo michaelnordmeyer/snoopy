@@ -619,6 +619,10 @@ var Sniffer = (function(win, doc, undefined) {
       'Utterances': [{
         type: 'text',
         test: /<iframe [^>]+utterances-frame/i
+      }],
+      'Zoomment': [{
+        type: 'text',
+        test: /<script [^>]+cdn\.zoomment\.com\/zoomment\.min\.js/i
       }]
     }
   };
@@ -880,7 +884,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.plausible;
         }
       }],
-      'Posthog': [{
+      'PostHog': [{
         type: 'custom',
         test: function() {
           return !!win.posthog;
