@@ -831,10 +831,10 @@ var Sniffer = (function(win, doc, undefined) {
       }],
       'Giscus': [{
         type: 'text',
-        test: /<iframe [^>]+giscus-frame/i
+        test: /<script [^>]+giscus\.app\/client\.js/i
       },{
         type: 'text',
-        test: /<script [^>]+giscus\.app\/client\.js/i
+        test: /<iframe [^>]+giscus-frame/i
       }],
       'Isso': [{
         type: 'text',
@@ -854,6 +854,9 @@ var Sniffer = (function(win, doc, undefined) {
         }
       }],
       'Utterances': [{
+        type: 'text',
+        test: /<script [^>]+utteranc\.es\/client\.js/i
+      },{
         type: 'text',
         test: /<iframe [^>]+utterances-frame/i
       }],
@@ -1493,7 +1496,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.19',
+    VERSION: '0.7.20',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
