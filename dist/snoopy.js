@@ -365,13 +365,13 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'link',
         test: {
           rel: 'icon',
-          match: /\/\/cdn\.blot\.im/i
+          match: /\/\/cdn\.blot\.im\//i
         }
       },{
         type: 'link',
         test: {
           rel: 'stylesheet',
-          match: /\/\/cdn\.blot\.im/i
+          match: /\/\/cdn\.blot\.im\//i
         }
       }],
       'ClassicPress': [{
@@ -505,6 +505,12 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.microblog;
         }
+      }, {
+        type: 'link',
+        test: {
+          rel: 'subscribe',
+          match: /\/\/micro\.blog\//i
+        }
       }],
       'MovableType': [{
         type: 'meta',
@@ -579,13 +585,13 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'link',
         test: {
           rel: 'icon',
-          match: /\/\/substackcdn\.com/i
+          match: /\/\/substackcdn\.com\//i
         }
       },{
         type: 'link',
         test: {
           rel: 'stylesheet',
-          match: /\/\/substackcdn\.com/i
+          match: /\/\/substackcdn\.com\//i
         }
       }],
       'Sushy': [{
@@ -1496,7 +1502,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.20',
+    VERSION: '0.7.21',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
