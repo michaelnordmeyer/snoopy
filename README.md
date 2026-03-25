@@ -45,6 +45,7 @@ Snoopy can detect the following items:
   * Squarespace
   * Substack
   * Sushy
+  * Svbtle
   * Tumblr
   * Typepad
   * Typo3

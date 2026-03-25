@@ -364,6 +364,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Sushy ([\w\.-]*)/i
         }
       }],
+      'Svbtle': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Svbtle\.com/i
+        }
+      }],
       'Tumblr': [{
         type: 'custom',
         test: function() {
