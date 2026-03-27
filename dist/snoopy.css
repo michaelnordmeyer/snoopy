@@ -453,6 +453,10 @@
 }
 /* Simple reset */
 
+#snpy * {
+  -webkit-text-fill-color: revert !important;
+}
+
 #snpy div {
   display: block !important;
 }
