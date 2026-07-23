@@ -34,9 +34,10 @@ Snoopy can detect the following items:
   * Metalsmith
   * Micro.blog
   * MovableType
+  * Neato
   * Next.js
-  * Nuxt.js
   * Nikola
+  * Nuxt.js
   * Obsidian Publish
   * Octopress
   * Pandoc

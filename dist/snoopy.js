@@ -524,16 +524,17 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.MT;
         }
       }],
+      'Neato': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Neato/i
+        }
+      }],
       'Next.js': [{
         type: 'custom',
         test: function() {
           return win.next ? win.next.version : false;
-        }
-      }],
-      'Nuxt.js': [{
-        type: 'custom',
-        test: function() {
-          return !!win.__NUXT_COLOR_MODE__;
         }
       }],
       'Nikola': [{
@@ -541,6 +542,12 @@ var Sniffer = (function(win, doc, undefined) {
         test: {
           name: 'generator',
           match: /Nikola \(getnikola\.com\)/i
+        }
+      }],
+      'Nuxt.js': [{
+        type: 'custom',
+        test: function() {
+          return !!win.__NUXT_COLOR_MODE__;
         }
       }],
       'Obsidian Publish': [{
@@ -1509,7 +1516,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.23',
+    VERSION: '0.7.24',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

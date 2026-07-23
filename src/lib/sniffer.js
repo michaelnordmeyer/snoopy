@@ -287,16 +287,17 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.MT;
         }
       }],
+      'Neato': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Neato/i
+        }
+      }],
       'Next.js': [{
         type: 'custom',
         test: function() {
           return win.next ? win.next.version : false;
-        }
-      }],
-      'Nuxt.js': [{
-        type: 'custom',
-        test: function() {
-          return !!win.__NUXT_COLOR_MODE__;
         }
       }],
       'Nikola': [{
@@ -304,6 +305,12 @@ var Sniffer = (function(win, doc, undefined) {
         test: {
           name: 'generator',
           match: /Nikola \(getnikola\.com\)/i
+        }
+      }],
+      'Nuxt.js': [{
+        type: 'custom',
+        test: function() {
+          return !!win.__NUXT_COLOR_MODE__;
         }
       }],
       'Obsidian Publish': [{
