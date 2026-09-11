@@ -15,6 +15,7 @@ Snoopy can detect the following items:
   * Charset
 * Content Management Systems
   * Astro
+  * Bear Blog
   * Blogger
   * Blot
   * ClassicPress
@@ -90,7 +91,7 @@ Snoopy can detect the following items:
   * Zoomment
 * Analytics
   * Ackee
-  * Bearblog
+  * Bear Blog
   * Burst Statistics
   * Cabin
   * Chartbeat

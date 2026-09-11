@@ -112,6 +112,16 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Astro v([\w\.-]*)/i
         }
       }],
+      'Bear Blog': [{
+        type: 'text',
+        test: /<!-- Powered by Bear Blog -->/i
+      },{
+        type: 'link',
+        test: {
+          rel: 'canonical',
+          match: /\/\/[^.]+\.bearblog\.dev/i
+        }
+      }],
       'Blogger': [{
         type: 'meta',
         test: {
@@ -664,7 +674,7 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.ackeeTracker;
         }
       }],
-      'Bearblog': [{
+      'Bear Blog': [{
         type: 'text',
         test: /<style>[^\/]+body:hover/i
       }],
