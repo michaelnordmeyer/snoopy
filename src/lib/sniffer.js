@@ -646,6 +646,12 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.remark_config
         }
       }],
+      'Talkyard': [{
+        type: 'custom',
+        test: function() {
+          return !!win.talkyardServerUrl
+        }
+      }],
       'Utterances': [{
         type: 'text',
         test: /<script [^>]+utteranc\.es\/client\.js/i

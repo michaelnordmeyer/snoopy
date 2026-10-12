@@ -87,6 +87,7 @@ Snoopy can detect the following items:
   * Isso
   * OpenWeb
   * Remark42
+  * Talkyard
   * Utterances
   * Zoomment
 * Analytics

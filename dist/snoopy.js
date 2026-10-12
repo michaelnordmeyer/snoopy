@@ -883,6 +883,12 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.remark_config
         }
       }],
+      'Talkyard': [{
+        type: 'custom',
+        test: function() {
+          return !!win.talkyardServerUrl
+        }
+      }],
       'Utterances': [{
         type: 'text',
         test: /<script [^>]+utteranc\.es\/client\.js/i
@@ -1526,7 +1532,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.25',
+    VERSION: '0.7.26',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
