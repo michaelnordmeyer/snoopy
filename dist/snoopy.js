@@ -1346,6 +1346,34 @@ var Sniffer = (function(win, doc, undefined) {
     }
   };
 
+  detect.feeds = {
+    description: 'Web Feeds',
+    return_type: 'detail',
+    tests: {
+      'Atom Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }],
+      'JSON Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }],
+      'RSS Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }]
+    }
+  };
+
   /* test runners */
 
   // custom tests just run a function that returns a version number, true or false.
@@ -1532,7 +1560,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.7.26',
+    VERSION: '0.8.0',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

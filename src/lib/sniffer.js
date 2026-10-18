@@ -1109,6 +1109,34 @@ var Sniffer = (function(win, doc, undefined) {
     }
   };
 
+  detect.feeds = {
+    description: 'Web Feeds',
+    return_type: 'detail',
+    tests: {
+      'Atom Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }],
+      'JSON Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }],
+      'RSS Feed': [{
+        type: 'link',
+        test: {
+          rel: 'alternate',
+          match: /.*/i
+        }
+      }]
+    }
+  };
+
   /* test runners */
 
   // custom tests just run a function that returns a version number, true or false.

@@ -132,6 +132,10 @@ Snoopy can detect the following items:
   * Woopra
   * WordPress Stats
   * WP Statistics
+* Web feeds
+  * Atom
+  * JSON
+  * RSS
 
 ## Browser Support
 
