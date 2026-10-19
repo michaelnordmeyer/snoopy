@@ -1111,27 +1111,27 @@ var Sniffer = (function(win, doc, undefined) {
 
   detect.feeds = {
     description: 'Web Feeds',
-    return_type: 'detail',
+    return_type: 'version',
     tests: {
       'Atom Feed': [{
         type: 'link',
         test: {
           rel: 'alternate',
-          match: /.*/i
+          match: /^application\/atom\+xml$/i
         }
       }],
       'JSON Feed': [{
         type: 'link',
         test: {
           rel: 'alternate',
-          match: /.*/i
+          match: /^application\/feed\+json$/i
         }
       }],
       'RSS Feed': [{
         type: 'link',
         test: {
           rel: 'alternate',
-          match: /.*/i
+          match: /^application\/rss\+xml$/i
         }
       }]
     }
@@ -1191,6 +1191,11 @@ var Sniffer = (function(win, doc, undefined) {
           var result = match(link.href, test.match);
           if (result) {
             return result;
+          } else {
+            result = match(link.type, test.match);
+            if (result) {
+              return result;
+            }
           }
         }
       }
