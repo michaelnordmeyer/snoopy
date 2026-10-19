@@ -98,6 +98,7 @@ Snoopy can detect the following items:
   * Chartbeat
   * Clicky
   * Cloudflare Insights
+  * DataFast
   * Fathom
   * Gauges
   * GoatCounter
@@ -105,6 +106,7 @@ Snoopy can detect the following items:
   * Google Tag Manager
   * GoSquared
   * Hotjar
+  * Independent Analytics
   * Koko Analytics
   * Matomo
   * Microanalytics

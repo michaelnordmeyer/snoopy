@@ -965,6 +965,10 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.__cfBeacon;
         }
       }],
+      'DataFast': [{
+        type: 'text',
+        test: /<script [^>]+\/\/datafa\.st\/js\/script\.js/i
+      }],
       'Fathom': [{
         type: 'text',
         test: /<script [^>]+\/\/cdn\.usefathom\.com\/script\.js/i
@@ -1075,6 +1079,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.hj;
         }
+      }],
+      'Independent Analytics': [{
+        type: 'text',
+        test: /<script [^>]+independent-analytics-script/i
       }],
       'Koko Analytics': [{
         type: 'text',
@@ -1409,7 +1417,10 @@ var Sniffer = (function(win, doc, undefined) {
   if (scripts.length) {
     test_runner.script = function(test) {
       for (var script, i = -1; script = scripts[++i];) {
-        return match(script.src, test);
+        var result = match(script.src, test);
+        if (result) {
+          return result;
+        }
       }
       return false;
     }
@@ -1565,7 +1576,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.8.0',
+    VERSION: '0.8.1',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
