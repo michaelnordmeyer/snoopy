@@ -731,6 +731,12 @@ var Sniffer = (function(win, doc, undefined) {
       'DataFast': [{
         type: 'text',
         test: /<script [^>]+\/\/datafa\.st\/js\/script\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.datafast;
+        }
       }],
       'Fathom': [{
         type: 'text',
@@ -754,6 +760,10 @@ var Sniffer = (function(win, doc, undefined) {
       'GoatCounter': [{
         type: 'text',
         test: /<script [^>]+\/\/gc\.zgo\.at\/count\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script[^>]+data-goatcounter=/i
       },
       {
         type: 'custom',

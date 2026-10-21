@@ -968,6 +968,12 @@ var Sniffer = (function(win, doc, undefined) {
       'DataFast': [{
         type: 'text',
         test: /<script [^>]+\/\/datafa\.st\/js\/script\.js/i
+      },
+      {
+        type: 'custom',
+        test: function() {
+          return !!win.datafast;
+        }
       }],
       'Fathom': [{
         type: 'text',
@@ -991,6 +997,10 @@ var Sniffer = (function(win, doc, undefined) {
       'GoatCounter': [{
         type: 'text',
         test: /<script [^>]+\/\/gc\.zgo\.at\/count\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script[^>]+data-goatcounter=/i
       },
       {
         type: 'custom',
@@ -1576,7 +1586,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.8.1',
+    VERSION: '0.8.2',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
