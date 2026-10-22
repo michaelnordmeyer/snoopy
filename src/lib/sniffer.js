@@ -348,6 +348,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Publii Open-Source CMS for Static Site/i
         }
       }],
+      'Quarto': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /quarto-([\w\.-]*)/i
+        }
+      }],
       'Scully': [{
         type: 'meta',
         test: {

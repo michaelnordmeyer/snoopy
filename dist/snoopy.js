@@ -585,6 +585,13 @@ var Sniffer = (function(win, doc, undefined) {
           match: /Publii Open-Source CMS for Static Site/i
         }
       }],
+      'Quarto': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /quarto-([\w\.-]*)/i
+        }
+      }],
       'Scully': [{
         type: 'meta',
         test: {
@@ -1586,7 +1593,7 @@ var Sniffer = (function(win, doc, undefined) {
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.8.2',
+    VERSION: '0.8.3',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

@@ -10,7 +10,7 @@
 
   var config = {
     NAME: 'Snoopy',
-    VERSION: '0.8.2',
+    VERSION: '0.8.3',
     URL: 'https://github.com/michaelnordmeyer/snoopy',
     CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
