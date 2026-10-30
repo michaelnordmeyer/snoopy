@@ -755,6 +755,10 @@ var Sniffer = (function(win, doc, undefined) {
           return !!win.fathom;
         }
       }],
+      'Fullres': [{
+        type: 'text',
+        test: /<script [^>]+\/\/t\.fullres\.net\/tag_[0-9a-zA-Z]{8}\.js\?[0-9]{13}/i
+      }],
       'Gauges': [{
         type: 'text',
         test: /<script [^>]+\/\/secure\.gaug\.es\/track\.js/i
@@ -763,6 +767,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win._gauges;
         }
+      }],
+      'Ghost Web Analytics': [{
+        type: 'text',
+        test: /<script [^>]+\/ghost-stats\.min\.js/i
       }],
       'GoatCounter': [{
         type: 'text',
@@ -850,6 +858,14 @@ var Sniffer = (function(win, doc, undefined) {
         type: 'text',
         test: /<iframe [^>]+\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-[A-Z0-9]{6,13}/i
       }],
+      'Growblog': [{
+        type: 'text',
+        test: /<script [^>]+\/\/t\.ghostboard\.io\/min\.js/i
+      },
+      {
+        type: 'text',
+        test: /<script [^>]+\/\/t\.growblog\.io\/min\.js/i
+      }],
       'Hotjar': [{
         type: 'text',
         test: /<script [^>]+\/\/static\.hotjar\.com\/c\/hotjar-[0-9]+\.js\?sv=[0-9]+/i
@@ -901,6 +917,10 @@ var Sniffer = (function(win, doc, undefined) {
         test: function() {
           return !!win.pa;
         }
+      }],
+      'Momently': [{
+        type: 'text',
+        test: /<script [^>]+\/[0-9a-zA-Z]{11}_momently\.js/i
       }],
       'New Relic': [{
         type: 'custom',

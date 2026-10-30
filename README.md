@@ -101,16 +101,20 @@ Snoopy can detect the following items:
   * Cloudflare Insights
   * DataFast
   * Fathom
+  * Fullres
   * Gauges
+  * Ghost Web Analytics
   * GoatCounter
   * Google Analytics (urchin.js, GA3 (=UA, ga.js, analytics.js, gtag.js), and GA4)
   * Google Tag Manager
   * GoSquared
+  * Growblog
   * Hotjar
   * Independent Analytics
   * Koko Analytics
   * Matomo
   * Microanalytics
+  * Momently
   * New Relic
   * Open Web Analytics
   * Pirsch
