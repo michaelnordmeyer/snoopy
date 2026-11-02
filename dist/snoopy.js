@@ -238,47 +238,13 @@
 /*
  * Sniffer - sniffs web pages to extract information such as CMS, JavaScript libraries, font services, commenting systems, analytics packages, etc.
  * Author: Mark Perkins, mark@allmarkedup.com
+ * Author: Michael Nordmeyer
  */
 
-var Sniffer = (function(win, doc, undefined) {
-  var sniff = {};
-  var detect = {};
-  var pageinfo = {};
-  var test_runner = {};
-  var results = {};
-  var indexed_results = {};
-  var links = doc.getElementsByTagName("link");
-  var metas = doc.getElementsByTagName("meta");
-  var scripts = doc.getElementsByTagName("script");
-  var html = doc.documentElement.outerHTML || doc.documentElement.innerHTML;
-  var doctype = doc.doctype;
-  var has_run = false;
-
-  // discard link tags that aren't useful
-  links = (function() {
-    for (var link, temp = [], i = -1; link = links[++i];) {
-      if (link.rel && link.href) temp.push(link);
-    }
-    return temp;
-  })();
-
-  // discard meta tags that aren't useful
-  metas = (function() {
-    for (var meta, temp = [], i = -1; meta = metas[++i];) {
-      if (meta.name && meta.content) temp.push(meta);
-    }
-    return temp;
-  })();
-
-  // discard script tags that aren't useful
-  scripts = (function() {
-    for (var script, temp = [], i = -1; script = scripts[++i];) {
-      if (script.src) temp.push(scripts);
-    }
-    return temp;
-  })();
-
+var Sniffer = (function() {
   /* page component detection tests */
+
+  var detect = {};
 
   detect.pageinfo = {
     description: 'Page Information',
@@ -332,7 +298,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Charset': [{
         type: 'custom',
         test: function() {
-          return doc.characterSet || 'None detected';
+          return document.characterSet || 'None detected';
         }
       }]
     }
@@ -368,7 +334,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win._BlogView;
+          return !!window._BlogView;
         }
       }],
       'Blot': [{
@@ -407,7 +373,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.Drupal;
+          return !!window.Drupal;
         } // no version in js obj
       }],
       'Eleventy': [{
@@ -480,7 +446,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.jimdoData;
+          return !!window.jimdoData;
         }
       }],
       'Joomla': [{
@@ -500,7 +466,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Medium': [{
         type: 'custom',
         test: function() {
-          return !!win.__GRAPHQL_URI__;
+          return !!window.__GRAPHQL_URI__;
         }
       }],
       'Metalsmith': [{
@@ -513,7 +479,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Micro.blog': [{
         type: 'custom',
         test: function() {
-          return !!win.microblog;
+          return !!window.microblog;
         }
       }, {
         type: 'link',
@@ -531,7 +497,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.MT;
+          return !!window.MT;
         }
       }],
       'Neato': [{
@@ -544,7 +510,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Next.js': [{
         type: 'custom',
         test: function() {
-          return win.next ? win.next.version : false;
+          return window.next ? window.next.version : false;
         }
       }],
       'Nikola': [{
@@ -557,7 +523,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Nuxt.js': [{
         type: 'custom',
         test: function() {
-          return !!win.__NUXT_COLOR_MODE__;
+          return !!window.__NUXT_COLOR_MODE__;
         }
       }],
       'Obsidian Publish': [{
@@ -602,7 +568,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Squarespace': [{
         type: 'custom',
         test: function() {
-          return !!win.Squarespace;
+          return !!window.Squarespace;
         }
       }],
       'Substack': [{
@@ -635,7 +601,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Tumblr': [{
         type: 'custom',
         test: function() {
-          return !!win.Tumblr;
+          return !!window.Tumblr;
         }
       }],
       'Typepad': [{
@@ -669,13 +635,13 @@ var Sniffer = (function(win, doc, undefined) {
       'Weebly': [{
         type: 'custom',
         test: function() {
-          return !!win.Weebly;
+          return !!window.Weebly;
         }
       }],
       'Wix': [{
         type: 'custom',
         test: function() {
-          return !!(win.wixDeveloperAnalytics || win.wixEmbedsAPI || win.wixPerformanceMeasurements || win.wixTagManager);
+          return !!(window.wixDeveloperAnalytics || window.wixEmbedsAPI || window.wixPerformanceMeasurements || window.wixTagManager);
         }
       }],
       'WordPress': [{
@@ -713,79 +679,79 @@ var Sniffer = (function(win, doc, undefined) {
       'Dojo': [{
         type: 'custom',
         test: function() {
-          return win.dojo ? win.dojo.version.toString() : false;
+          return window.dojo ? window.dojo.version.toString() : false;
         }
       }],
       'ExtJS': [{
         type: 'custom',
         test: function() {
-          return win.Ext ? win.Ext.version : false;
+          return window.Ext ? window.Ext.version : false;
         }
       }],
       'Glow': [{
         type: 'custom',
         test: function() {
-          return win.glow ? win.glow.VERSION : false;
+          return window.glow ? window.glow.VERSION : false;
         }
       }],
       'Google Closure': [{
         type: 'custom',
         test: function() {
-          return !!win.goog;
+          return !!window.goog;
         } // need to figure out how to get Closure version
       }],
       'jQuery': [{
         type: 'custom',
         test: function() {
-          return win.jQuery ? win.jQuery.fn.jquery : false;
+          return window.jQuery ? window.jQuery.fn.jquery : false;
         }
       }],
       'jQuery Mobile': [{
         type: 'custom',
         test: function() {
-          return win.jQuery && win.jQuery.mobile ? win.jQuery.mobile.version : false;
+          return window.jQuery && window.jQuery.mobile ? window.jQuery.mobile.version : false;
         }
       }],
       'jQuery UI': [{
         type: 'custom',
         test: function() {
-          return win.jQuery && win.jQuery.ui ? win.jQuery.ui.version : false;
+          return window.jQuery && window.jQuery.ui ? window.jQuery.ui.version : false;
         }
       }],
       'Modernizr': [{
         type: 'custom',
         test: function() {
-          return win.Modernizr ? win.Modernizr._version : false;
+          return window.Modernizr ? window.Modernizr._version : false;
         }
       }],
       'MooTools': [{
         type: 'custom',
         test: function() {
-          return win.MooTools ? win.MooTools.version : false;
+          return window.MooTools ? window.MooTools.version : false;
         }
       }],
       'Prototype': [{
         type: 'custom',
         test: function() {
-          return win.Prototype ? win.Prototype.Version : false;
+          return window.Prototype ? window.Prototype.Version : false;
         }
       }],
       'Scriptaculous': [{
         type: 'custom',
         test: function() {
-          return win.Scriptaculous ? win.Scriptaculous.Version : false;
+          return window.Scriptaculous ? window.Scriptaculous.Version : false;
         }
       }],
       'YUI2': [{
         type: 'custom',
         test: function() {
-          return win.YAHOO ? win.YAHOO.VERSION : false;
+          return window.YAHOO ? window.YAHOO.VERSION : false;
         }
       }],
       'YUI3': [{
         type: 'custom',
         test: function() {
-          return win.YUI ? win.YUI.version : false;
+          return window.YUI ? window.YUI.version : false;
         }
       }]
     }
@@ -798,19 +764,19 @@ var Sniffer = (function(win, doc, undefined) {
       'Adobe Fonts': [{
         type: 'custom',
         test: function() {
-          return !!win.Typekit
+          return !!window.Typekit
         }
       }],
       'Cufon': [{
         type: 'custom',
         test: function() {
-          return !!win.Cufon
+          return !!window.Cufon
         }
       }],
       'Google Fonts': [{
         type: 'custom',
         test: function() {
-          return !!win.WebFont
+          return !!window.WebFont
         }
       }, {
         type: 'text',
@@ -819,7 +785,7 @@ var Sniffer = (function(win, doc, undefined) {
       'sIFR': [{
         type: 'custom',
         test: function() {
-          return !!win.sIFR
+          return !!window.sIFR
         }
       }]
     }
@@ -839,7 +805,7 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.commento
+          return !!window.commento
         }
       }],
       'Cusdis': [{
@@ -848,19 +814,19 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.CUSDIS
+          return !!window.CUSDIS
         }
       }],
       'Discourse': [{
         type: 'custom',
         test: function() {
-          return !!win.DiscourseEmbed
+          return !!window.DiscourseEmbed
         }
       }],
       'Disqus': [{
         type: 'custom',
         test: function() {
-          return !!win.disqus_identifier
+          return !!window.disqus_identifier
         }
       },{
         type: 'text',
@@ -887,13 +853,13 @@ var Sniffer = (function(win, doc, undefined) {
       }, {
         type: 'custom',
         test: function() {
-          return !!win.remark_config
+          return !!window.remark_config
         }
       }],
       'Talkyard': [{
         type: 'custom',
         test: function() {
-          return !!win.talkyardServerUrl
+          return !!window.talkyardServerUrl
         }
       }],
       'Utterances': [{
@@ -921,7 +887,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.ackeeTracker;
+          return !!window.ackeeTracker;
         }
       }],
       'Bear Blog': [{
@@ -931,7 +897,7 @@ var Sniffer = (function(win, doc, undefined) {
       'Burst Statistics': [{
         type: 'custom',
         test: function() {
-          return !!win.burst;
+          return !!window.burst;
         }
       }],
       'Cabin': [{
@@ -941,7 +907,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.cabin;
+          return !!window.cabin;
         }
       }],
       'Chartbeat': [{
@@ -951,7 +917,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win._cb_shared || win._sf_async_config);
+          return !!(window._cb_shared || window._sf_async_config);
         }
       }],
       'Clicky': [{
@@ -960,7 +926,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.clicky;
+          return !!window.clicky;
         }
       }],
       'Cloudflare Insights': [{
@@ -969,7 +935,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.__cfBeacon;
+          return !!window.__cfBeacon;
         }
       }],
       'DataFast': [{
@@ -979,7 +945,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.datafast;
+          return !!window.datafast;
         }
       }],
       'Fathom': [{
@@ -989,7 +955,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.fathom;
+          return !!window.fathom;
         }
       }],
       'Fullres': [{
@@ -1002,7 +968,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win._gauges;
+          return !!window._gauges;
         }
       }],
       'Ghost Web Analytics': [{
@@ -1020,7 +986,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.goatcounter;
+          return !!window.goatcounter;
         }
       }],
       'GoSquared': [{
@@ -1030,7 +996,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win.GoSquared || win._gs);
+          return !!(window.GoSquared || window._gs);
         }
       }],
       'Google Analytics 1': [{ // 2005
@@ -1040,7 +1006,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win._uacct;
+          return !!window._uacct;
         }
       }],
       'Google Analytics 2': [{ // 2007 _gat, 2009 _gaq
@@ -1054,7 +1020,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win._gaq || win._gat);
+          return !!(window._gaq || window._gat);
         }
       }],
       'Google Analytics 3': [{ // 2013
@@ -1064,7 +1030,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.ga;
+          return !!window.ga;
         }
       }],
       'Google Analytics 3/GST': [{ // 2017
@@ -1074,7 +1040,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.gtag;
+          return !!window.gtag;
         }
       }],
       'Google Analytics 4': [{ // 2020
@@ -1084,7 +1050,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.gtag;
+          return !!window.gtag;
         }
       }],
       'Google Tag Manager': [{
@@ -1110,7 +1076,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.hj;
+          return !!window.hj;
         }
       }],
       'Independent Analytics': [{
@@ -1128,7 +1094,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.koko_analytics;
+          return !!window.koko_analytics;
         }
       }],
       'Matomo': [{
@@ -1142,7 +1108,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win._paq || win.Matomo || win.Piwik);
+          return !!(window._paq || window.Matomo || window.Piwik);
         }
       }],
       'Microanalytics': [{
@@ -1152,7 +1118,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.pa;
+          return !!window.pa;
         }
       }],
       'Momently': [{
@@ -1162,7 +1128,7 @@ var Sniffer = (function(win, doc, undefined) {
       'New Relic': [{
         type: 'custom',
         test: function() {
-          return !!(win.NREUMQ || win.NREUM);
+          return !!(window.NREUMQ || window.NREUM);
         }
       }],
       'Open Web Analytics': [{
@@ -1172,7 +1138,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win.OWA || win.owa_baseUrl);
+          return !!(window.OWA || window.owa_baseUrl);
         }
       }],
       'Pirsch': [{
@@ -1202,13 +1168,13 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.plausible;
+          return !!window.plausible;
         }
       }],
       'PostHog': [{
         type: 'custom',
         test: function() {
-          return !!win.posthog;
+          return !!window.posthog;
         }
       }],
       'Rybbit': [{
@@ -1217,7 +1183,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.rybbit;
+          return !!window.rybbit;
         }
       }],
       'Seline': [{
@@ -1226,7 +1192,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.seline;
+          return !!window.seline;
         }
       }],
       'Simple Analytics': [{
@@ -1235,7 +1201,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.sa_loaded;
+          return !!window.sa_loaded;
         }
       }],
       'Slimstat Analytics': [{
@@ -1244,7 +1210,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.SlimStatParams;
+          return !!window.SlimStatParams;
         }
       }],
       'Statcounter': [{
@@ -1254,19 +1220,19 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win._statcounter;
+          return !!window._statcounter;
         }
       }],
       'Statify': [{
         type: 'custom',
         test: function() {
-          return !!win.statify_ajax;
+          return !!window.statify_ajax;
         }
       },
       {
         type: 'custom',
         test: function() {
-          return !!win.statifyAjax;
+          return !!window.statifyAjax;
         }
       }],
       'Statsig': [{
@@ -1275,7 +1241,7 @@ var Sniffer = (function(win, doc, undefined) {
       },{
         type: 'custom',
         test: function() {
-          return !!win.Statsig;
+          return !!window.Statsig;
         }
       }],
       'TinyAnalytics.io': [{
@@ -1285,7 +1251,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.tinyanalytics;
+          return !!window.tinyanalytics;
         }
       }],
       'Tinybird': [{
@@ -1295,7 +1261,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.Tinybird;
+          return !!window.Tinybird;
         }
       }],
       'Tinylytics': [{
@@ -1305,7 +1271,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.should_collect;
+          return !!window.should_collect;
         }
       }],
       'Trackboxx': [{
@@ -1315,7 +1281,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.trackboxx;
+          return !!window.trackboxx;
         }
       }],
       'Umami': [{
@@ -1325,7 +1291,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.umami;
+          return !!window.umami;
         }
       }],
       'Usermaven': [{
@@ -1335,7 +1301,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.usermaven;
+          return !!window.usermaven;
         }
       }],
       'Vercel Insights': [{
@@ -1349,7 +1315,7 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win._w3counter;
+          return !!window._w3counter;
         }
       }],
       'Webtrends': [{
@@ -1359,13 +1325,13 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!win.Webtrends;
+          return !!window.Webtrends;
         }
       }],
       'Woopra': [{
         type: 'custom',
         test: function() {
-          return !!win.woopra;
+          return !!window.woopra;
         }
       }],
       'WordPress Stats': [{
@@ -1379,13 +1345,13 @@ var Sniffer = (function(win, doc, undefined) {
       {
         type: 'custom',
         test: function() {
-          return !!(win._tkq || win._stq);
+          return !!(window._tkq || window._stq);
         }
       }],
       'WP Statistics': [{
         type: 'custom',
         test: function() {
-          return !!win.WP_Statistics_Tracker_Object;
+          return !!window.WP_Statistics_Tracker_Object;
         }
       }]
     }
@@ -1395,7 +1361,7 @@ var Sniffer = (function(win, doc, undefined) {
     description: 'Web Feeds',
     return_type: 'version',
     tests: {
-      'Atom Feed': [{
+      'Atom': [{
         type: 'link',
         test: {
           rel: 'alternate',
@@ -1409,7 +1375,7 @@ var Sniffer = (function(win, doc, undefined) {
           match: /^application\/feed\+json$/i
         }
       }],
-      'RSS Feed': [{
+      'RSS': [{
         type: 'link',
         test: {
           rel: 'alternate',
@@ -1419,24 +1385,61 @@ var Sniffer = (function(win, doc, undefined) {
     }
   };
 
+  /* utility functions */
+
+  // test arg should be a regexp, in which the only *specific* match is the version number
+  function match(str, test) {
+    var match = str.match(test);
+    if (match) {
+      return match[1] && match[1] != '' ? match[1] : true; // return version number if poss or else true.
+    }
+    return false;
+  }
+
+  // iterate over the tests
+  var forEachTest = function(callback) {
+    for (group in detect) {
+      if (detect.hasOwnProperty(group)) {
+        for (test in detect[group].tests) {
+          if (detect[group].tests.hasOwnProperty(test)) {
+            if (callback(group, test) === false) {
+              return;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  var empty = function(obj) {
+    for (var name in obj) {
+      return false;
+    }
+    return true;
+  }
+
   /* test runners */
+
+  var test_runner = {};
 
   // custom tests just run a function that returns a version number, true or false.
   test_runner.custom = function(test) {
     return test();
   }
 
-  // one off regexp-based tests
+  // one-off regexp-based tests
+  var html = document.documentElement.outerHTML || document.documentElement.innerHTML;
   test_runner.text = function(test) {
     return match(html, test);
   }
 
+  // check the doctype
+  var doctype = document.doctype;
   if (doctype) {
     test_runner.doctype = function(test) {
       for (subtest in test) {
         if (test.hasOwnProperty(subtest)) {
           var actualTest = test[subtest];
-
           if (doctype.name.toLowerCase() == actualTest.name && doctype.publicId == actualTest.publicId) {
             return subtest;
           }
@@ -1450,25 +1453,16 @@ var Sniffer = (function(win, doc, undefined) {
     }
   }
 
-  // check the script src... probably pretty unreliable
-  if (scripts.length) {
-    test_runner.script = function(test) {
-      for (var script, i = -1; script = scripts[++i];) {
-        var result = match(script.src, test);
-        if (result) {
-          return result;
-        }
-      }
-      return false;
+  // check the head's link elements
+  var links = document.getElementsByTagName("link");
+  // discard link tags that aren't useful
+  links = (function() {
+    for (var link, temp = [], i = -1; link = links[++i];) {
+      if (link.rel && link.href) temp.push(link);
     }
-  } else {
-    // no scripts, tests will always return false.
-    test_runner.script = function() {
-      return false;
-    }
-  }
+    return temp;
+  })();
 
-  // check the link elements in the head
   if (links.length) {
     test_runner.link = function(test) {
       for (var link, i = -1; link = links[++i];) {
@@ -1487,13 +1481,21 @@ var Sniffer = (function(win, doc, undefined) {
       return false;
     }
   } else {
-    // there are no link elements on the page so this will always return false
     test_runner.link = function() {
       return false;
     }
   }
 
-  // check the meta elements in the head
+  // check the head's meta elements
+  var metas = document.getElementsByTagName("meta");
+  // discard meta tags that aren't useful
+  metas = (function() {
+    for (var meta, temp = [], i = -1; meta = metas[++i];) {
+      if (meta.name && meta.content) temp.push(meta);
+    }
+    return temp;
+  })();
+
   if (metas.length) {
     test_runner.meta = function(test) {
       for (var meta, i = -1; meta = metas[++i];) {
@@ -1507,19 +1509,35 @@ var Sniffer = (function(win, doc, undefined) {
       return false;
     }
   } else {
-    // there are no meta elements on the page so this will always return false
     test_runner.meta = function() {
       return false;
     }
   }
 
-  // test arg should be a regexp, in which the only *specific* match is the version number
-  function match(str, test) {
-    var match = str.match(test);
-    if (match) {
-      return match[1] && match[1] != '' ? match[1] : true; // return version number if poss or else true.
+  // check the script src
+  var scripts = document.getElementsByTagName("script");
+  // discard script tags that aren't useful
+  scripts = (function() {
+    for (var script, temp = [], i = -1; script = scripts[++i];) {
+      if (script.src) temp.push(scripts);
     }
-    return false;
+    return temp;
+  })();
+
+  if (scripts.length) {
+    test_runner.script = function(test) {
+      for (var script, i = -1; script = scripts[++i];) {
+        var result = match(script.src, test);
+        if (result) {
+          return result;
+        }
+      }
+      return false;
+    }
+  } else {
+    test_runner.script = function() {
+      return false;
+    }
   }
 
   /* main function responsible for running the tests */
@@ -1532,46 +1550,21 @@ var Sniffer = (function(win, doc, undefined) {
     return false;
   }
 
-  var empty = function(obj) {
-    for (var name in obj) {
-      return false;
-    }
-    return true;
-  }
-
-  // utility function for iterating over the tests
-  var forEachTest = function(callback) {
-    for (group in detect) {
-      if (detect.hasOwnProperty(group)) {
-        for (test in detect[group].tests) {
-          if (detect[group].tests.hasOwnProperty(test)) {
-            if (callback(group, test) === false) {
-              return;
-            }
-          }
-        }
-      }
-    }
-  }
+  var results = {};
+  var indexed_results = {};
 
   var addToResults = function(group, test, result) {
-    // add results to group results object
     results[group] = results[group] || {};
     results[group].results = results[group].results || {};
     results[group].description = detect[group].description;
     results[group].return_type = detect[group].return_type;
     results[group]['results'][test] = result;
-
-    // add the result to the name-index results object
     indexed_results[test.toLowerCase()] = result;
   }
 
   /* publicly available methods */
 
-  // return results of all checks run so far
-  sniff.results = function() {
-    return results;
-  };
+  var sniff = {};
 
   // perform an individual check
   sniff.check = function(to_test) {
@@ -1595,27 +1588,21 @@ var Sniffer = (function(win, doc, undefined) {
       addToResults(group, test, run(detect[group].tests[test]));
     });
 
-    return sniff.results();
+    return results;
   };
 
   return sniff;
-
-})(window, document);
+})();
 // Snoopy - View-source and page info bookmarklet for mobile Safari-based browsers
-// Written by Mark Perkins, mark@allmarkedup.com
+// Written by Mark Perkins, mark@allmarkedup.com, and Michael Nordmeyer
 // License: https://unlicense.org/ (i.e. do what you want with it!)
 
 (function() {
-  var isTouch = (function() {
-    var ua = navigator.userAgent;
-    return (ua.match(/iPhone/i) || ua.match(/iPod/i) || ua.match(/iPad/i) || ua.match(/Android/i)) ? true : false;
-  })();
-
   var config = {
-    NAME: 'Snoopy',
-    VERSION: '0.8.4',
-    URL: 'https://github.com/michaelnordmeyer/snoopy',
-    CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
+    name: 'Snoopy',
+    version: '1.0.0',
+    url: 'https://github.com/michaelnordmeyer/snoopy',
+    created: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
 
   var snoopy = {
@@ -1741,7 +1728,6 @@ var Sniffer = (function(win, doc, undefined) {
 
     setMaxDimensions: function() {
       this.element.style.maxHeight = window.innerHeight + 'px';
-
       const height = window.innerHeight - document.querySelector('#snpy .header').clientHeight - document.querySelector('#snpy .tabs').clientHeight - document.querySelector('#snpy .footer').clientHeight;
       const modulesHeight = height - 30; // Subtract padding
       const codeHeight = height - 40; // Subtract padding
@@ -1793,7 +1779,7 @@ var Sniffer = (function(win, doc, undefined) {
 <div class="header">
   <button class="close" title="Closes Snoopy" type="button"></button>
   <button class="toggle-tests" title="Toggles undetected items in Overview" type="button"></button>
-  <h1><a href="${config.URL}">${config.NAME} ${config.VERSION}</a></h1>
+  <h1><a href="${config.url}">${config.name} ${config.version}</a></h1>
 </div>
 <div class="body">
   <ul class="tabs">
@@ -1814,7 +1800,7 @@ var Sniffer = (function(win, doc, undefined) {
   </div>
 </div>
 <div class="footer">
-  ${config.CREATED}
+  ${config.created}
 </div>`;
     }
   };

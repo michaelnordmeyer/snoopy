@@ -1,18 +1,13 @@
 // Snoopy - View-source and page info bookmarklet for mobile Safari-based browsers
-// Written by Mark Perkins, mark@allmarkedup.com
+// Written by Mark Perkins, mark@allmarkedup.com, and Michael Nordmeyer
 // License: https://unlicense.org/ (i.e. do what you want with it!)
 
 (function() {
-  var isTouch = (function() {
-    var ua = navigator.userAgent;
-    return (ua.match(/iPhone/i) || ua.match(/iPod/i) || ua.match(/iPad/i) || ua.match(/Android/i)) ? true : false;
-  })();
-
   var config = {
-    NAME: 'Snoopy',
-    VERSION: '0.8.4',
-    URL: 'https://github.com/michaelnordmeyer/snoopy',
-    CREATED: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
+    name: 'Snoopy',
+    version: '1.0.0',
+    url: 'https://github.com/michaelnordmeyer/snoopy',
+    created: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };
 
   var snoopy = {
@@ -138,7 +133,6 @@
 
     setMaxDimensions: function() {
       this.element.style.maxHeight = window.innerHeight + 'px';
-
       const height = window.innerHeight - document.querySelector('#snpy .header').clientHeight - document.querySelector('#snpy .tabs').clientHeight - document.querySelector('#snpy .footer').clientHeight;
       const modulesHeight = height - 30; // Subtract padding
       const codeHeight = height - 40; // Subtract padding
@@ -190,7 +184,7 @@
 <div class="header">
   <button class="close" title="Closes Snoopy" type="button"></button>
   <button class="toggle-tests" title="Toggles undetected items in Overview" type="button"></button>
-  <h1><a href="${config.URL}">${config.NAME} ${config.VERSION}</a></h1>
+  <h1><a href="${config.url}">${config.name} ${config.version}</a></h1>
 </div>
 <div class="body">
   <ul class="tabs">
@@ -211,7 +205,7 @@
   </div>
 </div>
 <div class="footer">
-  ${config.CREATED}
+  ${config.created}
 </div>`;
     }
   };
