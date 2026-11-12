@@ -314,6 +314,13 @@ var Sniffer = (function() {
           match: /Publii Open-Source CMS for Static Site/i
         }
       }],
+      'Pure Blog': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Pure Blog/i
+        }
+      }],
       'Quarto': [{
         type: 'meta',
         test: {
