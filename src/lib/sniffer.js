@@ -895,6 +895,10 @@ var Sniffer = (function() {
         type: 'text',
         test: /<script [^>]+\/[0-9a-zA-Z]{11}_momently\.js/i
       }],
+      'Neatstats': [{
+        type: 'text',
+        test: /<script [^>]+\/\/neatstats.net\/counter\.js/i
+      }],
       'New Relic': [{
         type: 'custom',
         test: function() {

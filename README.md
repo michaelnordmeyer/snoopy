@@ -116,6 +116,7 @@ Snoopy can detect the following items:
   * Matomo
   * Microanalytics
   * Momently
+  * Neatstats
   * New Relic
   * Open Web Analytics
   * Pirsch
