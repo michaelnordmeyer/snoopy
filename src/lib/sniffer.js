@@ -71,13 +71,6 @@ var Sniffer = (function() {
     description: 'Content Management System',
     return_type: 'version',
     tests: {
-      'Astro': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Astro v([\w\.-]*)/i
-        }
-      }],
       'Bear Blog': [{
         type: 'text',
         test: /<!-- Powered by Bear Blog -->/i
@@ -120,13 +113,6 @@ var Sniffer = (function() {
           match: /ClassicPress\s?([\w\.-]*)/i
         }
       }],
-      'Docusaurus': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Docusaurus v([\w\.-]*)/i
-        }
-      }],
       'Drupal': [{
         type: 'meta',
         test: {
@@ -139,59 +125,11 @@ var Sniffer = (function() {
           return !!window.Drupal;
         } // no version in js obj
       }],
-      'Eleventy': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Eleventy v([\w\.-]*)/i
-        }
-      }, {
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Eleventy/i
-        }
-      }],
-      'Gatsby': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Gatsby ([\w\.-]*)/i
-        }
-      }],
       'Ghost': [{
         type: 'meta',
         test: {
           name: 'generator',
           match: /Ghost\s?([\w\.-]*)/i
-        }
-      }],
-      'Gridsome': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Gridsome v([\w\.-]*)/i
-        }
-      }],
-      'Hexo': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Hexo ([\w\.-]*)/i
-        }
-      }],
-      'Hugo': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Hugo ([\w\.-]*)/i
-        }
-      }],
-      'Jekyll': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Jekyll v([\w\.-]*)/i
         }
       }],
       'Jimdo': [{
@@ -219,24 +157,10 @@ var Sniffer = (function() {
           match: /joomla\!?\s?([\d.]*)/i
         }
       }],
-      'Lume': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Lume ([\w\.-]*)/i
-        }
-      }],
       'Medium': [{
         type: 'custom',
         test: function() {
           return !!window.__GRAPHQL_URI__;
-        }
-      }],
-      'Metalsmith': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Metalsmith/i
         }
       }],
       'Micro.blog': [{
@@ -270,35 +194,9 @@ var Sniffer = (function() {
           match: /Neato/i
         }
       }],
-      'Next.js': [{
-        type: 'custom',
-        test: function() {
-          return window.next ? window.next.version : false;
-        }
-      }],
-      'Nikola': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Nikola \(getnikola\.com\)/i
-        }
-      }],
-      'Nuxt.js': [{
-        type: 'custom',
-        test: function() {
-          return !!window.__NUXT_COLOR_MODE__;
-        }
-      }],
       'Obsidian Publish': [{
         type: 'text',
         test: /<base [^>]+\/\/publish\.obsidian\.md/i
-      }],
-      'Octopress': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /.*Octopress.*/i
-        }
       }],
       'Pandoc': [{
         type: 'meta',
@@ -326,13 +224,6 @@ var Sniffer = (function() {
         test: {
           name: 'generator',
           match: /quarto-([\w\.-]*)/i
-        }
-      }],
-      'Scully': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /Scully ([\w\.-]*)/i
         }
       }],
       'Squarespace': [{
@@ -388,20 +279,6 @@ var Sniffer = (function() {
           match: /Typo3 CMS/i
         }
       }],
-      'VitePress': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /VitePress ([\w\.-]*)/i
-        }
-      }],
-      'VuePress': [{
-        type: 'meta',
-        test: {
-          name: 'generator',
-          match: /VuePress ([\w\.-]*)/i
-        }
-      }],
       'Weebly': [{
         type: 'custom',
         test: function() {
@@ -436,6 +313,203 @@ var Sniffer = (function() {
         test: {
           name: 'generator',
           match: /WriteFreely/i
+        }
+      }]
+    }
+  };
+
+  detect.ssg = {
+    description: 'Static Site Generator',
+    return_type: 'version',
+    // All individual tests should either return a version number, true or false.
+    tests: {
+      'Docusaurus': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Docusaurus v([\w\.-]*)/i
+        }
+      }],
+      'Eleventy': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Eleventy v([\w\.-]*)/i
+        }
+      }, {
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Eleventy/i
+        }
+      }],
+      'Gatsby': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Gatsby ([\w\.-]*)/i
+        }
+      }],
+      'Gridsome': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Gridsome v([\w\.-]*)/i
+        }
+      }],
+      'Hexo': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Hexo ([\w\.-]*)/i
+        }
+      }],
+      'Hugo': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Hugo ([\w\.-]*)/i
+        }
+      }],
+      'Jekyll': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Jekyll v([\w\.-]*)/i
+        }
+      }],
+      'Lume': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Lume ([\w\.-]*)/i
+        }
+      }],
+      'Metalsmith': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Metalsmith/i
+        }
+      }],
+      'Nikola': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Nikola \(getnikola\.com\)/i
+        }
+      }],
+      'Octopress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /.*Octopress.*/i
+        }
+      }],
+      'VitePress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /VitePress ([\w\.-]*)/i
+        }
+      }],
+      'VuePress': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /VuePress ([\w\.-]*)/i
+        }
+      }]
+    }
+  };
+
+  detect.forum_sw = {
+    description: 'Forum Software',
+    return_type: 'version',
+    tests: {
+      'Discourse': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Discourse ([^ ]+)/i
+        }
+      }],
+      'Flarum': [{
+        type: 'custom',
+        test: function() {
+          return !!window.flarum;
+        }
+      }],
+      'FUDforum': [{
+        type: 'custom',
+        test: function() {
+          return typeof fud_msg_focus === "function";
+        }
+      }],
+      'MyBB': [{
+        type: 'custom',
+        test: function() {
+          return typeof window.MyBBEditor !== "undefined";
+        }
+      }],
+      'phpBB': [{
+        type: 'meta',
+        test: {
+          name: 'application-name',
+          match: /phpBB/i
+        }
+      }],
+      'Simple Machines Forum': [{
+        type: 'custom',
+        test: function() {
+          return !!window.smf_session_id;
+        }
+      }],
+      'Storyden': [{
+        type: 'custom',
+        test: function() {
+          return !!window.__storyden__;
+        }
+      }],
+       'vBulletin': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /vBulletin ([^ ]+)/i
+        }
+     }]
+    }
+  };
+
+  detect.js_frameworks = {
+    description: 'JavaScript Framework',
+    return_type: 'version',
+    // All individual tests should either return a version number, true or false.
+    tests: {
+      'Astro': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Astro v([\w\.-]*)/i
+        }
+      }],
+      'Next.js': [{
+        type: 'custom',
+        test: function() {
+          return window.next ? window.next.version : false;
+        }
+      }],
+      'Nuxt.js': [{
+        type: 'custom',
+        test: function() {
+          return !!window.__NUXT_COLOR_MODE__;
+        }
+      }],
+      'Scully': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /Scully ([\w\.-]*)/i
         }
       }]
     }

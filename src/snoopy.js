@@ -5,7 +5,7 @@
 (function() {
   var config = {
     name: 'Snoopy',
-    version: '1.0.2',
+    version: '1.1.0',
     url: 'https://github.com/michaelnordmeyer/snoopy',
     created: 'Created by <a href="http://allmarkedup.com/">Mark Perkins</a> and <a href="https://michaelnordmeyer.com/">Michael Nordmeyer</a>'
   };

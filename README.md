@@ -10,42 +10,27 @@ JavaScript has to be turned on for bookmarklets to function, and it only works o
 
 Snoopy can detect the following items:
 
-* General page information
+* General Page Information
   * Doctype
   * Charset
 * Content Management Systems
-  * Astro
   * Bear Blog
   * Blogger
   * Blot
   * ClassicPress
-  * Docusaurus
   * Drupal
-  * Eleventy
-  * Gatsby
   * Ghost
-  * Gridsome
-  * Hexo
-  * Hugo
-  * Jekyll
   * Jimdo
   * Joomla
-  * Lume
   * Medium
-  * Metalsmith
   * Micro.blog
   * MovableType
   * Neato
-  * Next.js
-  * Nikola
-  * Nuxt.js
   * Obsidian Publish
-  * Octopress
   * Pandoc
   * Publii
   * Pure Blog
   * Quarto
-  * Scully
   * Squarespace
   * Substack
   * Sushy
@@ -53,14 +38,40 @@ Snoopy can detect the following items:
   * Tumblr
   * Typepad
   * Typo3
-  * VitePress
-  * VuePress
   * Weebly
   * Wix
   * WordPress
   * Write.as
   * WriteFreely
-* JavaScript libraries
+* Static Site Generators
+  * Docusaurus
+  * Eleventy
+  * Gatsby
+  * Gridsome
+  * Hexo
+  * Hugo
+  * Jekyll
+  * Lume
+  * Metalsmith
+  * Nikola
+  * Octopress
+  * VitePress
+  * VuePress
+* Forum Software
+  * Discourse
+  * Flarum
+  * FUDforum
+  * MyBB
+  * phpBB
+  * Simple Machines Forum
+  * Storyden
+  * vBulletin
+* JavaScript Frameworks
+  * Astro
+  * Next.js
+  * Nuxt.js
+  * Scully
+* JavaScript Libraries
   * Dojo
   * ExtJS
   * Glow
@@ -74,12 +85,12 @@ Snoopy can detect the following items:
   * Scriptaculous
   * YUI2
   * YUI3
-* Font embedding (technique)
+* Font Embedding (Techniques)
   * Adobe Fonts
   * Cufon
   * Google Fonts
   * sIFR
-* Commenting systems
+* Commenting Systems
   * Cactus Comments
   * Commento
   * Cusdis
@@ -141,7 +152,7 @@ Snoopy can detect the following items:
   * Woopra
   * WordPress Stats
   * WP Statistics
-* Web feeds
+* Web Feeds
   * Atom
   * JSON
   * RSS
