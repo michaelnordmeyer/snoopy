@@ -392,6 +392,13 @@ var Sniffer = (function() {
           match: /Metalsmith/i
         }
       }],
+      'MkDocs': [{
+        type: 'meta',
+        test: {
+          name: 'generator',
+          match: /mkdocs-([^,]+)/i
+        }
+      }],
       'Nikola': [{
         type: 'meta',
         test: {

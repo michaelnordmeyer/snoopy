@@ -53,6 +53,7 @@ Snoopy can detect the following items:
   * Jekyll
   * Lume
   * Metalsmith
+  * MkDocs
   * Nikola
   * Octopress
   * VitePress
